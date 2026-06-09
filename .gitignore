@@ -1,0 +1,9 @@
+# OS / 编辑器杂项
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# 本地 Agent 设置（不纳入版本控制）
+.claude/settings.local.json
+.agents/settings.local.json

@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arturia V Collection 11 Pro · 插件图鉴</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Spectral:ital,wght@0,300;0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#14110f;--panel:#1d1916;--ink:#ece4d8;--muted:#9a8f80;--faint:#6b6256;--line:#332c25;
+    --amber:#ff8a3d;--teal:#5ec8be;--gold:#e0b15a;
+    --display:"Bricolage Grotesque",system-ui,sans-serif;--serif:"Spectral",Georgia,serif;--mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--serif);font-weight:400;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.045;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  body::before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(60vw 50vh at 80% -10%,rgba(255,138,61,.10),transparent 60%),radial-gradient(50vw 50vh at 0% 110%,rgba(94,200,190,.07),transparent 60%)}
+  a{color:inherit;text-decoration:none}
+
+  header.bar{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(20,17,15,.72);border-bottom:1px solid var(--line)}
+  .bar-inner{max-width:1180px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+  .brand{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);font-weight:700;white-space:nowrap}
+  .brand b{color:var(--ink)}
+  nav.chips{display:flex;gap:6px;flex-wrap:wrap}
+  nav.chips a{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--muted);padding:5px 11px;border:1px solid var(--line);border-radius:999px;transition:.25s;white-space:nowrap}
+  nav.chips a:hover{color:var(--bg);background:var(--amber);border-color:var(--amber)}
+
+  .hero{max-width:1180px;margin:0 auto;padding:88px 28px 56px;position:relative}
+  .kick{font-family:var(--mono);font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--teal);margin-bottom:24px}
+  .hero h1{font-family:var(--display);font-weight:800;font-size:clamp(48px,9vw,128px);line-height:.92;letter-spacing:-.02em;margin-bottom:28px}
+  .hero h1 .out{color:transparent;-webkit-text-stroke:1.4px var(--gold)}
+  .hero h1 em{font-style:normal;color:var(--amber)}
+  .lede{max-width:660px;font-size:clamp(17px,2vw,21px);color:var(--muted);font-weight:300}
+  .lede strong{color:var(--ink);font-weight:500}
+  .stat-row{display:flex;gap:48px;margin-top:48px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:32px}
+  .stat .n{font-family:var(--display);font-weight:800;font-size:40px;line-height:1;color:var(--gold)}
+  .stat .l{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-top:8px}
+
+  .notice{max-width:1180px;margin:0 auto 24px;padding:18px 24px;border:1px dashed var(--teal);border-radius:14px;background:rgba(94,200,190,.05);font-size:15px;color:var(--ink)}
+  .notice b{color:var(--teal);font-family:var(--mono);font-size:12px;letter-spacing:.1em}
+
+  section.cat{max-width:1180px;margin:0 auto;padding:64px 28px 24px}
+  .cat-head{display:flex;align-items:baseline;gap:18px;margin-bottom:8px;flex-wrap:wrap;scroll-margin-top:80px}
+  .cat-head .idx{font-family:var(--mono);font-size:13px;color:var(--amber);letter-spacing:.1em}
+  .cat-head h2{font-family:var(--display);font-weight:800;font-size:clamp(28px,4vw,46px);letter-spacing:-.01em}
+  .cat-head .count{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 10px;letter-spacing:.08em}
+  .cat-sub{color:var(--muted);font-weight:300;max-width:720px;margin-bottom:36px;font-size:16px}
+
+  .card{background:linear-gradient(180deg,var(--panel),#1a1613);border:1px solid var(--line);border-radius:18px;padding:32px 34px;margin-bottom:24px;position:relative;overflow:hidden;transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .35s}
+  .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--amber),var(--gold));opacity:.85}
+  .card.modern::before{background:linear-gradient(180deg,var(--teal),#3a8f88)}
+  .card:hover{transform:translateY(-4px);border-color:var(--faint)}
+  .card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:6px}
+  .card h3{font-family:var(--display);font-weight:800;font-size:30px;letter-spacing:-.01em}
+  .spec{font-family:var(--mono);font-size:12px;color:var(--teal);letter-spacing:.04em;text-align:right;line-height:1.6;max-width:360px}
+  .spec span{color:var(--muted)}
+  .desc{color:#d8cdbd;font-weight:300;font-size:16.5px;margin:14px 0 0;max-width:900px}
+
+  /* 为什么传奇 专栏 */
+  .legend{margin:20px 0 26px;padding:16px 20px 16px 22px;border-left:3px solid var(--gold);background:rgba(224,177,90,.06);border-radius:0 12px 12px 0}
+  .legend .lh{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:7px}
+  .legend p{font-size:14.5px;color:#ccc0ad;font-weight:300;line-height:1.65;margin:0}
+
+  .block-label{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;display:flex;align-items:center;gap:10px}
+  .block-label::after{content:"";flex:1;height:1px;background:var(--line)}
+
+  ol.sounds{list-style:none;counter-reset:s;display:grid;grid-template-columns:1fr 1fr;gap:0 40px}
+  @media(max-width:760px){ol.sounds{grid-template-columns:1fr}}
+  ol.sounds li{counter-increment:s;position:relative;padding:16px 0 16px 40px;border-bottom:1px solid rgba(51,44,37,.6)}
+  ol.sounds li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:18px;font-family:var(--mono);font-size:11px;color:var(--amber)}
+  .snd-name{color:var(--ink);font-weight:500;font-family:var(--display);font-size:16px}
+  .snd-desc{font-size:14px;color:#c9bdac;font-weight:300;line-height:1.55;margin:5px 0 7px}
+  .snd-genre{font-family:var(--mono);font-size:10.5px;color:var(--teal);letter-spacing:.02em;line-height:1.4}
+  .snd-genre::before{content:"曲风 / ";color:var(--faint)}
+  .snd-song{font-family:var(--mono);font-size:12px;color:var(--teal);margin-top:6px;line-height:1.5}
+  .snd-song i{color:var(--amber);font-style:normal;margin-right:6px}
+  .snd-song.use i{color:var(--teal)}
+  .snd-song em{color:var(--muted);font-style:normal}
+
+  .card-note{font-family:var(--mono);font-size:11px;color:var(--faint);margin-top:18px;line-height:1.7;border-top:1px dashed var(--line);padding-top:14px}
+
+  /* 音色速查 */
+  .quickref{max-width:1180px;margin:0 auto 8px;padding:40px 28px 8px}
+  .qr-head{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;flex-wrap:wrap;scroll-margin-top:80px}
+  .qr-head .idx{font-family:var(--mono);font-size:12px;color:var(--teal);letter-spacing:.1em}
+  .qr-head h2{font-family:var(--display);font-weight:800;font-size:clamp(24px,3.4vw,38px);letter-spacing:-.01em}
+  .qr-sub{color:var(--muted);font-weight:300;font-size:15px;margin-bottom:26px;max-width:700px}
+  .qr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
+  .qr-cell{background:linear-gradient(180deg,#1b1714,#191512);border:1px solid var(--line);border-radius:14px;padding:18px 20px;transition:border-color .3s}
+  .qr-cell:hover{border-color:var(--faint)}
+  .qr-genre{font-family:var(--display);font-weight:700;font-size:16px;color:var(--gold);margin-bottom:3px}
+  .qr-note{font-family:var(--mono);font-size:10px;color:var(--faint);letter-spacing:.02em;margin-bottom:10px}
+  .qr-pill{display:block;font-size:13.5px;color:#cabfae;padding:7px 0;border-top:1px solid rgba(51,44,37,.6);cursor:pointer;transition:.2s}
+  .qr-pill:first-of-type{border-top:none}
+  .qr-pill:hover{color:var(--amber);padding-left:4px}
+  .qr-pill b{font-family:var(--mono);font-size:11.5px;color:var(--teal);font-weight:500}
+  .qr-pill:hover b{color:var(--amber)}
+  .qr-pill .pst{color:var(--muted)}
+  .qr-pill .pst::before{content:" · "}
+
+  /* 速查 · 多选曲风交集 */
+  .qr-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+  .qr-chip{font-family:var(--mono);font-size:12px;color:var(--muted);padding:7px 13px;border:1px solid var(--line);border-radius:999px;cursor:pointer;transition:.2s;user-select:none}
+  .qr-chip:hover{border-color:var(--faint);color:var(--ink)}
+  .qr-chip.on{background:var(--amber);border-color:var(--amber);color:var(--bg);font-weight:700}
+  .qr-status{font-family:var(--mono);font-size:12px;color:var(--teal);margin-bottom:18px;min-height:1.3em;letter-spacing:.02em}
+  .qr-empty{font-family:var(--serif);color:var(--muted);font-size:15px;padding:6px 0}
+  .qr-rcell{display:block;background:linear-gradient(180deg,#1b1714,#191512);border:1px solid var(--line);border-radius:12px;padding:13px 16px;cursor:pointer;transition:transform .25s,border-color .25s}
+  .qr-rcell:hover{border-color:var(--amber);transform:translateY(-2px)}
+  .qr-rcell b{display:block;font-family:var(--display);font-weight:700;font-size:15px;color:var(--ink);margin-bottom:3px}
+  .qr-rcell:hover b{color:var(--amber)}
+  .qr-rcell .pst{font-family:var(--mono);font-size:11px;color:var(--teal)}
+
+  /* 分类折叠 */
+  .cat-head{cursor:pointer;user-select:none}
+  .cat-head::after{content:"▾";font-family:var(--mono);font-size:13px;color:var(--faint);margin-left:2px;transition:transform .3s;align-self:center}
+  .cat.collapsed .cat-head::after{transform:rotate(-90deg)}
+  .cat.collapsed .cat-sub{display:none}
+  .cat.collapsed .card{display:none}
+  .card{scroll-margin-top:80px}
+  .card.flash{border-color:var(--amber)!important;box-shadow:0 0 0 1px var(--amber),0 0 34px rgba(255,138,61,.22)}
+
+  footer{max-width:1180px;margin:60px auto 0;padding:40px 28px 80px;border-top:1px solid var(--line);color:var(--faint);font-family:var(--mono);font-size:12px;line-height:1.9}
+  footer b{color:var(--muted)}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <div class="brand">ARTURIA · <b>V COLLECTION 11 PRO</b></div>
+    <nav class="chips">
+      <a href="#quickref">★ 速查</a>
+      <a href="#keys">电钢键盘</a>
+      <a href="#organs">风琴</a>
+      <a href="#strmac">弦机磁带</a>
+      <a href="#mono">经典模拟</a>
+      <a href="#poly">复音模拟</a>
+      <a href="#digital">数字/FM</a>
+      <a href="#augmented">Augmented</a>
+      <a href="#originals">原创工具</a>
+      <a href="#browser">启动器</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="kick">合成器与键盘音色档案 · 收藏全图鉴</div>
+  <h1>声音的<em>博物馆</em><br><span class="out">四十年</span>电子键盘史</h1>
+  <p class="lede">V Collection 11 Pro 把电子音乐史上最具影响力的<strong>合成器、电钢琴、风琴与采样机</strong>逐一复刻为软件。本图鉴按 9 大家族收录全部 <strong>45 件乐器</strong>，每件含「为什么传奇」专栏与 <strong>6 个代表音色</strong>——每条音色注明特点、感觉与适用曲风，并各配一首能听见该原型硬件这类声音的经典曲目。</p>
+  <div class="stat-row">
+    <div class="stat"><div class="n">45</div><div class="l">复刻乐器</div></div>
+    <div class="stat"><div class="n">9</div><div class="l">声音家族</div></div>
+    <div class="stat"><div class="n">270</div><div class="l">代表音色</div></div>
+    <div class="stat"><div class="n">1955→</div><div class="l">跨越年代</div></div>
+  </div>
+</div>
+
+<div class="notice">
+  <b>阅读说明 · </b> 每件乐器含「为什么传奇」专栏；每条音色含<b style="letter-spacing:0">特点+感觉</b>、<b style="letter-spacing:0">曲风建议</b>，以及一首曲目。「♪」为该原型硬件做出过此类声音的公认关联（非逐音轨考据，可疑归属不收录）；「◆」为无单一硬件原型的现代乐器/工具，标「适合/参考」。
+</div>
+
+<!-- ============ 音色速查（多选曲风做交集） ============ -->
+<div class="quickref" id="quickref">
+  <div class="qr-head"><span class="idx">QUICK REFERENCE</span><h2>音色速查 · 按曲风找插件</h2></div>
+  <p class="qr-sub">勾选一个或多个曲风：选中多个时做<b style="color:var(--ink)">交集</b>——只列出同时适合全部所选曲风的插件。点任意结果即可跳转到该插件（折叠的分类会自动展开并高亮）。</p>
+  <div class="qr-chips" id="qrChips"></div>
+  <div class="qr-status" id="qrStatus"></div>
+  <div class="qr-grid" id="qrResults"></div>
+</div>
+
+<!-- ============ 01 电钢与键盘 ============ -->
+<section class="cat" id="keys">
+  <div class="cat-head"><span class="idx">CATEGORY 01</span><h2>电钢琴与键盘</h2><span class="count">5 INSTRUMENTS</span></div>
+  <p class="cat-sub">用簧片、金属齿、真实琴弦发声，经电磁或静电拾音放大——这是 funk、soul、爵士与抒情流行的肌理来源。</p>
+
+  <article class="card">
+    <div class="card-top"><h3>Stage-73 V</h3><div class="spec">原型 <span>Fender Rhodes</span><br>Suitcase / Stage · 1965–1984</div></div>
+    <p class="desc">电钢之王。金属齿条（tine）受锤击振动、由电磁拾音器拾取，形成温暖而带钟鸣泛音的标志音色。内置颤音、相位、合唱与放大器链路，可从干净爵士直推到 80s 抛光质感。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它几乎单枪匹马定义了「电钢琴」这个声音类别。当吉他和原声钢琴主宰流行乐时，Rhodes 用一种前所未有的温暖、圆润、略带玻璃感的音色开辟了新空间——既能融进爵士的和声，又能扛起 soul 与 funk 的律动。从 70 年代的录音室到今天的 neo-soul、lo-fi，几乎每一段「慵懒高级感」的键盘都流着它的血。</p></div>
+    <div class="block-label">代表音色 · 特点 / 曲风 / 原型曲目</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Suitcase Bell</div><div class="snd-desc">钟鸣般的高频泛音配立体声颤音，温暖通透又带一丝空灵——最经典的那个「Rhodes 味」。</div><div class="snd-genre">慢板灵魂 · city pop · 抒情摇滚</div><div class="snd-song"><i>♪</i> The Doors <em>— Riders on the Storm</em></div></li>
+      <li><div class="snd-name">Mellow Jazz</div><div class="snd-desc">收敛了高频、偏暗偏圆的触感，安静、内敛、留白感强，适合做和声铺垫不抢主角。</div><div class="snd-genre">爵士 · bossa · 深夜抒情</div><div class="snd-song"><i>♪</i> Stevie Wonder <em>— Don't You Worry 'Bout a Thing</em></div></li>
+      <li><div class="snd-name">Dyno Bright</div><div class="snd-desc">加了合唱与压缩的明亮版本，颗粒清晰、抛光感强，是 80s 录音室那种「贵气」电钢。</div><div class="snd-genre">AOR · 成人抒情 · 80s 流行</div><div class="snd-song"><i>♪</i> Billy Joel <em>— Just the Way You Are</em></div></li>
+      <li><div class="snd-name">Funk Punch</div><div class="snd-desc">推过放大器、中频更咬的硬朗音色，弹性强、击键感明确，适合切分与即兴。</div><div class="snd-genre">放克 · 爵士融合 · jam</div><div class="snd-song"><i>♪</i> Herbie Hancock <em>— Chameleon</em></div></li>
+      <li><div class="snd-name">Neo-Soul Warm</div><div class="snd-desc">带轻微颗粒与齿音的慵懒音色，松弛、人性化、有「呼吸感」，是当代 neo-soul 的核心质感。</div><div class="snd-genre">neo-soul · R&B · lo-fi</div><div class="snd-song"><i>♪</i> D'Angelo <em>— Brown Sugar</em></div></li>
+      <li><div class="snd-name">Tremolo Ballad</div><div class="snd-desc">慢速宽颤音让和弦缓缓晃动，梦幻、漂浮、略带忧郁，是慢歌铺底的安全牌。</div><div class="snd-genre">抒情 · 梦泡 · 影视配乐</div><div class="snd-song"><i>♪</i> Steely Dan <em>— Aja</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Wurli V</h3><div class="spec">原型 <span>Wurlitzer 200 / 200A</span><br>电子钢琴 · 1968–1982</div></div>
+    <p class="desc">与 Rhodes 并列的另一支电钢血脉。金属簧片被锤击、靠静电拾音，音色比 Rhodes 更「脆」、中频更咬，推大时出现著名的 "bark" 过载咆哮。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>如果说 Rhodes 是丝绸，Wurlitzer 就是粗麻——它更直接、更有人味，轻弹甜美、重弹就「咬」你一口。正是这种动态里的失真性格，让它成为 soul 与早期摇滚的情感放大器。一台便携、皮实、插上就响的电钢，承载了从雷·查尔斯到 Supertramp 几代人的现场记忆。</p></div>
+    <div class="block-label">代表音色 · 特点 / 曲风 / 原型曲目</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Classic 200A</div><div class="snd-desc">温暖中带着标志性的中频「咬」，干净时甜、用力时冲，动态表现极有人味。</div><div class="snd-genre">soul · 流行 · 民谣摇滚</div><div class="snd-song"><i>♪</i> Supertramp <em>— The Logical Song</em></div></li>
+      <li><div class="snd-name">Overdriven Bark</div><div class="snd-desc">推大音量后簧片产生脆裂咆哮，粗粝、热情、带攻击性，是 Wurli 最 rock 的一面。</div><div class="snd-genre">复古摇滚 · R&B · 现场</div><div class="snd-song"><i>♪</i> Ray Charles <em>— What'd I Say</em></div></li>
+      <li><div class="snd-name">Soft Mellow</div><div class="snd-desc">轻触下的柔和圆润，安静温吞，适合做安静段落的和声底色。</div><div class="snd-genre">爵士 · 抒情 · 咖啡馆</div><div class="snd-song"><i>♪</i> Norah Jones <em>— Don't Know Why</em></div></li>
+      <li><div class="snd-name">Pop Comp</div><div class="snd-desc">明亮干净、颗粒分明的伴奏音（原曲 Freddie 亲弹），轻快、有跳跃感。</div><div class="snd-genre">流行摇滚 · power pop</div><div class="snd-song"><i>♪</i> Queen <em>— You're My Best Friend</em></div></li>
+      <li><div class="snd-name">Soul Ballad</div><div class="snd-desc">厚实温润、中频饱满，深情不腻，是慢板灵魂乐的经典抒情底色。</div><div class="snd-genre">soul · 慢板 · 抒情</div><div class="snd-song"><i>♪</i> Joe Cocker <em>— You Are So Beautiful</em></div></li>
+      <li><div class="snd-name">Vintage Tremolo</div><div class="snd-desc">内置颤音带来复古律动感，晃动、怀旧、有年代质感。</div><div class="snd-genre">复古流行 · 独立 · lo-fi</div><div class="snd-song"><i>♪</i> Supertramp <em>— Dreamer</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Clavinet V</h3><div class="spec">原型 <span>Hohner Clavinet D6</span><br>（含 Pianet）· 1968</div></div>
+    <p class="desc">funk 节奏键盘的化身。橡胶锤把琴弦压向砧座发声、电磁拾音，颗粒清脆、弹性极强，配 wah/auto-wah 就是放克切音的灵魂。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它把键盘变成了一件节奏乐器。Clavinet 那种又脆又紧、像被弹拨的音头，配上哇音踏板，就是放克的「咔嚓」骨架——Stevie Wonder 的《Superstition》几乎以一己之力把它写进了流行音乐史。没有任何键盘能像它那样，光靠右手切分就撑起整段 groove。</p></div>
+    <div class="block-label">代表音色 · 特点 / 曲风 / 原型曲目</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Funk Wah</div><div class="snd-desc">配自动哇音的切音，颗粒脆、律动紧，一响起来就是放克现场。</div><div class="snd-genre">放克 · disco · acid jazz</div><div class="snd-song"><i>♪</i> Stevie Wonder <em>— Superstition</em></div></li>
+      <li><div class="snd-name">Clean Bright</div><div class="snd-desc">不加效果的原始拾音，干净、明亮、富有弹性，适合清晰的节奏动机。</div><div class="snd-genre">放克 · 灵魂 · 流行</div><div class="snd-song"><i>♪</i> Billy Preston <em>— Outa-Space</em></div></li>
+      <li><div class="snd-name">Phaser Groove</div><div class="snd-desc">叠加相位/哇音的迷幻律动，流动、扭曲、带太空感。</div><div class="snd-genre">迷幻放克 · psychedelic soul</div><div class="snd-song"><i>♪</i> Stevie Wonder <em>— Higher Ground</em></div></li>
+      <li><div class="snd-name">Rock Clav</div><div class="snd-desc">过载推进的硬朗切音，粗粝、有力，能与失真吉他正面抗衡。</div><div class="snd-genre">硬摇滚 · funk rock</div><div class="snd-song"><i>♪</i> Led Zeppelin <em>— Trampled Under Foot</em></div></li>
+      <li><div class="snd-name">Soul Comp</div><div class="snd-desc">温润收敛的伴奏音色，圆滑、内敛，适合垫在人声下方。</div><div class="snd-genre">soul · R&B · 抒情</div><div class="snd-song"><i>♪</i> Bill Withers <em>— Use Me</em></div></li>
+      <li><div class="snd-name">Disco Stab</div><div class="snd-desc">短促有力的强击和弦，干脆、闪亮，是迪斯科节奏点的利器。</div><div class="snd-genre">disco · 放克 · 舞曲</div><div class="snd-song"><i>♪</i> Commodores <em>— Brick House</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>CP-70 V</h3><div class="spec">原型 <span>Yamaha CP-70 / CP-80</span><br>电原声三角钢琴 · 1976</div></div>
+    <p class="desc">可拆卸搬运的「电原声三角钢琴」：真实琴弦与琴锤发声、靠拾音器输出，音色介于原声钢琴与电钢之间，带金属质感的冷峻泛音。Tony Banks（Genesis）是它最具代表性的演奏者。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它解决了一个很实际的难题：怎么把一台三角钢琴搬上摇滚舞台。CP-70 把真实琴弦装进可拆卸的箱体、用拾音器输出，于是诞生了一种独特音色——有钢琴的击弦芯，却带着金属般的冷冽泛音。这种「不完全像钢琴」的味道，恰好成了 80s 前卫摇滚与新浪潮最有辨识度的键盘声。</p></div>
+    <div class="block-label">代表音色 · 特点 / 曲风 / 原型曲目</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Classic Electric Grand</div><div class="snd-desc">钢琴的击弦芯加金属泛音，冷峻、清晰、有重量感，是 CP-70 的本色。</div><div class="snd-genre">前卫摇滚 · 新浪潮 · 流行</div><div class="snd-song"><i>♪</i> Genesis <em>— Mama</em></div></li>
+      <li><div class="snd-name">Bright Attack</div><div class="snd-desc">强调音头的明亮触键，穿透力强、棱角分明，适合现场和密集编曲。</div><div class="snd-genre">流行摇滚 · 现场</div><div class="snd-song"><i>♪</i> Genesis <em>— That's All</em></div></li>
+      <li><div class="snd-name">Atmospheric</div><div class="snd-desc">加合唱铺开后的空间化音色，宽阔、漂浮，适合做段落底色。</div><div class="snd-genre">前卫 · 氛围流行</div><div class="snd-song"><i>♪</i> Genesis <em>— Home by the Sea</em></div></li>
+      <li><div class="snd-name">Live Punch</div><div class="snd-desc">颗粒硬朗、动态明确的现场主奏音，结实、有冲劲。</div><div class="snd-genre">摇滚 · 现场主奏</div><div class="snd-song"><i>♪</i> Peter Gabriel <em>— Solsbury Hill（现场）</em></div></li>
+      <li><div class="snd-name">Chorused 80s</div><div class="snd-desc">厚重合唱包裹的梦幻版本，闪亮、抒情，是新浪潮的招牌钢琴声。</div><div class="snd-genre">新浪潮 · synth-pop</div><div class="snd-song"><i>♪</i> Tears for Fears <em>— Pale Shelter</em></div></li>
+      <li><div class="snd-name">Warm Comp</div><div class="snd-desc">收敛了金属感的温和伴奏音，柔和、克制，适合垫在抒情段落。</div><div class="snd-genre">成人抒情 · 民谣摇滚</div><div class="snd-song"><i>♪</i> Mike + The Mechanics <em>— The Living Years</em></div></li>
+    </ol>
+    <p class="card-note">// CP-70 在 80s 流行/前卫摇滚中极普遍，但逐曲拾音考据较少；此处以 Genesis 家族等公认 CP-70 演奏者为主，确保可靠。</p>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Piano V</h3><div class="spec">原型 <span>多款原声钢琴 · 物理建模</span><br>三角 / 立式 / 创意音色</div></div>
+    <p class="desc">非采样，而是<strong>物理建模</strong>：实时模拟琴弦、琴锤硬度、音板共鸣与麦克风位置，可从写实音乐会三角调到现实不存在的拨弦/玻璃钢琴。由于不对应某台名机，下列配「原声钢琴名曲」——按音色性格匹配。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它代表了一条与「采样」截然不同的技术路线：不录制声音，而是用物理方程实时「建造」一架钢琴。因此你能调整琴锤硬度、音板尺寸、甚至弦的材质，做出现实里根本不存在的钢琴。这种「可塑性」让它既能当写实的音乐会三角，又能秒变玻璃质或拨弦的创意音色——一架活的、可被重新发明的钢琴。</p></div>
+    <div class="block-label">代表音色 · 特点 / 曲风 / 原声名曲</div>
+    <ol class="sounds">
+      <li><div class="snd-name">German Concert Grand</div><div class="snd-desc">写实音乐会三角，明暗均衡、动态宽广，端庄而富表现力。</div><div class="snd-genre">古典 · 电影 · 抒情</div><div class="snd-song"><i>♪</i> Ludovico Einaudi <em>— Nuvole Bianche</em></div></li>
+      <li><div class="snd-name">Pop Grand</div><div class="snd-desc">明亮硬朗、音头清晰的流行三角，穿透力强，适合在满编曲里站住。</div><div class="snd-genre">流行 · 成人抒情</div><div class="snd-song"><i>♪</i> Elton John <em>— Your Song</em></div></li>
+      <li><div class="snd-name">Rock Grand</div><div class="snd-desc">厚重有力、低频饱满，弹强和弦时气势十足。</div><div class="snd-genre">摇滚 · power ballad</div><div class="snd-song"><i>♪</i> Queen <em>— Bohemian Rhapsody</em></div></li>
+      <li><div class="snd-name">Intimate Upright</div><div class="snd-desc">近距离立式钢琴，带轻微机械声，亲密、复古、有「客厅感」。</div><div class="snd-genre">民谣 · lo-fi · 复古流行</div><div class="snd-song"><i>♪</i> The Beatles <em>— Lady Madonna</em></div></li>
+      <li><div class="snd-name">Ballad Grand</div><div class="snd-desc">温暖宽广、延音丰富的抒情三角，深情、包容，适合大歌。</div><div class="snd-genre">抒情 · 流行 · 影视</div><div class="snd-song"><i>♪</i> Adele <em>— Someone Like You</em></div></li>
+      <li><div class="snd-name">Felt / Soft</div><div class="snd-desc">毛毡覆弦的柔音，朦胧、安静、近乎耳语，氛围感拉满。</div><div class="snd-genre">ambient · 电影 · new-age</div><div class="snd-song"><i>♪</i> Yiruma <em>— River Flows in You</em></div></li>
+    </ol>
+    <p class="card-note">// Piano V 是物理建模乐器、非复刻某台硬件，故配「原声钢琴名曲」，按音色性格匹配，非硬件考据。</p>
+  </article>
+</section>
+
+<!-- ============ 02 风琴 ============ -->
+<section class="cat" id="organs">
+  <div class="cat-head"><span class="idx">CATEGORY 02</span><h2>风琴</h2><span class="count">3 INSTRUMENTS</span></div>
+  <p class="cat-sub">齿轮发声的电磁风琴，与晶体管「combo organ」两条路线——前者是福音/摇滚/爵士的灵魂，后者是 60s 英伦入侵与车库迷幻的招牌。</p>
+
+  <article class="card">
+    <div class="card-top"><h3>B-3 V</h3><div class="spec">原型 <span>Hammond B-3 + Leslie 122</span><br>齿轮风琴 + 旋转喇叭 · 1955</div></div>
+    <p class="desc">用旋转金属齿轮发声、靠九根和声拉杆实时调配音色，再经 Leslie 旋转喇叭赋予空间与多普勒颤动。配合 percussion 打击与 chorus-vibrato，是 gospel、blues、prog rock 与 jazz 的根基。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它不是一件乐器，而是一套「乐器 + 喇叭」的生态。齿轮发声给了它无限的音色组合（九根拉杆像调色板），而 Leslie 旋转喇叭那种忽远忽近的多普勒颤动，是任何效果器都无法伪造的灵魂。从黑人教堂的福音、到 Jimmy Smith 的爵士、再到 Deep Purple 的硬摇滚，它是横跨半个世纪、最有「人味」的键盘。</p></div>
+    <div class="block-label">代表音色 · 特点 / 曲风 / 原型曲目</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Full Drawbars Rock</div><div class="snd-desc">拉杆全开加 Leslie 高速旋转，厚重、轰鸣、气势磅礴，是硬摇滚的风琴音墙。</div><div class="snd-genre">硬摇滚 · 前卫摇滚</div><div class="snd-song"><i>♪</i> Deep Purple <em>— Highway Star（Jon Lord）</em></div></li>
+      <li><div class="snd-name">Jazz Comp</div><div class="snd-desc">收敛的拉杆注册，圆润、温暖、不抢戏，是爵士三重奏的标准伴奏音。</div><div class="snd-genre">爵士 · soul jazz</div><div class="snd-song"><i>♪</i> Jimmy Smith <em>— Back at the Chicken Shack</em></div></li>
+      <li><div class="snd-name">Soul Groove</div><div class="snd-desc">明亮带打击音（percussion）的注册，跳跃、有冲劲，律动感强。</div><div class="snd-genre">soul · 放克 · R&B</div><div class="snd-song"><i>♪</i> Booker T. & the M.G.'s <em>— Green Onions</em></div></li>
+      <li><div class="snd-name">Ballad Swell</div><div class="snd-desc">靠表情踏板渐强渐弱，庄严、绵长、富有戏剧性，最适合大段铺垫。</div><div class="snd-genre">福音 · 抒情 · 前卫</div><div class="snd-song"><i>♪</i> Procol Harum <em>— A Whiter Shade of Pale</em></div></li>
+      <li><div class="snd-name">Latin Rock</div><div class="snd-desc">热烈推进、明亮有颗粒的音色，节奏鲜明，充满阳光感。</div><div class="snd-genre">拉丁摇滚 · 放克</div><div class="snd-song"><i>♪</i> Santana <em>— Oye Como Va</em></div></li>
+      <li><div class="snd-name">Screaming Leslie</div><div class="snd-desc">过载加高速旋转喇叭，嘶吼、撕裂、狂野，是风琴最有攻击性的一面。</div><div class="snd-genre">硬摇滚 · 迷幻摇滚</div><div class="snd-song"><i>♪</i> Steppenwolf <em>— Born to Be Wild</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>VOX Continental V</h3><div class="spec">原型 <span>Vox Continental</span><br>晶体管 combo organ · 1962</div></div>
+    <p class="desc">晶体管簧片风琴，明亮、带「咬」的中高频与标志性脆亮，是 60s 英伦入侵乐队站着就能弹的便携风琴，也是车库、迷幻与新浪潮的旗帜。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它是「便携风琴」的偶像。在 Hammond 笨重昂贵的年代，Vox 用晶体管做出一台能扛上舞台、翻盖就弹的风琴，那抹又脆又冲的明亮音色立刻成了英伦入侵的声音名片。从 The Doors 的《Light My Fire》到后来的新浪潮复兴，它代表了一种年轻、直接、不加修饰的态度。</p></div>
+    <div class="block-label">代表音色 · 特点 / 曲风 / 原型曲目</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Bright Combo</div><div class="snd-desc">标志性的明亮注册，脆、冲、带咬合感，一响就是 60s 的味道。</div><div class="snd-genre">迷幻摇滚 · 车库</div><div class="snd-song"><i>♪</i> The Doors <em>— Light My Fire（Ray Manzarek）</em></div></li>
+      <li><div class="snd-name">Folk-Rock Lead</div><div class="snd-desc">穿透力强的主奏音，清亮、有棱角，适合奏出记忆点旋律。</div><div class="snd-genre">民谣摇滚 · 60s 流行</div><div class="snd-song"><i>♪</i> The Animals <em>— House of the Rising Sun</em></div></li>
+      <li><div class="snd-name">British Invasion Stab</div><div class="snd-desc">短促干脆的切音和弦，明快、有弹性，节奏推进力强。</div><div class="snd-genre">英伦入侵 · beat</div><div class="snd-song"><i>♪</i> The Beatles <em>— I'm Down</em></div></li>
+      <li><div class="snd-name">Psychedelic</div><div class="snd-desc">厚重的长音铺底，迷离、催眠，适合大段迷幻 jam。</div><div class="snd-genre">迷幻摇滚 · acid rock</div><div class="snd-song"><i>♪</i> Iron Butterfly <em>— In-A-Gadda-Da-Vida</em></div></li>
+      <li><div class="snd-name">New Wave Comp</div><div class="snd-desc">弹跳明快的节奏音（Steve Nieve），活泼、紧凑，新浪潮味十足。</div><div class="snd-genre">新浪潮 · power pop</div><div class="snd-song"><i>♪</i> Elvis Costello <em>— Pump It Up</em></div></li>
+      <li><div class="snd-name">Garage Roller</div><div class="snd-desc">滚动的音型质感，粗糙、生猛，带车库乐队的原始能量。</div><div class="snd-genre">车库摇滚 · Tex-Mex</div><div class="snd-song"><i>♪</i> Sir Douglas Quintet <em>— She's About a Mover</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Farfisa V</h3><div class="spec">原型 <span>Farfisa Compact</span><br>晶体管 combo organ · 1964</div></div>
+    <p class="desc">来自意大利的晶体管风琴，比 Vox 更尖、更「塑料感」的脆亮音色，带着廉价又迷人的复古气质，从 60s 迷幻到新浪潮都是制造时代感的利器。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它把「廉价」变成了一种美学。Farfisa 的音色比 Vox 更尖、更薄、更「塑料」，恰恰是这种不高级的味道，成了 60s 迷幻和后来 new wave / B-52's 复古的标志。当别人追求逼真时，它坦然地做一台听起来就很「电子玩具」的风琴——而这正是它无可取代的个性。</p></div>
+    <div class="block-label">代表音色 · 特点 / 曲风 / 原型曲目</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Classic Bright Compact</div><div class="snd-desc">标志性的脆亮注册（Richard Wright），尖、薄、带塑料感，复古味浓。</div><div class="snd-genre">迷幻摇滚 · 60s 流行</div><div class="snd-song"><i>♪</i> Pink Floyd <em>— See Emily Play</em></div></li>
+      <li><div class="snd-name">Spacey Psych</div><div class="snd-desc">飘忽的太空感长音，迷离、空旷，适合营造异世界氛围。</div><div class="snd-genre">太空摇滚 · 迷幻</div><div class="snd-song"><i>♪</i> Pink Floyd <em>— Astronomy Domine</em></div></li>
+      <li><div class="snd-name">New Wave Surf</div><div class="snd-desc">带冲浪感的切音（Kate Pierson），跳脱、欢快、有趣味性。</div><div class="snd-genre">新浪潮 · 复古流行</div><div class="snd-song"><i>♪</i> The B-52's <em>— Rock Lobster</em></div></li>
+      <li><div class="snd-name">Sci-fi Stab</div><div class="snd-desc">尖锐的点缀音，未来感、卡通感并存，适合做记忆点。</div><div class="snd-genre">new wave · 复古科幻</div><div class="snd-song"><i>♪</i> The B-52's <em>— Planet Claire</em></div></li>
+      <li><div class="snd-name">Disco-Pop Organ</div><div class="snd-desc">明快的迪斯科衬底（Jimmy Destri），律动稳、亮度高。</div><div class="snd-genre">disco · new wave 流行</div><div class="snd-song"><i>♪</i> Blondie <em>— Heart of Glass</em></div></li>
+      <li><div class="snd-name">Tropicália Warm</div><div class="snd-desc">带颤音的温暖音色，慵懒、迷幻，有南美热带气息。</div><div class="snd-genre">tropicália · 迷幻流行</div><div class="snd-song"><i>♪</i> Os Mutantes <em>— A Minha Menina</em></div></li>
+    </ol>
+    <p class="card-note">// 注：96 Tears 的风琴常被误归 Farfisa（更多考据指向 Vox 系），因归属有争议，本表未收录以保严谨。</p>
+  </article>
+</section>
+
+<!-- ============ 03 弦机与磁带 ============ -->
+<section class="cat" id="strmac">
+  <div class="cat-head"><span class="idx">CATEGORY 03</span><h2>弦机与磁带</h2><span class="count">2 INSTRUMENTS</span></div>
+  <p class="cat-sub">合成器普及前的「弦乐与合唱」方案：一台靠分频合唱伪造弦乐，一台靠磁带回放真实录音——它们的不完美正是其魅力。</p>
+
+  <article class="card">
+    <div class="card-top"><h3>Solina V</h3><div class="spec">原型 <span>ARP / Eminent Solina</span><br>String Ensemble · 1974</div></div>
+    <p class="desc">复音弦乐合奏机：靠分频器 + 合唱（chorus）产生丰厚晃动的弦乐铺底。它不像真弦乐，却自成一格，是 prog、disco、kosmische 与 synth-pop 的标志性铺垫。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它发明了一种「不像弦乐的弦乐」。Solina 靠分频和三相合唱把单薄的锯齿揉成一片晃动、温暖、略带忧伤的声墙——你一耳朵就知道那不是真乐团，但正是这种合成的「假」，成了 70s 前卫、disco 与德式电子最迷人的铺底。后来无数 string machine 都在模仿它。</p></div>
+    <div class="block-label">代表音色 · 特点 / 曲风 / 原型曲目</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Classic Lush Strings</div><div class="snd-desc">丰厚晃动的标志弦乐墙，温暖、绵密、略带忧伤，铺满整个声场。</div><div class="snd-genre">前卫摇滚 · 太空电子</div><div class="snd-song"><i>♪</i> Pink Floyd <em>— Shine On You Crazy Diamond</em></div></li>
+      <li><div class="snd-name">Fusion Ensemble</div><div class="snd-desc">明亮的合奏音（Joe Zawinul），清晰、有动感，适合融合爵士。</div><div class="snd-genre">爵士融合 · fusion</div><div class="snd-song"><i>♪</i> Weather Report <em>— Birdland</em></div></li>
+      <li><div class="snd-name">Kosmische Bed</div><div class="snd-desc">缓慢推进的太空铺垫，催眠、漂浮，适合长段氛围演进。</div><div class="snd-genre">krautrock · ambient</div><div class="snd-song"><i>♪</i> Tangerine Dream <em>— Love on a Real Train</em></div></li>
+      <li><div class="snd-name">New Wave Pad</div><div class="snd-desc">新浪潮的弦乐衬底（Greg Hawkes），明快、有时代感。</div><div class="snd-genre">新浪潮 · power pop</div><div class="snd-song"><i>♪</i> The Cars <em>— Just What I Needed</em></div></li>
+      <li><div class="snd-name">Synth-Pop Strings</div><div class="snd-desc">明亮的合成弦乐，干净、闪亮，是早期电子流行的招牌铺垫。</div><div class="snd-genre">synth-pop · 电子流行</div><div class="snd-song"><i>♪</i> OMD <em>— Electricity</em></div></li>
+      <li><div class="snd-name">Ambient Wash</div><div class="snd-desc">柔和漂浮的氛围长音，空灵、留白，适合做电影底色。</div><div class="snd-genre">ambient · 电影配乐</div><div class="snd-song"><i>♪</i> Vangelis <em>— Blade Runner（氛围层）</em></div></li>
+    </ol>
+    <p class="card-note">// 弦机常作铺垫层、逐曲拾音记录有限；上列以公认使用 ARP/Eminent 弦机的曲目与声音性格为准。</p>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Mellotron V</h3><div class="spec">原型 <span>Mellotron M400</span><br>磁带回放键盘 · 1963 / 70s</div></div>
+    <p class="desc">每个琴键对应一段预录的磁带：弦乐、长笛、人声合唱被「回放」出来。磁带的抖动与衰减造就了无法复制的幽灵般质感，是迷幻与前卫摇滚的灵魂音色。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它是世界上第一台「采样器」——只不过用的是磁带。每按一个键，就拉动一段预录的真实乐器录音，但磁带的抖动、噪声和 8 秒长度限制，反而赋予了它一种摇摇欲坠、幽灵般的不稳定感。这种「美丽的破碎」无法被完美复制，从《Strawberry Fields》到 Radiohead，它是迷幻与前卫摇滚永恒的乡愁之声。</p></div>
+    <div class="block-label">代表音色 · 特点 / 曲风 / 原型曲目</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Flutes (MkII)</div><div class="snd-desc">标志性的磁带长笛，朦胧、带噪、略微走音，梦幻又怀旧。</div><div class="snd-genre">迷幻摇滚 · 巴洛克流行</div><div class="snd-song"><i>♪</i> The Beatles <em>— Strawberry Fields Forever</em></div></li>
+      <li><div class="snd-name">3 Violins</div><div class="snd-desc">幽灵般的弦乐铺底，飘忽、伤感、不稳定，是 Mellotron 的灵魂音。</div><div class="snd-genre">前卫摇滚 · 抒情</div><div class="snd-song"><i>♪</i> The Moody Blues <em>— Nights in White Satin</em></div></li>
+      <li><div class="snd-name">Choir</div><div class="snd-desc">苍凉的人声合唱，宏大中透着诡谲，戏剧张力极强。</div><div class="snd-genre">前卫摇滚 · 暗黑氛围</div><div class="snd-song"><i>♪</i> King Crimson <em>— In the Court of the Crimson King</em></div></li>
+      <li><div class="snd-name">String Section</div><div class="snd-desc">戏剧化的弦乐齐奏，厚重、磅礴，适合史诗段落。</div><div class="snd-genre">前卫摇滚 · 交响摇滚</div><div class="snd-song"><i>♪</i> Genesis <em>— Watcher of the Skies</em></div></li>
+      <li><div class="snd-name">Cello / Strings</div><div class="snd-desc">低沉厚重的弦乐层，深邃、有东方色彩，营造宏大空间。</div><div class="snd-genre">硬摇滚 · 世界融合</div><div class="snd-song"><i>♪</i> Led Zeppelin <em>— Kashmir</em></div></li>
+      <li><div class="snd-name">Haunted Pad</div><div class="snd-desc">阴郁飘忽的现代铺底，疏离、压抑，自带电影感。</div><div class="snd-genre">art rock · 电影氛围</div><div class="snd-song"><i>♪</i> Radiohead <em>— Exit Music (For a Film)</em></div></li>
+    </ol>
+  </article>
+</section>
+
+<!-- ============ 04 经典模拟合成器 ============ -->
+<section class="cat" id="mono">
+  <div class="cat-head"><span class="idx">CATEGORY 04</span><h2>经典模拟合成器</h2><span class="count">8 INSTRUMENTS</span></div>
+  <p class="cat-sub">单音与半模块化的奠基之作：肥厚的贝斯、嘶吼的主奏、可打补线的实验声景——电子音乐的语法在这里被发明出来。</p>
+
+  <article class="card">
+    <div class="card-top"><h3>Mini V</h3><div class="spec">原型 <span>Moog Minimoog Model D</span><br>单音合成器 · 1970</div></div>
+    <p class="desc">史上最具影响力的合成器。三振荡器 + 阶梯滤波器造就了肥厚到无法替代的贝斯与主奏，把合成器从实验室带上了舞台。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它把合成器从一面墙缩小成一台可背走的乐器，从此「合成器」才真正成为流行乐的一员。那枚阶梯滤波器和三个振荡器堆出的低音肥厚得近乎犯规——Minimoog 的贝斯和主奏定义了「合成器应该是什么声音」，至今仍是所有模拟合成器衡量自己的标尺。</p></div>
+    <div class="block-label">代表音色 · 特点 / 曲风 / 原型曲目</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Fat Funk Bass</div><div class="snd-desc">肥厚弹性的放克贝斯（Bernie Worrell），圆润、有重量、弹性十足。</div><div class="snd-genre">放克 · P-funk · 电子</div><div class="snd-song"><i>♪</i> Parliament <em>— Flash Light</em></div></li>
+      <li><div class="snd-name">Prog Lead</div><div class="snd-desc">圆润歌唱的主奏，连贯、富表情，适合长线条独奏。</div><div class="snd-genre">前卫摇滚 · 器乐</div><div class="snd-song"><i>♪</i> Yes <em>— Roundabout（Rick Wakeman）</em></div></li>
+      <li><div class="snd-name">Soul Lead</div><div class="snd-desc">带滑音的灵动主奏，俏皮、人性化，律动感强。</div><div class="snd-genre">soul · 放克</div><div class="snd-song"><i>♪</i> Stevie Wonder <em>— Boogie On Reggae Woman</em></div></li>
+      <li><div class="snd-name">Electro Bass</div><div class="snd-desc">稳健的电子贝斯/序列音，扎实、精准，适合机械律动。</div><div class="snd-genre">krautrock · 电子</div><div class="snd-song"><i>♪</i> Kraftwerk <em>— Autobahn</em></div></li>
+      <li><div class="snd-name">Rock Synth</div><div class="snd-desc">硬朗的摇滚合成音（Geddy Lee），有攻击性，能与吉他抗衡。</div><div class="snd-genre">前卫/硬摇滚</div><div class="snd-song"><i>♪</i> Rush <em>— Tom Sawyer</em></div></li>
+      <li><div class="snd-name">New Wave Bass</div><div class="snd-desc">冰冷推进的低音，机械、阴郁，自带未来疏离感。</div><div class="snd-genre">新浪潮 · synth-pop</div><div class="snd-song"><i>♪</i> Gary Numan <em>— Cars</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Modular V</h3><div class="spec">原型 <span>Moog Modular</span><br>模块化合成器 · 1967</div></div>
+    <p class="desc">用补线连接振荡器、滤波器与序列器的庞然大物——合成器的「始祖」。从《Switched-On Bach》到 disco 序列，它定义了电子声音的可能性边界。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它是一切的起点。这面布满旋钮和补线的墙，第一次向世界证明：声音可以被电压「合成」出来。Wendy Carlos 用它录制的《Switched-On Bach》让大众第一次认真对待合成器，而 Moroder 又用它的序列器铺出了 disco 的脉搏。没有 Modular，后面所有合成器都无从谈起。</p></div>
+    <div class="block-label">代表音色 · 特点 / 曲风 / 原型曲目</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Classical Voicing</div><div class="snd-desc">清晰的多声部音色，纯净、精确，适合复调与古典改编。</div><div class="snd-genre">古典电子 · 实验</div><div class="snd-song"><i>♪</i> Wendy Carlos <em>— Switched-On Bach</em></div></li>
+      <li><div class="snd-name">Pulsing Sequence</div><div class="snd-desc">滚动不息的序列贝斯（Moroder），催眠、机械，是 disco 的心跳。</div><div class="snd-genre">disco · italo · 电子</div><div class="snd-song"><i>♪</i> Donna Summer <em>— I Feel Love</em></div></li>
+      <li><div class="snd-name">Soaring Lead</div><div class="snd-desc">带状控制器的滑音主奏，连绵、抒情，富有表现力。</div><div class="snd-genre">前卫摇滚 · 器乐</div><div class="snd-song"><i>♪</i> Emerson, Lake & Palmer <em>— Lucky Man</em></div></li>
+      <li><div class="snd-name">Cinematic FX</div><div class="snd-desc">实验性的声景，怪诞、不安，适合营造异样气氛。</div><div class="snd-genre">电影配乐 · 实验</div><div class="snd-song"><i>♪</i> Wendy Carlos <em>— A Clockwork Orange (Title)</em></div></li>
+      <li><div class="snd-name">Kosmische Sequence</div><div class="snd-desc">催眠般的德式序列，绵长、演化，适合长段铺陈。</div><div class="snd-genre">krautrock · 太空电子</div><div class="snd-song"><i>♪</i> Tangerine Dream <em>— Phaedra</em></div></li>
+      <li><div class="snd-name">Deep Bass</div><div class="snd-desc">低沉饱满的低音，厚实、有底盘，撑得起整段律动。</div><div class="snd-genre">放克 · 电子</div><div class="snd-song"><i>♪</i> Parliament <em>— Mothership Connection</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>ARP 2600 V</h3><div class="spec">原型 <span>ARP 2600</span><br>半模块化合成器 · 1971</div></div>
+    <p class="desc">教学与录音室的半模块化经典：免补线即可玩，也能跳线深玩。从 R2-D2 的「声音」到摇滚主奏，它是声音设计师的最爱。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它是无数人学会「合成器怎么工作」的那台机器。半模块化的设计——预接好的信号路径加上可跳线的灵活性——让它既好上手又能深玩。最famous的瞬间是 Ben Burtt 用它「说」出了 R2-D2 的语言，证明了它不只是乐器，更是一台无所不能的声音设计工作台。</p></div>
+    <div class="block-label">代表音色 · 特点 / 曲风 / 原型曲目</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Sound Design / FX</div><div class="snd-desc">语调般起伏的声效（Ben Burtt），生动、拟人，是声音设计的范本。</div><div class="snd-genre">电影音效 · 实验</div><div class="snd-song"><i>♪</i> Star Wars <em>— R2-D2 的声音</em></div></li>
+      <li><div class="snd-name">Rock Synth Solo</div><div class="snd-desc">嘶吼推进的主奏，狂野、有冲劲，适合抢镜的器乐段。</div><div class="snd-genre">摇滚 · 器乐摇滚</div><div class="snd-song"><i>♪</i> Edgar Winter Group <em>— Frankenstein</em></div></li>
+      <li><div class="snd-name">Synth-Pop Bass</div><div class="snd-desc">弹跳明亮的合成贝斯（Vince Clarke），轻快、有弹性。</div><div class="snd-genre">synth-pop · 电子流行</div><div class="snd-song"><i>♪</i> Depeche Mode <em>— Just Can't Get Enough</em></div></li>
+      <li><div class="snd-name">Funk Lead</div><div class="snd-desc">灵动的灵魂/放克主奏，俏皮、流畅，律动里带巧思。</div><div class="snd-genre">soul · 放克</div><div class="snd-song"><i>♪</i> Stevie Wonder <em>— Innervisions（合成层）</em></div></li>
+      <li><div class="snd-name">Ambient Sequence</div><div class="snd-desc">漂浮的氛围序列，空灵、绵延，适合做底层律动。</div><div class="snd-genre">ambient · 太空电子</div><div class="snd-song"><i>♪</i> Jean-Michel Jarre <em>— Oxygène</em></div></li>
+      <li><div class="snd-name">Prog Texture</div><div class="snd-desc">戏剧化的质感音色（Tony Banks），丰富、有层次。</div><div class="snd-genre">前卫摇滚</div><div class="snd-song"><i>♪</i> Genesis <em>— The Lamb Lies Down on Broadway</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>CS-80 V</h3><div class="spec">原型 <span>Yamaha CS-80</span><br>复音合成器 · 1977</div></div>
+    <p class="desc">带复音多重触后（polyphonic aftertouch）与缎带控制器的传奇，表现力极强。它几乎等同于 Vangelis 的声音，也是电影配乐史上最具情感的合成音。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它是「最有感情的合成器」。复音触后让你能逐个音符地施加压力、弯音、注入颤抖，加上那条缎带控制器，演奏出来的声音几乎像在呼吸、在歌唱。Vangelis 用它写就了《Blade Runner》——那种潮湿、忧郁、宏大的未来感，至今仍是电影配乐无法绕过的标杆。</p></div>
+    <div class="block-label">代表音色 · 特点 / 曲风 / 原型曲目</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Cinematic Brass Pad</div><div class="snd-desc">饱含情感的铜管铺底，宏大、潮湿、忧郁，电影感拉满。</div><div class="snd-genre">电影配乐 · 太空电子</div><div class="snd-song"><i>♪</i> Vangelis <em>— Blade Runner (Love Theme)</em></div></li>
+      <li><div class="snd-name">Expressive Lead</div><div class="snd-desc">触后弯音的歌唱主奏，连绵、动情，仿佛在呼吸。</div><div class="snd-genre">电影 · 器乐</div><div class="snd-song"><i>♪</i> Vangelis <em>— Chariots of Fire</em></div></li>
+      <li><div class="snd-name">Lush Strings</div><div class="snd-desc">厚重温暖的弦乐层（intro），宽广、包裹感强。</div><div class="snd-genre">流行摇滚 · AOR</div><div class="snd-song"><i>♪</i> Toto <em>— Africa</em></div></li>
+      <li><div class="snd-name">Sci-fi Pad</div><div class="snd-desc">梦幻飘渺的太空铺底，空灵、神秘，适合留白氛围。</div><div class="snd-genre">实验 · 氛围</div><div class="snd-song"><i>♪</i> Stevie Wonder <em>— The Secret Life of Plants</em></div></li>
+      <li><div class="snd-name">Warm Solo</div><div class="snd-desc">温暖圆润的主奏，柔和、抒情，适合深情段落。</div><div class="snd-genre">前卫 · 器乐</div><div class="snd-song"><i>♪</i> Keith Emerson <em>— ELP 现场</em></div></li>
+      <li><div class="snd-name">Choir Pad</div><div class="snd-desc">合唱般的宽阔铺垫，神圣、漂浮，适合宏大场景。</div><div class="snd-genre">太空电子 · 氛围</div><div class="snd-song"><i>♪</i> Jean-Michel Jarre <em>— Magnetic Fields</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>SEM V</h3><div class="spec">原型 <span>Oberheim SEM</span><br>合成器扩展模块 · 1974</div></div>
+    <p class="desc">Tom Oberheim 的第一件产品，标志性的多模式滤波器（含陷波/notch），音色顺滑温暖，是后来 Oberheim 四/八声部复音机的基石。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它是 Oberheim 帝国的奠基石。这枚小小的扩展模块带来了一种顺滑、温暖、与 Moog 截然不同的滤波器（尤其那个独特的陷波模式），定义了「Oberheim 声音」的雏形。把多个 SEM 串起来，就成了史上第一批复音合成器——它小，却催生了一整条复音的血脉。</p></div>
+    <div class="block-label">代表音色 · 特点 / 曲风 / 原型曲目 · 用途</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Silky Lead</div><div class="snd-desc">顺滑温暖的主奏，圆润、不刺耳，是经典的 Oberheim 之声。</div><div class="snd-genre">爵士融合 · 流行</div><div class="snd-song"><i>♪</i> Weather Report <em>— Joe Zawinul 的 Oberheim 音色</em></div></li>
+      <li><div class="snd-name">Fat Unison Bass</div><div class="snd-desc">厚实的齐奏低音，饱满、有底盘，温暖中带力量。</div><div class="snd-genre">放克 · 复古合成</div><div class="snd-song use"><i>◆</i> <em>适合：复古放克/合成贝斯</em></div></li>
+      <li><div class="snd-name">Notch Sweep</div><div class="snd-desc">陷波滤波的独特扫频，空心、流动，质感与众不同。</div><div class="snd-genre">声音设计 · 氛围</div><div class="snd-song use"><i>◆</i> <em>适合：演化质感、过门</em></div></li>
+      <li><div class="snd-name">Brass Pad</div><div class="snd-desc">温润的铜管铺底，柔和、温暖，适合垫和声。</div><div class="snd-genre">70s 美式前卫</div><div class="snd-song"><i>♪</i> Styx / Kansas <em>— 70s 前卫摇滚</em></div></li>
+      <li><div class="snd-name">Sci-fi FX</div><div class="snd-desc">电影感的声效，诡异、悬疑，适合恐怖/科幻氛围。</div><div class="snd-genre">恐怖 · 科幻配乐</div><div class="snd-song use"><i>◆</i> <em>适合：悬疑/科幻配乐</em></div></li>
+      <li><div class="snd-name">Smooth Pad</div><div class="snd-desc">缓慢演化的太空铺垫，平滑、绵长，适合长段铺陈。</div><div class="snd-genre">太空电子 · ambient</div><div class="snd-song"><i>♪</i> Tangerine Dream <em>— 电子铺底</em></div></li>
+    </ol>
+    <p class="card-note">// SEM 多作为录音室模块/复音建块使用，独奏代表曲较少；标「◆」者以其声音性格与已知 Oberheim 用户为准。</p>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Buchla Easel V</h3><div class="spec">原型 <span>Buchla Music Easel</span><br>西海岸合成器 · 1973</div></div>
+    <p class="desc">「西海岸合成」的代表：不走减法路线，而以复杂波形、低通门（LPG）与随机源创造有机、不可预测的声音，是实验与氛围音乐家的挚爱。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它代表了合成器的「另一条路」。当 Moog 在东海岸做减法合成时，Don Buchla 在西海岸拒绝键盘、拥抱触摸板、复杂振荡器与随机电压——他要的不是弹奏旋律，而是生成有机、演化、不可预测的声音生命体。这种「西海岸哲学」如今在 Suzanne Ciani 和整个 Eurorack 浪潮里重新繁荣。</p></div>
+    <div class="block-label">代表音色 · 特点 / 曲风 / 原型曲目</div>
+    <ol class="sounds">
+      <li><div class="snd-name">West-Coast Bleeps</div><div class="snd-desc">跳跃随机的电子点描，俏皮、不可预测，充满生命力。</div><div class="snd-genre">实验电子 · 先锋</div><div class="snd-song"><i>♪</i> Morton Subotnick <em>— Silver Apples of the Moon</em></div></li>
+      <li><div class="snd-name">Generative Sequence</div><div class="snd-desc">自演化的生成序列（Suzanne Ciani），流动、有机，永不重复。</div><div class="snd-genre">generative · ambient</div><div class="snd-song"><i>♪</i> Suzanne Ciani <em>— Buchla Concerts 1975</em></div></li>
+      <li><div class="snd-name">Plucky LPG</div><div class="snd-desc">低通门的弹拨质感，自然衰减、温润，像被拨动的有机体。</div><div class="snd-genre">现代 ambient · 实验</div><div class="snd-song"><i>♪</i> Kaitlyn Aurelia Smith <em>— EARS</em></div></li>
+      <li><div class="snd-name">Modular Drone</div><div class="snd-desc">低沉嗡鸣的持续音，深邃、催眠，适合做底层氛围。</div><div class="snd-genre">drone · dark ambient</div><div class="snd-song"><i>♪</i> Alessandro Cortini <em>— SONNO</em></div></li>
+      <li><div class="snd-name">Organic Texture</div><div class="snd-desc">有机起伏的颗粒纹理，呼吸感强，自然演化。</div><div class="snd-genre">实验 · 即兴电子</div><div class="snd-song"><i>♪</i> Charles Cohen <em>— 即兴 Music Easel</em></div></li>
+      <li><div class="snd-name">Random FX</div><div class="snd-desc">随机源驱动的声效，意外、跳脱，富有惊喜。</div><div class="snd-genre">声音设计 · 实验</div><div class="snd-song"><i>♪</i> Suzanne Ciani <em>— Lixiviation</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Korg MS-20 V</h3><div class="spec">原型 <span>Korg MS-20</span><br>半模块化合成器 · 1978</div></div>
+    <p class="desc">带补线面板的平价半模块化经典，双滤波器、外部信号处理器，音色凶悍、易自激嘶吼，是 acid、techno 与电子舞曲的粗粝利器。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它让「补线玩法」变得人人可及。MS-20 便宜、皮实，却有一对凶悍、容易自激嘶吼的滤波器和一块开放的跳线面板——这种又脏又野的性格，让它成为 techno、acid 和电子制作人手里的「噪音利器」。从 Aphex Twin 到 Daft Punk，无数粗粝的低音和扭曲音效都出自它。</p></div>
+    <div class="block-label">代表音色 · 特点 / 曲风 / 原型曲目 · 用途</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Squelchy Bass</div><div class="snd-desc">挤压感十足的低音，弹性、湿润、带咬合，律动感极强。</div><div class="snd-genre">house · French touch</div><div class="snd-song"><i>♪</i> Daft Punk <em>— Da Funk</em></div></li>
+      <li><div class="snd-name">Acid Lead</div><div class="snd-desc">尖锐扭曲的主奏，刺、怪、有侵略性，辨识度极高。</div><div class="snd-genre">IDM · acid · 实验电子</div><div class="snd-song"><i>♪</i> Aphex Twin <em>— Windowlicker</em></div></li>
+      <li><div class="snd-name">Gritty FX</div><div class="snd-desc">粗粝的滤波声效，脏、糙、有冲击力，适合做转场。</div><div class="snd-genre">big beat · 电子</div><div class="snd-song"><i>♪</i> The Chemical Brothers <em>— big beat 质感</em></div></li>
+      <li><div class="snd-name">Filtered Lead</div><div class="snd-desc">共鸣扫频的主奏（Vince Clarke），流动、明亮、有动态。</div><div class="snd-genre">synth-pop · 电子流行</div><div class="snd-song"><i>♪</i> Erasure <em>— 合成流行</em></div></li>
+      <li><div class="snd-name">Self-Osc Scream</div><div class="snd-desc">滤波自激的嘶叫，尖利、失控、极具攻击性。</div><div class="snd-genre">工业 · 噪音</div><div class="snd-song use"><i>◆</i> <em>适合：工业/噪音声音设计</em></div></li>
+      <li><div class="snd-name">Lo-fi Bass</div><div class="snd-desc">暗哑做旧的低音，温吞、有颗粒，适合阴郁氛围。</div><div class="snd-genre">trip-hop · 暗黑电子</div><div class="snd-song"><i>♪</i> Portishead <em>— trip-hop 质感</em></div></li>
+    </ol>
+    <p class="card-note">// MS-20 是电子制作人常备的「调味」机型，逐曲拾音难逐一锁定；上列以公认使用者与声音性格为准。</p>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Synthi V</h3><div class="spec">原型 <span>EMS Synthi AKS / VCS3</span><br>便携模块化 · 1971</div></div>
+    <p class="desc">英国 EMS 的传奇：用矩阵插针（pin matrix）替代补线，体积小却极度怪异多变。它是 Pink Floyd、Brian Eno 与早期电子先锋的声音实验室。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它把一整套模块化塞进了一个手提箱，还用一块插针矩阵取代了乱麻般的补线。EMS Synthi 的声音古怪、不稳定、难以驯服——而这正是 Pink Floyd（《On the Run》）、Brian Eno 和 BBC 电子实验室钟爱它的原因。它不擅长弹「音乐」，却擅长制造前所未闻的声音事件。</p></div>
+    <div class="block-label">代表音色 · 特点 / 曲风 / 原型曲目</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Sequenced FX</div><div class="snd-desc">奔跑般的序列声效，急促、机械、富有张力。</div><div class="snd-genre">前卫摇滚 · 电子</div><div class="snd-song"><i>♪</i> Pink Floyd <em>— On the Run</em></div></li>
+      <li><div class="snd-name">Processed Pulse</div><div class="snd-desc">被处理的脉动音，跳动、扭曲，带实验色彩。</div><div class="snd-genre">硬摇滚 · 实验</div><div class="snd-song"><i>♪</i> The Who <em>— Won't Get Fooled Again</em></div></li>
+      <li><div class="snd-name">Glissando Lead</div><div class="snd-desc">滑奏的电子主奏，流动、连绵，富有太空感。</div><div class="snd-genre">太空电子 · 氛围</div><div class="snd-song"><i>♪</i> Jean-Michel Jarre <em>— Oxygène, Pt. 4</em></div></li>
+      <li><div class="snd-name">Texture / Noise</div><div class="snd-desc">怪异的实验纹理（Eno），不安、抽象，适合声音拼贴。</div><div class="snd-genre">art rock · 实验</div><div class="snd-song"><i>♪</i> Roxy Music <em>— Virginia Plain</em></div></li>
+      <li><div class="snd-name">Kosmische Drone</div><div class="snd-desc">催眠的持续音，绵延、深邃，适合长段氛围。</div><div class="snd-genre">krautrock · drone</div><div class="snd-song"><i>♪</i> Tangerine Dream <em>— Rubycon</em></div></li>
+      <li><div class="snd-name">Sci-fi Sweep</div><div class="snd-desc">科幻扫频声效，未来感、神秘，适合配乐音效。</div><div class="snd-genre">电视配乐 · 实验</div><div class="snd-song"><i>♪</i> BBC Radiophonic <em>— Doctor Who 音效</em></div></li>
+    </ol>
+  </article>
+</section>
+
+<!-- ============ 05 复音模拟合成器 ============ -->
+<section class="cat" id="poly">
+  <div class="cat-head"><span class="idx">CATEGORY 05</span><h2>复音模拟合成器</h2><span class="count">6 INSTRUMENTS</span></div>
+  <p class="cat-sub">能同时弹和弦的模拟复音机：80s 流行的铺底、铜管 stab 与梦幻 pad 几乎都出自它们之手。</p>
+
+  <article class="card">
+    <div class="card-top"><h3>Jup-8 V</h3><div class="spec">原型 <span>Roland Jupiter-8</span><br>复音合成器 · 1981</div></div>
+    <p class="desc">Roland 的旗舰复音机，音色华丽、铺底丰润、bright 而不刺，是 80s 新浪潮与流行最闪亮的合成音之一。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它是 Roland 80 年代的皇冠。Jupiter-8 把模拟复音的「华丽」推到极致——铺底丰润、明亮却不刺耳、和弦一按就金光闪闪。Duran Duran、Howard Jones、Moroder 都靠它定义了那个时代「昂贵、闪亮、向上」的流行声音，至今仍是 synthwave 制作人梦寐以求的旗舰音色。</p></div>
+    <div class="block-label">代表音色 · 特点 / 曲风 / 原型曲目</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Lush Brass Pad</div><div class="snd-desc">华丽丰润的铜管铺底（Nick Rhodes），明亮、宽阔、有贵气。</div><div class="snd-genre">新浪潮 · synth-pop</div><div class="snd-song"><i>♪</i> Duran Duran <em>— Rio</em></div></li>
+      <li><div class="snd-name">Bright Arp</div><div class="snd-desc">明亮跳跃的琶音，闪亮、有动感，是 80s 流行的招牌动机。</div><div class="snd-genre">synth-pop · 电子流行</div><div class="snd-song"><i>♪</i> Howard Jones <em>— What Is Love?</em></div></li>
+      <li><div class="snd-name">Anthemic Lead</div><div class="snd-desc">激昂的主奏，向上、有力量，适合副歌的情绪点。</div><div class="snd-genre">synth-pop · 电影金曲</div><div class="snd-song"><i>♪</i> Giorgio Moroder & Philip Oakey <em>— Together in Electric Dreams</em></div></li>
+      <li><div class="snd-name">Sweeping Pad</div><div class="snd-desc">缓慢扫频的宽阔铺垫，流动、丰满，适合大段铺陈。</div><div class="snd-genre">太空电子 · 氛围</div><div class="snd-song"><i>♪</i> Tangerine Dream <em>— Le Parc</em></div></li>
+      <li><div class="snd-name">Stab / Comp</div><div class="snd-desc">干脆的和弦切音，闪亮、有冲击，节奏点鲜明。</div><div class="snd-genre">舞曲 · hi-NRG</div><div class="snd-song"><i>♪</i> Frankie Goes to Hollywood <em>— Relax</em></div></li>
+      <li><div class="snd-name">Synth Riff</div><div class="snd-desc">明亮的标志动机，有记忆点、穿透力强。</div><div class="snd-genre">arena rock · AOR</div><div class="snd-song"><i>♪</i> Journey <em>— Separate Ways (Worlds Apart)</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Jun-6 V</h3><div class="spec">原型 <span>Roland Juno-6 / 60</span><br>复音合成器 · 1982</div></div>
+    <p class="desc">以那台著名的 chorus 合唱电路闻名——按下它，单薄的锯齿瞬间变得宽阔梦幻。Juno 家族（6/60/106）的音色几乎成了 synth-pop 与现代独立电子的代名词。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它靠一个「合唱按钮」赢得了永生。Juno 本身只有一个振荡器、声音偏单薄，但 Roland 那块标志性的 chorus 电路一开，立刻把它揉成宽阔、温暖、梦幻的声墙。这种「便宜却动听」的特质让它从 80s 新浪潮一路火到今天的 indie / bedroom pop——可能是被现代制作人采样最多的复音合成器。</p></div>
+    <div class="block-label">代表音色 · 特点 / 曲风 / 原型曲目</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Chorus Pad</div><div class="snd-desc">标志性宽阔梦幻的铺底，温暖、晃动，一开 chorus 就上头。</div><div class="snd-genre">new wave · synth-pop</div><div class="snd-song"><i>♪</i> New Order <em>— Blue Monday</em></div></li>
+      <li><div class="snd-name">Bright Arp</div><div class="snd-desc">明亮的内置琶音，轻快、跳跃，复古电子味浓。</div><div class="snd-genre">synth-pop · new wave</div><div class="snd-song"><i>♪</i> A Flock of Seagulls <em>— I Ran (So Far Away)</em></div></li>
+      <li><div class="snd-name">Warm Bass</div><div class="snd-desc">温润饱满的低音（Vince Clarke），圆润、稳健、好听。</div><div class="snd-genre">synth-pop · 电子流行</div><div class="snd-song"><i>♪</i> Yazoo <em>— Don't Go</em></div></li>
+      <li><div class="snd-name">Pop Lead</div><div class="snd-desc">圆润的流行主奏，柔和、亲切，旋律感强。</div><div class="snd-genre">synth-pop · 电子流行</div><div class="snd-song"><i>♪</i> OMD <em>— Enola Gay</em></div></li>
+      <li><div class="snd-name">Stab</div><div class="snd-desc">明快的和弦点缀，干净、有弹性，节奏感好。</div><div class="snd-genre">new wave · 流行</div><div class="snd-song"><i>♪</i> Tears for Fears <em>— Mad World</em></div></li>
+      <li><div class="snd-name">Dreamy Pad</div><div class="snd-desc">朦胧的现代铺垫，怀旧、温柔，indie 气质十足。</div><div class="snd-genre">indie · dream pop · 合成浪潮</div><div class="snd-song"><i>♪</i> M83 <em>— Midnight City</em></div></li>
+    </ol>
+    <p class="card-note">// Juno-6/60/106 音色（尤其 chorus）几乎一致，上列含同家族曲目，以体现该 chorus 之声。</p>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Prophet-5 V</h3><div class="spec">原型 <span>Sequential Prophet-5</span><br>复音合成器 · 1978</div></div>
+    <p class="desc">史上第一台带可存储音色记忆的复音合成器，音色温暖而通透，是 80s 录音室的主力，从迈克尔·杰克逊到 Radiohead 都有它的身影。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它带来了一个改变游戏规则的功能：音色记忆。在它之前，复音合成器调好的声音一断电就消失；Prophet-5 让你能存下并瞬间调用音色，于是它成了录音室和巡演的可靠主力。温暖、通透、全能——从《Thriller》到 Talking Heads 再到 Radiohead，它是跨越流派的「默认复音之声」。</p></div>
+    <div class="block-label">代表音色 · 特点 / 曲风 / 原型曲目</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Warm Poly Pad</div><div class="snd-desc">温暖通透的复音铺底，圆润、平衡，万金油般好用。</div><div class="snd-genre">流行 · R&B · 摇滚</div><div class="snd-song"><i>♪</i> Michael Jackson <em>— Thriller</em></div></li>
+      <li><div class="snd-name">Synth-Pop Riff</div><div class="snd-desc">标志性的合成动机，明快、有记忆点，律动鲜明。</div><div class="snd-genre">new wave · art pop</div><div class="snd-song"><i>♪</i> Talking Heads <em>— Once in a Lifetime</em></div></li>
+      <li><div class="snd-name">Bright Brass</div><div class="snd-desc">明亮的复音铜管，有力、闪亮，适合做齐奏段落。</div><div class="snd-genre">new wave · power pop</div><div class="snd-song"><i>♪</i> The Cars <em>— Touch and Go</em></div></li>
+      <li><div class="snd-name">Atmospheric</div><div class="snd-desc">飘渺的氛围铺垫，神秘、留白，电影感强。</div><div class="snd-genre">art rock · 氛围</div><div class="snd-song"><i>♪</i> Phil Collins <em>— In the Air Tonight</em></div></li>
+      <li><div class="snd-name">Pop Stab</div><div class="snd-desc">干脆的流行和弦，闪亮、利落，节奏点好用。</div><div class="snd-genre">new wave · synth-pop</div><div class="snd-song"><i>♪</i> Duran Duran <em>— Save a Prayer</em></div></li>
+      <li><div class="snd-name">Modern Texture</div><div class="snd-desc">现代电子的演化质感，冷峻、有层次，适合实验编曲。</div><div class="snd-genre">art rock · 电子</div><div class="snd-song"><i>♪</i> Radiohead <em>— Everything in Its Right Place</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>OB-Xa V</h3><div class="spec">原型 <span>Oberheim OB-Xa</span><br>复音合成器 · 1981</div></div>
+    <p class="desc">Oberheim 的招牌：肥厚、霸气、带攻击性的铜管 stab 与厚重铺底，是 80s 摇滚与放克最有力量的合成音。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它有一种别家做不出的「霸气」。OB-Xa 的声音厚重、有侵略性，和弦一砸下去就充满力量——Van Halen《Jump》那个全世界都会哼的合成铜管 stab，就是它的代表作。从 Prince 到 Rush，凡是需要「合成器也能摇滚」的地方，OB-Xa 都是首选。</p></div>
+    <div class="block-label">代表音色 · 特点 / 曲风 / 原型曲目</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Brass Stab</div><div class="snd-desc">史上最著名的合成铜管 stab，厚重、有冲击、记忆点炸裂。</div><div class="snd-genre">arena rock · 流行摇滚</div><div class="snd-song"><i>♪</i> Van Halen <em>— Jump</em></div></li>
+      <li><div class="snd-name">Funk Pad</div><div class="snd-desc">厚重有力的放克铺底，饱满、霸气，律动里有重量。</div><div class="snd-genre">放克 · minneapolis sound</div><div class="snd-song"><i>♪</i> Prince <em>— 1999</em></div></li>
+      <li><div class="snd-name">Rock Synth</div><div class="snd-desc">硬朗的摇滚合成层，有棱角、能扛事，与吉他平起平坐。</div><div class="snd-genre">前卫/硬摇滚</div><div class="snd-song"><i>♪</i> Rush <em>— Subdivisions</em></div></li>
+      <li><div class="snd-name">Anthem Lead</div><div class="snd-desc">戏剧化的主奏，张扬、有戏，适合大场面副歌。</div><div class="snd-genre">arena rock · 流行</div><div class="snd-song"><i>♪</i> Styx <em>— Mr. Roboto</em></div></li>
+      <li><div class="snd-name">New Romantic Pad</div><div class="snd-desc">阴郁优雅的铺垫，冷峻、深沉，自带都市忧郁。</div><div class="snd-genre">new romantic · art pop</div><div class="snd-song"><i>♪</i> Japan <em>— Ghosts</em></div></li>
+      <li><div class="snd-name">Power Pad</div><div class="snd-desc">厚重的力量铺底（Thomas Dolby），饱满、有推进力。</div><div class="snd-genre">arena rock · AOR</div><div class="snd-song"><i>♪</i> Foreigner <em>— Urgent</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Matrix-12 V</h3><div class="spec">原型 <span>Oberheim Matrix-12</span><br>12 声部复音 · 1985</div></div>
+    <p class="desc">Oberheim 的巅峰之作：12 声部、每个声音可矩阵调制（matrix modulation），被誉为有史以来最强大的模拟复音机，演化 pad 与电影质感无出其右。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它常被称为「有史以来最强大的模拟复音合成器」。12 个完整声部、每个都能用「矩阵调制」把几乎任何东西连到任何东西上——这赋予了它无与伦比的、会呼吸会演化的复杂音色。它不是为了快速出一个 stab，而是为了雕琢那种深不见底、缓慢变化的电影质感 pad。</p></div>
+    <div class="block-label">代表音色 · 特点 / 曲风 / 原型曲目 · 用途</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Evolving Pad</div><div class="snd-desc">缓慢演化的丰富铺底，深邃、有层次，越听越多细节。</div><div class="snd-genre">太空电子 · 氛围</div><div class="snd-song"><i>♪</i> Tangerine Dream <em>— Underwater Sunlight</em></div></li>
+      <li><div class="snd-name">Rich Lead</div><div class="snd-desc">厚实有层次的主奏，饱满、立体，适合精致编曲。</div><div class="snd-genre">art rock · 电子</div><div class="snd-song"><i>♪</i> Depeche Mode <em>— Enjoy the Silence（Violator 期）</em></div></li>
+      <li><div class="snd-name">Cinematic Pad</div><div class="snd-desc">电影级的宽阔铺垫，宏大、深沉，自带画面感。</div><div class="snd-genre">现代影视配乐</div><div class="snd-song use"><i>◆</i> <em>适合：影视/预告片底层</em></div></li>
+      <li><div class="snd-name">Sweep</div><div class="snd-desc">复杂调制的滤波扫频，流动、丰富，富有动态。</div><div class="snd-genre">电子 · 实验</div><div class="snd-song"><i>♪</i> Gary Numan <em>— 后期电子</em></div></li>
+      <li><div class="snd-name">Stab / Brass</div><div class="snd-desc">厚重的和弦切音，有力、立体，节奏点扎实。</div><div class="snd-genre">synthwave · 复古</div><div class="snd-song use"><i>◆</i> <em>适合：synthwave/复古制作</em></div></li>
+      <li><div class="snd-name">Fat Bass</div><div class="snd-desc">饱满的复音低音（Vince Clarke），厚实、稳，底盘强。</div><div class="snd-genre">synth-pop · 电子</div><div class="snd-song"><i>♪</i> Erasure <em>— 合成流行</em></div></li>
+    </ol>
+    <p class="card-note">// Matrix-12 以「录音室复音利器」著称，多用于铺底/质感而非辨识度高的独奏；标「◆」者以用途为准。</p>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Synthx V</h3><div class="spec">原型 <span>Elka Synthex</span><br>复音合成器 · 1981</div></div>
+    <p class="desc">意大利 Elka 的隐藏瑰宝，DCO 数控振荡器带来明亮稳定、攻击性强的音色，还有少见的双层与同步功能。它几乎就是 Jean-Michel Jarre 的标志声音。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它是意大利人做出的「冷门神器」。Elka Synthex 用 DCO 实现了少见的音准稳定与明亮锐利，还有硬同步和双层演奏等高级功能。虽然产量小、知名度不及 Roland，但 Jean-Michel Jarre 几乎把整个职业生涯绑在了它身上——那些尖锐闪亮、辨识度极高的主奏，就是 Synthex 的签名。</p></div>
+    <div class="block-label">代表音色 · 特点 / 曲风 / 原型曲目 · 用途</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Signature Bright Lead</div><div class="snd-desc">明亮锐利的标志主奏，穿透、闪亮、辨识度极高。</div><div class="snd-genre">太空电子 · 器乐电子</div><div class="snd-song"><i>♪</i> Jean-Michel Jarre <em>— Fourth Rendez-Vous</em></div></li>
+      <li><div class="snd-name">PWM Pad</div><div class="snd-desc">脉宽调制的丰厚铺底，流动、立体，有动态层次。</div><div class="snd-genre">太空电子 · 氛围</div><div class="snd-song"><i>♪</i> Jean-Michel Jarre <em>— Magnetic Fields, Pt. 1</em></div></li>
+      <li><div class="snd-name">Sync Brass</div><div class="snd-desc">硬同步的攻击性铜管（Geoff Downes），有棱角、锐利。</div><div class="snd-genre">prog · arena rock</div><div class="snd-song"><i>♪</i> Asia <em>— Heat of the Moment</em></div></li>
+      <li><div class="snd-name">Arp Sequence</div><div class="snd-desc">跳跃明快的琶音序列，清脆、有动感。</div><div class="snd-genre">太空电子 · synth</div><div class="snd-song"><i>♪</i> Jean-Michel Jarre <em>— Rendez-Vous, Pt. 2</em></div></li>
+      <li><div class="snd-name">Lush Dual Pad</div><div class="snd-desc">双层叠加的宽阔铺垫，丰满、华丽，空间感强。</div><div class="snd-genre">太空电子 · ambient</div><div class="snd-song use"><i>◆</i> <em>适合：太空电子/氛围</em></div></li>
+      <li><div class="snd-name">Bright Stab</div><div class="snd-desc">清脆明亮的和弦点缀，利落、闪亮，节奏感强。</div><div class="snd-genre">synthwave · 复古流行</div><div class="snd-song use"><i>◆</i> <em>适合：synthwave/复古流行</em></div></li>
+    </ol>
+    <p class="card-note">// Synthex 的代表演奏者高度集中于 Jean-Michel Jarre，故多曲同源；标「◆」者以用途为准。</p>
+  </article>
+</section>
+
+<!-- ============ 06 数字 / FM / 采样合成器 ============ -->
+<section class="cat" id="digital">
+  <div class="cat-head"><span class="idx">CATEGORY 06</span><h2>数字 / FM / 采样合成器</h2><span class="count">8 INSTRUMENTS</span></div>
+  <p class="cat-sub">80–90 年代的数字革命：FM 的玻璃质感、采样机的真实音色、超级锯齿的 trance 浪潮——清脆、明亮、与模拟截然不同的另一种现代性。</p>
+
+  <article class="card">
+    <div class="card-top"><h3>DX7 V</h3><div class="spec">原型 <span>Yamaha DX7</span><br>FM 数字合成器 · 1983</div></div>
+    <p class="desc">史上最畅销的合成器之一，用 FM（频率调制）造出模拟做不出的玻璃电钢、明亮贝斯与金属铃声。整个 80 年代的唱片里几乎都有它。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它一夜之间改写了流行乐的声音。FM 合成造出的玻璃电钢、清脆贝斯和金属铃声，是任何模拟合成器都模仿不来的——而它的价格让普通乐手也买得起。结果整个 80 年代的唱片几乎都被它「染色」：那枚 E.PIANO 1 预设可能是史上被用得最多的合成音色，没有之一。</p></div>
+    <div class="block-label">代表音色 · 特点 / 曲风 / 原型曲目</div>
+    <ol class="sounds">
+      <li><div class="snd-name">FM E.Piano</div><div class="snd-desc">标志性的玻璃电钢（E.PIANO 1），清亮、有玻璃感，深情又干净。</div><div class="snd-genre">成人抒情 · R&B · 流行</div><div class="snd-song"><i>♪</i> Whitney Houston <em>— Greatest Love of All</em></div></li>
+      <li><div class="snd-name">Bright FM Bass</div><div class="snd-desc">明亮弹性的合成贝斯，清脆、有攻击音头，律动感强。</div><div class="snd-genre">synth-pop · 80s 流行</div><div class="snd-song"><i>♪</i> a-ha <em>— Take On Me</em></div></li>
+      <li><div class="snd-name">Glassy Bell Pad</div><div class="snd-desc">清亮的钟铃铺底，晶莹、空灵，自带浪漫氛围。</div><div class="snd-genre">电影金曲 · 抒情</div><div class="snd-song"><i>♪</i> Berlin <em>— Take My Breath Away</em></div></li>
+      <li><div class="snd-name">Mallet / Marimba</div><div class="snd-desc">木质打击般的音色，清脆、有颗粒，适合点缀与律动。</div><div class="snd-genre">ambient · new-age</div><div class="snd-song"><i>♪</i> Brian Eno <em>— Apollo（氛围层）</em></div></li>
+      <li><div class="snd-name">Bright Lead</div><div class="snd-desc">穿透的合成主奏，明亮、利落，旋律感强。</div><div class="snd-genre">成人抒情 · 流行</div><div class="snd-song"><i>♪</i> Phil Collins <em>— One More Night</em></div></li>
+      <li><div class="snd-name">Lo-Tine E.Piano</div><div class="snd-desc">偏暗柔的 FM 电钢，温润、内敛，适合深情段落。</div><div class="snd-genre">quiet storm · soul</div><div class="snd-song"><i>♪</i> Luther Vandross <em>— Never Too Much</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>CZ V</h3><div class="spec">原型 <span>Casio CZ-101 / CZ-1000</span><br>相位失真合成器 · 1984</div></div>
+    <p class="desc">卡西欧的平价数字奇兵，用「相位失真」（Phase Distortion）逼近 FM 的明亮，却更便宜易玩。它是 Vince Clarke 与早期 techno/house 制作人的秘密武器。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它是「穷人的 DX7」，却自成一派。卡西欧用「相位失真」绕开了 Yamaha 的 FM 专利，做出一台便宜、迷你、还能用电池的数字合成器。这种平价 + 独特数字味的组合，让它成了独立音乐人和早期 Detroit/Chicago 电子先锋的秘密武器——Vince Clarke 至今还在用它。</p></div>
+    <div class="block-label">代表音色 · 特点 / 曲风 / 原型曲目 · 用途</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Plucky Bass</div><div class="snd-desc">弹拨感的数字低音（Vince Clarke），干脆、有音头，律动好。</div><div class="snd-genre">synth-pop · 电子流行</div><div class="snd-song"><i>♪</i> Erasure <em>— Oh L'Amour</em></div></li>
+      <li><div class="snd-name">Digital Bell</div><div class="snd-desc">清脆的相位失真铃声，明亮、带金属感，复古数字味浓。</div><div class="snd-genre">indie 电子 · 复古流行</div><div class="snd-song"><i>♪</i> Stereolab <em>— 复古电子流行</em></div></li>
+      <li><div class="snd-name">Resonant Lead</div><div class="snd-desc">共鸣感的合成主奏，尖、亮，有早期电子的生涩魅力。</div><div class="snd-genre">Detroit techno</div><div class="snd-song use"><i>◆</i> <em>适合：早期 Detroit techno</em></div></li>
+      <li><div class="snd-name">Lo-fi Brass</div><div class="snd-desc">数字味的廉价铜管，单薄却有趣，自带 8-bit 怀旧。</div><div class="snd-genre">chiptune · 复古</div><div class="snd-song use"><i>◆</i> <em>适合：80s 复古/chiptune 风</em></div></li>
+      <li><div class="snd-name">Glassy Pad</div><div class="snd-desc">冷峻的数字铺底，清亮、疏离，适合做空旷底色。</div><div class="snd-genre">synth-pop · 氛围</div><div class="snd-song use"><i>◆</i> <em>适合：synth-pop 铺垫</em></div></li>
+      <li><div class="snd-name">Sync Stab</div><div class="snd-desc">尖锐的同步和弦，利落、有冲击，节奏点鲜明。</div><div class="snd-genre">house · 早期电子舞曲</div><div class="snd-song use"><i>◆</i> <em>适合：house/早期电子舞曲</em></div></li>
+    </ol>
+    <p class="card-note">// CZ 系列为平价数字机，常被独立/电子制作人广泛使用而少留单曲署名；标「◆」者以典型用途为准。</p>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Synclavier V</h3><div class="spec">原型 <span>New England Digital Synclavier</span><br>FM + 采样工作站 · 1977</div></div>
+    <p class="desc">天价的数字工作站（一套可买一栋房），结合 FM 合成与采样，是 80s 顶级制作人与作曲家的玩物，声音极其清晰锐利。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它是 80 年代的「终极奢侈品」——一套配齐能买下一栋房子，因此只有顶级制作人和明星才玩得起。它把 FM 合成、采样和数字音序整合进一台工作站，声音清晰锐利得近乎冷酷。Michael Jackson、Sting、Frank Zappa 都用它创作，它代表了数字时代最高规格的声音野心。</p></div>
+    <div class="block-label">代表音色 · 特点 / 曲风 / 原型曲目</div>
+    <ol class="sounds">
+      <li><div class="snd-name">FM Lead</div><div class="snd-desc">清晰锐利的数字主奏，干净、精确，有高科技感。</div><div class="snd-genre">AOR · 成人抒情</div><div class="snd-song"><i>♪</i> Mr. Mister <em>— Broken Wings</em></div></li>
+      <li><div class="snd-name">Programmed Composition</div><div class="snd-desc">精密编程的全数字音色，复杂、机械、令人惊叹。</div><div class="snd-genre">实验 · 前卫</div><div class="snd-song"><i>♪</i> Frank Zappa <em>— Jazz from Hell</em></div></li>
+      <li><div class="snd-name">Sampled Hits</div><div class="snd-desc">采样打击/音效堆叠，硬朗、有冲击力，制作精良。</div><div class="snd-genre">流行摇滚 · R&B</div><div class="snd-song"><i>♪</i> Michael Jackson <em>— Beat It（合成层）</em></div></li>
+      <li><div class="snd-name">Lush Digital Pad</div><div class="snd-desc">宽阔清亮的铺底，干净、高级，空间感强。</div><div class="snd-genre">成人抒情 · 流行</div><div class="snd-song"><i>♪</i> Sting <em>— If You Love Somebody Set Them Free</em></div></li>
+      <li><div class="snd-name">Bell / Mallet</div><div class="snd-desc">晶莹的钟琴质感，清亮、精致，适合点缀。</div><div class="snd-genre">爵士融合 · 数字</div><div class="snd-song"><i>♪</i> Chick Corea <em>— 数字键盘独奏</em></div></li>
+      <li><div class="snd-name">Brass / Stab</div><div class="snd-desc">明亮的数字铜管，锐利、有力，节奏点干脆。</div><div class="snd-genre">funk pop · 80s 流行</div><div class="snd-song"><i>♪</i> Duran Duran <em>— Notorious</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>CMI V</h3><div class="spec">原型 <span>Fairlight CMI</span><br>采样工作站 · 1979</div></div>
+    <p class="desc">采样的开山鼻祖，带 Page R 序列器，那记著名的「ORCH5」管弦 stab 与采样人声塑造了整个 80 年代的声音，也奠定了 hip-hop 的采样基因。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它发明了「采样」这件事。Fairlight CMI 第一次让人能录下任何声音、再用键盘弹奏它——尺八、人声、碎玻璃皆可。那记著名的「ORCH5」管弦 stab 响彻整个 80 年代，而它「拿现成声音重组」的理念，更直接埋下了 hip-hop 与现代电子的采样基因。</p></div>
+    <div class="block-label">代表音色 · 特点 / 曲风 / 原型曲目</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Shakuhachi</div><div class="snd-desc">标志性的尺八采样，空灵、东方、辨识度极高。</div><div class="snd-genre">art pop · 世界融合</div><div class="snd-song"><i>♪</i> Peter Gabriel <em>— Sledgehammer</em></div></li>
+      <li><div class="snd-name">ORCH5 Hit</div><div class="snd-desc">著名的管弦乐 stab，短促、爆发、戏剧性强。</div><div class="snd-genre">流行摇滚 · hip-hop</div><div class="snd-song"><i>♪</i> Yes <em>— Owner of a Lonely Heart</em></div></li>
+      <li><div class="snd-name">Sampled Voice</div><div class="snd-desc">采样人声/呼吸，亲密、诡谲，营造独特氛围。</div><div class="snd-genre">art pop · 实验流行</div><div class="snd-song"><i>♪</i> Kate Bush <em>— Running Up That Hill</em></div></li>
+      <li><div class="snd-name">Found-Sound Collage</div><div class="snd-desc">拼贴式采样声景，碎裂、先锋，富有实验性。</div><div class="snd-genre">art pop · 电子</div><div class="snd-song"><i>♪</i> Art of Noise <em>— Close (to the Edit)</em></div></li>
+      <li><div class="snd-name">Marimba / Mallet</div><div class="snd-desc">明亮的采样打击，清脆、有颗粒，制作精致。</div><div class="snd-genre">art pop · 制作流行</div><div class="snd-song"><i>♪</i> Trevor Horn <em>— ZTT 制作群</em></div></li>
+      <li><div class="snd-name">Bass / Stab</div><div class="snd-desc">采样切片的低音/点缀，硬朗、有冲击，早期电子味。</div><div class="snd-genre">electro · 早期 hip-hop</div><div class="snd-song"><i>♪</i> Herbie Hancock <em>— Rockit</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Emulator II V</h3><div class="spec">原型 <span>E-mu Emulator II</span><br>8/12-bit 采样器 · 1984</div></div>
+    <p class="desc">比 Fairlight 平易近人的采样器，12-bit 的粗粝、温暖、带噪的「lo-fi」质感本身就是一种风格，是 synth-pop 与早期电子舞曲的招牌音源。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它把采样从天价拉到了「乐队买得起」的价位，于是采样真正走进了流行乐。更妙的是，它 12-bit 的转换带来一种温暖、粗粝、略带噪声的质感——这种「不完美」本身成了一种受人追捧的声音风格。Depeche Mode、Pet Shop Boys 都靠它，那股「EII 味」如今仍被 lo-fi 制作人刻意追求。</p></div>
+    <div class="block-label">代表音色 · 特点 / 曲风 / 原型曲目</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Marcato Strings</div><div class="snd-desc">著名的采样弦乐预设，厚重、有颗粒，自带年代质感。</div><div class="snd-genre">synth-pop · 电子流行</div><div class="snd-song"><i>♪</i> Pet Shop Boys <em>— West End Girls</em></div></li>
+      <li><div class="snd-name">Sampled Choir</div><div class="snd-desc">采样人声合唱/打击，宏大、诡异，戏剧张力强。</div><div class="snd-genre">synth-pop · 暗黑电子</div><div class="snd-song"><i>♪</i> Depeche Mode <em>— Never Let Me Down Again</em></div></li>
+      <li><div class="snd-name">Lo-fi Vocal Cut</div><div class="snd-desc">切片做旧的人声，破碎、有噪点，复古采样味。</div><div class="snd-genre">synth-pop · 实验</div><div class="snd-song"><i>♪</i> Paul Hardcastle <em>— 19</em></div></li>
+      <li><div class="snd-name">Warm Sampled Bass</div><div class="snd-desc">温暖颗粒的采样低音，圆润、带噪，质感独特。</div><div class="snd-genre">sophisti-pop · 制作流行</div><div class="snd-song"><i>♪</i> ABC <em>— Trevor Horn 制作</em></div></li>
+      <li><div class="snd-name">Gritty Pad</div><div class="snd-desc">带噪的 12-bit 铺底，粗粝、温暖，自带怀旧。</div><div class="snd-genre">电影配乐 · 氛围</div><div class="snd-song"><i>♪</i> Tangerine Dream <em>— 80s 电影配乐</em></div></li>
+      <li><div class="snd-name">Orchestra Stab</div><div class="snd-desc">采样管弦点缀，短促、有冲击，制作感强。</div><div class="snd-genre">流行摇滚 · 80s</div><div class="snd-song"><i>♪</i> Genesis <em>— Invisible Touch（合成层）</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>SQ80 V</h3><div class="spec">原型 <span>Ensoniq SQ-80</span><br>混合波表合成器 · 1987</div></div>
+    <p class="desc">Ensoniq 的「cross wave」混合合成器：用短数字波表喂给模拟滤波器，造出独特的金属、玻璃与塑料质感。Trent Reznor 早期工业声音的来源之一。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它走了一条「半数字半模拟」的奇路：用短小的数字波表当声源，再喂进模拟滤波器。结果是一种独特的、带金属和塑料感的混合质感，既不纯数字也不纯模拟。这种冷峻怪异的声音被 Trent Reznor 等工业/暗黑电子先锋相中，成了那个圈子里低调而关键的声音来源。</p></div>
+    <div class="block-label">代表音色 · 特点 / 曲风 / 原型曲目 · 用途</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Gritty Digital Pad</div><div class="snd-desc">粗粝的混合波表铺底，冷峻、有颗粒，工业味浓。</div><div class="snd-genre">industrial · 暗黑电子</div><div class="snd-song"><i>♪</i> Nine Inch Nails <em>— Down in It（Ensoniq 期）</em></div></li>
+      <li><div class="snd-name">Metallic Bell</div><div class="snd-desc">金属质感的铃声，冷、硬、有侵略性。</div><div class="snd-genre">工业 · 暗黑电子</div><div class="snd-song use"><i>◆</i> <em>适合：工业/暗黑电子</em></div></li>
+      <li><div class="snd-name">Hybrid Lead</div><div class="snd-desc">波表驱动的主奏，怪异、有棱角，数字味独特。</div><div class="snd-genre">late-80s synth-pop</div><div class="snd-song use"><i>◆</i> <em>适合：late-80s synth-pop</em></div></li>
+      <li><div class="snd-name">Plastic Pluck</div><div class="snd-desc">塑料感的弹拨音，脆、薄，有复古游戏色彩。</div><div class="snd-genre">复古游戏 · 电子</div><div class="snd-song use"><i>◆</i> <em>适合：复古游戏/电子</em></div></li>
+      <li><div class="snd-name">Evolving Texture</div><div class="snd-desc">演化的混合纹理，流动、抽象，适合做声音设计。</div><div class="snd-genre">氛围 · 声音设计</div><div class="snd-song use"><i>◆</i> <em>适合：氛围/声音设计</em></div></li>
+      <li><div class="snd-name">Digital Bass</div><div class="snd-desc">带金属泛音的低音，硬朗、冷峻，有机械感。</div><div class="snd-genre">EBM · industrial</div><div class="snd-song use"><i>◆</i> <em>适合：industrial/EBM</em></div></li>
+    </ol>
+    <p class="card-note">// SQ-80/ESQ-1 在工业与独立电子圈影响大但留名单曲少；除 NIN 早期外，标「◆」者以典型用途为准。</p>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Prophet-VS V</h3><div class="spec">原型 <span>Sequential Prophet VS</span><br>矢量合成器 · 1986</div></div>
+    <p class="desc">Sequential 的「矢量合成」（vector synthesis）：用摇杆在四个数字波形间实时混合，造出会动、会呼吸的演化音色。其波形日后催生了 Korg Wavestation。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它发明了「矢量合成」——用一根摇杆在四个数字波形之间实时混合，于是声音能像液体一样持续位移、呼吸、演化。这个理念太超前，它的波形和思路后来直接催生了 Korg Wavestation 整条产品线。它不擅长一锤定音的音色，却是制造「活着的、流动的」pad 的鼻祖。</p></div>
+    <div class="block-label">代表音色 · 特点 / 曲风 / 用途 · 原型曲目</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Vector Pad</div><div class="snd-desc">四波形混合的演化铺底，流动、呼吸感强，永远在变。</div><div class="snd-genre">电影 · 氛围配乐</div><div class="snd-song use"><i>◆</i> <em>适合：电影/氛围配乐</em></div></li>
+      <li><div class="snd-name">Glassy Bell</div><div class="snd-desc">晶莹的数字铃声，清亮、空灵，适合点缀。</div><div class="snd-genre">new-age · 氛围</div><div class="snd-song use"><i>◆</i> <em>适合：new-age/氛围</em></div></li>
+      <li><div class="snd-name">Moving Texture</div><div class="snd-desc">持续位移的动态纹理，抽象、演化，富有生命力。</div><div class="snd-genre">声音设计 · 实验</div><div class="snd-song use"><i>◆</i> <em>适合：声音设计</em></div></li>
+      <li><div class="snd-name">Hybrid Brass</div><div class="snd-desc">数字与模拟交叠的铜管，冷暖并存，质感独特。</div><div class="snd-genre">late-80s 流行</div><div class="snd-song use"><i>◆</i> <em>适合：late-80s 流行</em></div></li>
+      <li><div class="snd-name">Digital Lead</div><div class="snd-desc">清亮锐利的主奏，明亮、精确，有数字现代感。</div><div class="snd-genre">synth 独奏 · 电子</div><div class="snd-song use"><i>◆</i> <em>适合：synth 独奏</em></div></li>
+      <li><div class="snd-name">Lush Sweep</div><div class="snd-desc">缓慢演化的宽阔扫频，丰满、流动，适合长段铺陈。</div><div class="snd-genre">太空电子 · 氛围</div><div class="snd-song"><i>♪</i> Tangerine Dream <em>— 后期数字铺底</em></div></li>
+    </ol>
+    <p class="card-note">// Prophet VS 以演化 pad 见长、多用于配乐与质感，逐曲署名极少；其波形后被 Korg Wavestation 发扬。</p>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Jup-8000 V</h3><div class="spec">原型 <span>Roland JP-8000</span><br>虚拟模拟合成器 · 1996</div></div>
+    <p class="desc">把数字「虚拟模拟」推向巅峰的机型，最大贡献是那个改变了舞曲历史的 <strong>SuperSaw（超级锯齿）</strong>波形——90 年代末到 00 年代 trance 的灵魂。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它靠一个波形改写了舞曲历史。JP-8000 的「SuperSaw」把多个失谐锯齿叠在一起，造出一种巨大、闪耀、催人泪下的声墙——这正是 90 年代末到 2000 年代 trance 的灵魂。《Sandstorm》《Better Off Alone》那些席卷全球的 riff，几乎都来自这一个波形。它定义了一整个时代的舞池声音。</p></div>
+    <div class="block-label">代表音色 · 特点 / 曲风 / 原型曲目</div>
+    <ol class="sounds">
+      <li><div class="snd-name">SuperSaw Lead</div><div class="snd-desc">定义 trance 的超级锯齿主奏，巨大、闪耀、催泪。</div><div class="snd-genre">trance · 电子舞曲</div><div class="snd-song"><i>♪</i> Darude <em>— Sandstorm</em></div></li>
+      <li><div class="snd-name">Detuned Pad</div><div class="snd-desc">失谐宽阔的铺底，丰满、晃动，空间感巨大。</div><div class="snd-genre">trance · progressive</div><div class="snd-song"><i>♪</i> ATB <em>— 9 PM (Till I Come)</em></div></li>
+      <li><div class="snd-name">Trance Pluck</div><div class="snd-desc">弹跳明亮的拨弦音，干脆、有动感，适合做律动动机。</div><div class="snd-genre">trance · eurodance</div><div class="snd-song"><i>♪</i> Alice Deejay <em>— Better Off Alone</em></div></li>
+      <li><div class="snd-name">SuperSaw Stab</div><div class="snd-desc">厚实的锯齿和弦，明亮、有冲击，副歌利器。</div><div class="snd-genre">eurodance · 电子流行</div><div class="snd-song"><i>♪</i> Eiffel 65 <em>— Blue (Da Ba Dee)</em></div></li>
+      <li><div class="snd-name">Hoover Bass</div><div class="snd-desc">经典 rave「吸尘器」音，轰鸣、扫频、有侵略性。</div><div class="snd-genre">rave · hardcore · techno</div><div class="snd-song"><i>♪</i> Joey Beltram <em>— Mentasm 之声</em></div></li>
+      <li><div class="snd-name">Anthem Lead</div><div class="snd-desc">激昂的主舞台主奏，向上、煽情，适合 drop 前的高潮。</div><div class="snd-genre">trance · big room</div><div class="snd-song"><i>♪</i> Tiësto <em>— 经典 trance 现场</em></div></li>
+    </ol>
+  </article>
+</section>
+
+<!-- ============ 07 Augmented 系列 ============ -->
+<section class="cat" id="augmented">
+  <div class="cat-head"><span class="idx">CATEGORY 07</span><h2>Augmented 系列</h2><span class="count">7 INSTRUMENTS · 现代混合</span></div>
+  <p class="cat-sub">Arturia 自家的现代「增强」乐器：把<strong>真实录音采样</strong>与<strong>合成引擎</strong>叠加、可在「声学」与「合成」两端自由融合。它们没有单一硬件原型，故标「◆ 适合/参考」而非原型曲目。</p>
+
+  <article class="card modern">
+    <div class="card-top"><h3>Augmented STRINGS</h3><div class="spec">Arturia 原创 <span>采样 + 合成</span><br>混合弦乐 · 无单一硬件原型</div></div>
+    <p class="desc">真实弦乐合奏采样与合成层的混合体，可从写实弦乐渐变到飘渺的合成铺底，是现代影视、流行与电子制作的多用途弦乐工具。</p>
+    <div class="legend"><div class="lh">◇ 它的独到之处</div><p>它不是又一个弦乐采样库，而是把「真实弦乐」与「合成器」当成两个可无极混合的图层——一个旋钮就能从写实管弦渐变到完全合成的太空铺底。这种「声学↔合成」的连续光谱，让它既能服务传统配乐，又能造出现实里不存在的混血音色，是现代制作人的瑞士军刀式弦乐。</p></div>
+    <div class="block-label">代表音色 · 特点 / 适合曲风</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Cinematic Ensemble</div><div class="snd-desc">写实的电影弦乐合奏，饱满、有情绪，适合做配乐主体。</div><div class="snd-genre">影视配乐 · 预告片</div><div class="snd-song use"><i>◆</i> <em>适合：影视配乐底层</em></div></li>
+      <li><div class="snd-name">Hybrid Pad</div><div class="snd-desc">采样+合成融合的铺垫，半真半虚，质感独特。</div><div class="snd-genre">氛围电子 · 后摇</div><div class="snd-song use"><i>◆</i> <em>适合：氛围电子/后摇</em></div></li>
+      <li><div class="snd-name">Pizzicato Synth</div><div class="snd-desc">拨弦采样叠合成的点描，俏皮、有节奏感。</div><div class="snd-genre">现代配乐 · 电子</div><div class="snd-song use"><i>◆</i> <em>适合：节奏化编曲</em></div></li>
+      <li><div class="snd-name">Evolving Texture</div><div class="snd-desc">缓慢演化的弦质纹理，流动、抽象，富层次。</div><div class="snd-genre">声音设计 · 氛围</div><div class="snd-song use"><i>◆</i> <em>适合：声音设计</em></div></li>
+      <li><div class="snd-name">Lush Strings Pad</div><div class="snd-desc">温暖宽阔的弦乐铺底，包裹感强，适合垫和声。</div><div class="snd-genre">流行 · 抒情</div><div class="snd-song use"><i>◆</i> <em>适合：流行/抒情铺垫</em></div></li>
+      <li><div class="snd-name">Granular Air</div><div class="snd-desc">颗粒化的飘渺空气感，空灵、稀疏，适合留白。</div><div class="snd-genre">ambient · 电影留白</div><div class="snd-song use"><i>◆</i> <em>适合：ambient/电影留白</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card modern">
+    <div class="card-top"><h3>Augmented BRASS</h3><div class="spec">Arturia 原创 <span>采样 + 合成</span><br>混合铜管 · 无单一硬件原型</div></div>
+    <p class="desc">真实铜管采样与合成铜管的融合，可写实可未来感，覆盖从交响铜管到电子 stab 的广阔光谱。</p>
+    <div class="legend"><div class="lh">◇ 它的独到之处</div><p>铜管在配乐里往往要么「真」要么「电」，而它把两者放进同一个可混合的引擎：左边是交响乐团的真实铜管，右边是合成器的未来感 stab，中间是无数混血可能。这让它能在一首曲子里从写实号角无缝过渡到赛博质感，特别契合现代预告片和电子配乐的需求。</p></div>
+    <div class="block-label">代表音色 · 特点 / 适合曲风</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Orchestral Brass</div><div class="snd-desc">写实的交响铜管，恢弘、有力，适合做配乐主奏。</div><div class="snd-genre">影视 · 预告片</div><div class="snd-song use"><i>◆</i> <em>适合：影视/预告片</em></div></li>
+      <li><div class="snd-name">Synth Brass Stab</div><div class="snd-desc">合成铜管的攻击点缀，闪亮、有冲击，复古电子味。</div><div class="snd-genre">synthwave · 流行</div><div class="snd-song use"><i>◆</i> <em>适合：synthwave/流行</em></div></li>
+      <li><div class="snd-name">Hybrid Swell</div><div class="snd-desc">渐强的混合铜管，戏剧化、有张力，适合做过门。</div><div class="snd-genre">影视 · 戏剧化过门</div><div class="snd-song use"><i>◆</i> <em>适合：戏剧化过门</em></div></li>
+      <li><div class="snd-name">Warm Section</div><div class="snd-desc">温润的铜管声部，柔和、有人味，适合爵士编配。</div><div class="snd-genre">爵士 · 灵魂</div><div class="snd-song use"><i>◆</i> <em>适合：爵士/灵魂编配</em></div></li>
+      <li><div class="snd-name">Future Brass</div><div class="snd-desc">未来感的处理铜管，金属、扭曲，赛博气质强。</div><div class="snd-genre">trailer · 电子</div><div class="snd-song use"><i>◆</i> <em>适合：trailer/电子</em></div></li>
+      <li><div class="snd-name">Brass Pad</div><div class="snd-desc">铺底化的铜管质感，宽阔、柔和，适合垫氛围。</div><div class="snd-genre">氛围 · 配乐</div><div class="snd-song use"><i>◆</i> <em>适合：氛围铺垫</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card modern">
+    <div class="card-top"><h3>Augmented VOICES</h3><div class="spec">Arturia 原创 <span>采样 + 合成</span><br>混合人声 · 无单一硬件原型</div></div>
+    <p class="desc">把真实人声/合唱采样与合成引擎融合，可做空灵唱诗、节奏化人声纹理或超现实的声场，是现代配乐与电子制作的标志性「人声 pad」来源。</p>
+    <div class="legend"><div class="lh">◇ 它的独到之处</div><p>人声是最动人也最难「合成」的声音。这台乐器把真实合唱采样喂进合成与颗粒引擎，于是你能把唱诗班揉成一团空灵的光、或切成节奏化的呼吸碎片。它专门服务那个现代配乐里越来越常见的需求：要人声的温度，却不要具体的歌词与面孔。</p></div>
+    <div class="block-label">代表音色 · 特点 / 适合曲风</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Ethereal Choir</div><div class="snd-desc">空灵漂浮的合唱铺底，神圣、宽广，电影感强。</div><div class="snd-genre">电影 · 氛围</div><div class="snd-song use"><i>◆</i> <em>适合：电影/氛围</em></div></li>
+      <li><div class="snd-name">Vocal Pad</div><div class="snd-desc">人声质感的宽阔铺垫，温暖、有人味，适合垫情绪。</div><div class="snd-genre">流行 · 电子</div><div class="snd-song use"><i>◆</i> <em>适合：流行/电子铺底</em></div></li>
+      <li><div class="snd-name">Granular Voice</div><div class="snd-desc">颗粒化的人声碎片，破碎、抽象，富实验性。</div><div class="snd-genre">实验 · 声音设计</div><div class="snd-song use"><i>◆</i> <em>适合：实验/声音设计</em></div></li>
+      <li><div class="snd-name">Whispered Texture</div><div class="snd-desc">气声般的细腻纹理，私密、轻盈，适合做转场。</div><div class="snd-genre">氛围 · 转场</div><div class="snd-song use"><i>◆</i> <em>适合：留白/转场</em></div></li>
+      <li><div class="snd-name">Rhythmic Vox</div><div class="snd-desc">节奏化的人声序列，跳动、有动感，适合编排律动。</div><div class="snd-genre">电子 · future bass</div><div class="snd-song use"><i>◆</i> <em>适合：电子节奏编排</em></div></li>
+      <li><div class="snd-name">Hybrid Hum</div><div class="snd-desc">哼鸣与合成的融合音，温暖、朦胧，介于人机之间。</div><div class="snd-genre">氛围 · 抒情</div><div class="snd-song use"><i>◆</i> <em>适合：温暖人声铺垫</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card modern">
+    <div class="card-top"><h3>Augmented WOODWINDS</h3><div class="spec">Arturia 原创 <span>采样 + 合成</span><br>混合木管 · 无单一硬件原型</div></div>
+    <p class="desc">长笛、单簧管、双簧管等木管采样与合成层的混合，从写实独奏到飘渺气声铺底皆可，为编曲增添呼吸感与有机色彩。</p>
+    <div class="legend"><div class="lh">◇ 它的独到之处</div><p>木管是管弦乐里最有「呼吸感」的声部，却也最少被合成器认真对待。这台乐器把长笛、单簧管等的真实气息采样与合成引擎融合，既能担任写实独奏，又能把那股气声揉成飘渺铺底——为电子和流行编曲注入一种少见的、有机的人性温度。</p></div>
+    <div class="block-label">代表音色 · 特点 / 适合曲风</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Solo Flute</div><div class="snd-desc">写实的独奏长笛，清澈、有气息，适合奏旋律。</div><div class="snd-genre">配乐 · 抒情</div><div class="snd-song use"><i>◆</i> <em>适合：旋律独奏/配乐</em></div></li>
+      <li><div class="snd-name">Woodwind Section</div><div class="snd-desc">木管合奏的温暖声部，柔和、圆融，适合管弦编配。</div><div class="snd-genre">管弦 · 配乐</div><div class="snd-song use"><i>◆</i> <em>适合：管弦编配</em></div></li>
+      <li><div class="snd-name">Breathy Pad</div><div class="snd-desc">带气声的飘渺铺底，轻盈、空灵，呼吸感强。</div><div class="snd-genre">氛围 · 留白</div><div class="snd-song use"><i>◆</i> <em>适合：氛围/留白</em></div></li>
+      <li><div class="snd-name">Hybrid Reed</div><div class="snd-desc">簧片采样叠合成的音色，半真半虚，质感新颖。</div><div class="snd-genre">民谣 · 世界融合</div><div class="snd-song use"><i>◆</i> <em>适合：民谣/世界融合</em></div></li>
+      <li><div class="snd-name">Airy Texture</div><div class="snd-desc">空气感的纹理层，稀薄、流动，适合做声音设计。</div><div class="snd-genre">声音设计 · 氛围</div><div class="snd-song use"><i>◆</i> <em>适合：声音设计</em></div></li>
+      <li><div class="snd-name">Ethnic Wind</div><div class="snd-desc">世界风的吹管色彩，异域、有故事感。</div><div class="snd-genre">影视 · 游戏氛围</div><div class="snd-song use"><i>◆</i> <em>适合：影视/游戏氛围</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card modern">
+    <div class="card-top"><h3>Augmented GRAND PIANO</h3><div class="spec">Arturia 原创 <span>采样 + 合成</span><br>混合三角钢琴 · 无单一硬件原型</div></div>
+    <p class="desc">写实三角钢琴采样与合成纹理的叠加，可从纯净钢琴渐变为带氛围、pad 与质感的「电影钢琴」，是现代电影与流行制作的多面手。</p>
+    <div class="legend"><div class="lh">◇ 它的独到之处</div><p>它回答了一个现代制作的常见难题：「我想要钢琴，但又想要点别的。」把写实三角钢琴采样与合成铺底叠在一起，它能让一架普通钢琴瞬间长出氛围的尾巴、毛毡的柔光或颗粒的尘埃——正是当下电影、氛围流行和 lo-fi 里那种「钢琴 + 空气」的标配质感。</p></div>
+    <div class="block-label">代表音色 · 特点 / 适合曲风</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Pure Grand</div><div class="snd-desc">纯净写实的三角钢琴，干净、平衡，适合做主奏。</div><div class="snd-genre">抒情 · 古典跨界</div><div class="snd-song use"><i>◆</i> <em>适合：抒情/古典跨界</em></div></li>
+      <li><div class="snd-name">Cinematic Felt</div><div class="snd-desc">毛毡+氛围的电影钢琴，柔和、朦胧，自带画面。</div><div class="snd-genre">影视配乐</div><div class="snd-song use"><i>◆</i> <em>适合：影视配乐</em></div></li>
+      <li><div class="snd-name">Piano + Pad</div><div class="snd-desc">钢琴叠合成铺底，温暖、有尾韵，氛围感强。</div><div class="snd-genre">氛围流行</div><div class="snd-song use"><i>◆</i> <em>适合：氛围流行</em></div></li>
+      <li><div class="snd-name">Granular Keys</div><div class="snd-desc">颗粒化的钢琴质感，碎裂、抽象，富实验性。</div><div class="snd-genre">实验 · 声音设计</div><div class="snd-song use"><i>◆</i> <em>适合：实验/声音设计</em></div></li>
+      <li><div class="snd-name">Evolving Piano</div><div class="snd-desc">缓慢演化的钢琴纹理，流动、有层次。</div><div class="snd-genre">ambient · 后摇</div><div class="snd-song use"><i>◆</i> <em>适合：ambient/后摇</em></div></li>
+      <li><div class="snd-name">Lo-fi Upright</div><div class="snd-desc">做旧的 lo-fi 钢琴，暖糊、带噪，慵懒怀旧。</div><div class="snd-genre">lo-fi hip-hop · chill</div><div class="snd-song use"><i>◆</i> <em>适合：lo-fi hip-hop</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card modern">
+    <div class="card-top"><h3>Augmented MALLETS</h3><div class="spec">Arturia 原创 · 全新 <span>采样 + 合成</span><br>混合槌击乐 · 无单一硬件原型</div></div>
+    <p class="desc">V Collection 11 新增。马林巴、颤音琴、钟琴等槌击乐采样与合成的融合，从写实木琴到晶莹的氛围铃声，为编曲注入清亮的节奏与色彩。</p>
+    <div class="legend"><div class="lh">◇ 它的独到之处</div><p>V Collection 11 的新成员。槌击乐（马林巴、颤音琴、钟琴）天生有清亮的音头和迷人的衰减，把它们与合成引擎结合，既能保留木质/金属的真实敲击感，又能拉出晶莹的氛围尾韵。它填补了 Augmented 家族里「有节奏点、有色彩」的那一块拼图。</p></div>
+    <div class="block-label">代表音色 · 特点 / 适合曲风</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Marimba</div><div class="snd-desc">温暖的写实马林巴，圆润、有木质感，适合做动机。</div><div class="snd-genre">配乐 · 节奏动机</div><div class="snd-song use"><i>◆</i> <em>适合：节奏动机/配乐</em></div></li>
+      <li><div class="snd-name">Vibraphone</div><div class="snd-desc">柔和的颤音琴，金属光泽、有颤动，爵士味浓。</div><div class="snd-genre">爵士 · 抒情</div><div class="snd-song use"><i>◆</i> <em>适合：爵士/抒情</em></div></li>
+      <li><div class="snd-name">Glockenspiel</div><div class="snd-desc">晶亮的钟琴，清脆、童趣，适合做点缀。</div><div class="snd-genre">配乐 · 童趣色彩</div><div class="snd-song use"><i>◆</i> <em>适合：点缀/童趣色彩</em></div></li>
+      <li><div class="snd-name">Hybrid Mallet</div><div class="snd-desc">槌击采样叠合成，半真半虚，节奏感强。</div><div class="snd-genre">现代电子编曲</div><div class="snd-song use"><i>◆</i> <em>适合：现代电子编曲</em></div></li>
+      <li><div class="snd-name">Bell Pad</div><div class="snd-desc">铃声化的铺底，晶莹、漂浮，氛围感强。</div><div class="snd-genre">氛围 · ambient</div><div class="snd-song use"><i>◆</i> <em>适合：氛围铺垫</em></div></li>
+      <li><div class="snd-name">Plucky Texture</div><div class="snd-desc">弹拨感的节奏纹理，跳跃、有动感。</div><div class="snd-genre">电子 · 节奏序列</div><div class="snd-song use"><i>◆</i> <em>适合：节奏序列</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card modern">
+    <div class="card-top"><h3>Augmented YANGTZE</h3><div class="spec">Arturia 原创 · 全新 <span>采样 + 合成</span><br>混合东方乐器 · 无单一硬件原型</div></div>
+    <p class="desc">V Collection 11 新增、以「扬子」为名的东方乐器增强器。古筝、二胡、笛箫等亚洲/民族乐器采样与合成融合，专为东西方跨界与世界音乐制作设计。</p>
+    <div class="legend"><div class="lh">◇ 它的独到之处</div><p>V Collection 11 的新成员，也是 Augmented 家族里第一个明确面向东方/民族乐器的成员。它把古筝、二胡、笛箫等亚洲乐器的真实采样与合成引擎结合，让这些传统音色既能保留地道韵味，又能融入现代电子语境——专为越来越热的东西方跨界与世界音乐制作而生。</p></div>
+    <div class="block-label">代表音色 · 特点 / 适合曲风</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Plucked Zither</div><div class="snd-desc">古筝/筝类的拨弦色彩，清亮、有韵味，东方感强。</div><div class="snd-genre">东方风 · 跨界</div><div class="snd-song use"><i>◆</i> <em>适合：东方风/跨界</em></div></li>
+      <li><div class="snd-name">Bowed String</div><div class="snd-desc">二胡般的弓弦音，婉转、抒情，富叙事感。</div><div class="snd-genre">抒情 · 影视配乐</div><div class="snd-song use"><i>◆</i> <em>适合：抒情/影视配乐</em></div></li>
+      <li><div class="snd-name">Bamboo Flute</div><div class="snd-desc">笛箫类的吹管音，空灵、有气息，意境悠远。</div><div class="snd-genre">氛围 · 意境</div><div class="snd-song use"><i>◆</i> <em>适合：留白/意境</em></div></li>
+      <li><div class="snd-name">Hybrid East Pad</div><div class="snd-desc">东方音色叠合成铺底，半古半今，质感独特。</div><div class="snd-genre">氛围电子</div><div class="snd-song use"><i>◆</i> <em>适合：氛围电子</em></div></li>
+      <li><div class="snd-name">Ethnic Pluck</div><div class="snd-desc">民族弹拨的节奏纹理，灵动、有颗粒。</div><div class="snd-genre">世界融合</div><div class="snd-song use"><i>◆</i> <em>适合：世界融合编曲</em></div></li>
+      <li><div class="snd-name">Granular East</div><div class="snd-desc">颗粒化的东方质感，朦胧、抽象，适合声音设计。</div><div class="snd-genre">实验 · 声音设计</div><div class="snd-song use"><i>◆</i> <em>适合：实验/声音设计</em></div></li>
+    </ol>
+  </article>
+</section>
+
+<!-- ============ 08 原创合成器与工具 ============ -->
+<section class="cat" id="originals">
+  <div class="cat-head"><span class="idx">CATEGORY 08</span><h2>原创合成器与工具</h2><span class="count">5 INSTRUMENTS</span></div>
+  <p class="cat-sub">既有复刻经典硬件的创意工具（TB-303、Vocoder），也有 Arturia 自家硬件的软件孪生（MiniFreak / MiniBrute）与原创 lo-fi 工坊。</p>
+
+  <article class="card">
+    <div class="card-top"><h3>Acid V</h3><div class="spec">原型 <span>Roland TB-303</span><br>Bass Line · 1981–1984</div></div>
+    <p class="desc">原本是失败的「贝斯伴奏机」，却被芝加哥的 DJ 们玩出了那标志性的滑音 + 共鸣「酸味」，凭一己之力催生了整个 acid house 流派。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它是「失败孕育传奇」的最佳范例。Roland 本想做一台给吉他手伴奏的自动贝斯机，结果声音太假、销量惨淡而停产。几年后芝加哥的 DJ 在二手店淘到它，拧动那个共鸣旋钮玩出了又滑又尖的「酸味」——acid house 就此诞生。一台被市场判死刑的机器，反手开创了一整个电子流派。</p></div>
+    <div class="block-label">代表音色 · 特点 / 曲风 / 原型曲目</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Classic Acid Line</div><div class="snd-desc">定义酸性浩室的滑音低音，蠕动、催眠、辨识度爆表。</div><div class="snd-genre">acid house · techno</div><div class="snd-song"><i>♪</i> Phuture <em>— Acid Tracks</em></div></li>
+      <li><div class="snd-name">Screaming Resonance</div><div class="snd-desc">尖叫般的共鸣扫频，刺耳、迷幻，把人推上头。</div><div class="snd-genre">acid techno · rave</div><div class="snd-song"><i>♪</i> Josh Wink <em>— Higher State of Consciousness</em></div></li>
+      <li><div class="snd-name">Distorted Acid</div><div class="snd-desc">过载失真的酸性线条，粗粝、生猛，能量爆棚。</div><div class="snd-genre">acid trance · hardcore</div><div class="snd-song"><i>♪</i> Hardfloor <em>— Acperience 1</em></div></li>
+      <li><div class="snd-name">Minimal Acid</div><div class="snd-desc">极简跳动的 303 律动，干净、有催眠感。</div><div class="snd-genre">minimal techno</div><div class="snd-song"><i>♪</i> Plastikman <em>— Spastik</em></div></li>
+      <li><div class="snd-name">Acid Anthem</div><div class="snd-desc">明快的舞池酸性主奏，欢快、有记忆点。</div><div class="snd-genre">big beat · 舞曲</div><div class="snd-song"><i>♪</i> Fatboy Slim <em>— Everybody Needs a 303</em></div></li>
+      <li><div class="snd-name">Rave Acid</div><div class="snd-desc">狂暴的锐舞酸线，密集、躁动，现场杀器。</div><div class="snd-genre">rave · hardcore techno</div><div class="snd-song"><i>♪</i> Joey Beltram <em>— Energy Flash</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Vocoder V</h3><div class="spec">原型 <span>经典声码器</span><br>Vocoder · 1970s–</div></div>
+    <p class="desc">把人声（调制信号）的频谱套在合成器（载波）上，造出经典的「机器人嗓音」。从 Kraftwerk 到 Daft Punk，它定义了电子音乐里「人机合一」的声音想象。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它把「人」和「机器」缝进了同一个声音里。声码器用人声的频谱去塑造合成器的音色，于是诞生了那个标志性的机器人嗓音——既有语言的轮廓，又有电子的冰冷。从 Kraftwerk 的《The Robots》到 Daft Punk，它承载了整个电子音乐对「人机合一」的浪漫想象。</p></div>
+    <div class="block-label">代表音色 · 特点 / 曲风 / 原型曲目</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Robot Voice</div><div class="snd-desc">经典的机器人嗓音，冰冷、机械，未来感十足。</div><div class="snd-genre">电子 · krautrock</div><div class="snd-song"><i>♪</i> Kraftwerk <em>— The Robots</em></div></li>
+      <li><div class="snd-name">Cosmic Choir</div><div class="snd-desc">太空感的声码合唱，宏大、华丽，富戏剧性。</div><div class="snd-genre">art pop · 交响流行</div><div class="snd-song"><i>♪</i> Electric Light Orchestra <em>— Mr. Blue Sky</em></div></li>
+      <li><div class="snd-name">Funk Vocoder</div><div class="snd-desc">放克律动的声码人声，俏皮、有 groove。</div><div class="snd-genre">放克 · 爵士融合</div><div class="snd-song"><i>♪</i> Herbie Hancock <em>— I Thought It Was You</em></div></li>
+      <li><div class="snd-name">Modern Pop</div><div class="snd-desc">现代流行的声码处理，时髦、有质感，舞曲味浓。</div><div class="snd-genre">french house · 电子</div><div class="snd-song"><i>♪</i> Daft Punk <em>— Harder, Better, Faster, Stronger</em></div></li>
+      <li><div class="snd-name">Dreamy Vocoder</div><div class="snd-desc">梦幻飘渺的声码铺垫，柔和、空灵，氛围感强。</div><div class="snd-genre">french touch · 梦泡</div><div class="snd-song"><i>♪</i> Air <em>— Sexy Boy</em></div></li>
+      <li><div class="snd-name">Talk Pad</div><div class="snd-desc">低语般的声码铺底，私密、神秘，适合做底色。</div><div class="snd-genre">art rock · 氛围</div><div class="snd-song"><i>♪</i> Phil Collins <em>— In the Air Tonight（人声处理）</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card modern">
+    <div class="card-top"><h3>MiniFreak V</h3><div class="spec">原型 <span>Arturia MiniFreak（自家硬件）</span><br>数字+模拟混合 · 2022</div></div>
+    <p class="desc">Arturia 自家硬件 MiniFreak 的软件孪生：双数字振荡器 + 模拟滤波器的混合架构，擅长怪奇、现代、富于动态的声音，是当代制作人的创意机器。</p>
+    <div class="legend"><div class="lh">◇ 它的独到之处</div><p>它是 Arturia 自家当红硬件 MiniFreak 的软件孪生——同一套音色引擎，软硬可联动。双数字振荡器（含波表、颗粒等多种引擎）配模拟滤波器，加上强大的调制与效果，让它专精于「怪、新、动态强」的声音。它不复刻历史，而是面向当下电子制作人的创意工具。</p></div>
+    <div class="block-label">代表音色 · 特点 / 适合曲风</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Hybrid Bass</div><div class="snd-desc">数字+模拟的现代低音，扎实、有棱角，适合电子。</div><div class="snd-genre">electronic · pop</div><div class="snd-song use"><i>◆</i> <em>适合：electronic/pop 制作</em></div></li>
+      <li><div class="snd-name">Wavetable Lead</div><div class="snd-desc">波表驱动的明亮主奏，犀利、有动态，现代感强。</div><div class="snd-genre">现代 EDM · 流行</div><div class="snd-song use"><i>◆</i> <em>适合：现代 EDM/流行</em></div></li>
+      <li><div class="snd-name">Granular Texture</div><div class="snd-desc">颗粒引擎的演化纹理，碎裂、流动，富实验性。</div><div class="snd-genre">声音设计 · 实验</div><div class="snd-song use"><i>◆</i> <em>适合：声音设计</em></div></li>
+      <li><div class="snd-name">Evolving Pad</div><div class="snd-desc">调制丰富的演化铺底，层次多、会呼吸。</div><div class="snd-genre">氛围 · 影视</div><div class="snd-song use"><i>◆</i> <em>适合：氛围/影视</em></div></li>
+      <li><div class="snd-name">Sequenced Pluck</div><div class="snd-desc">带序列的弹拨音型，跳跃、有动感，适合做律动。</div><div class="snd-genre">电子 · 节奏</div><div class="snd-song use"><i>◆</i> <em>适合：电子节奏</em></div></li>
+      <li><div class="snd-name">FX / Noise</div><div class="snd-desc">怪奇的声效与噪音，抽象、有冲击，适合转场。</div><div class="snd-genre">实验 · 转场</div><div class="snd-song use"><i>◆</i> <em>适合：转场/实验</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card modern">
+    <div class="card-top"><h3>MiniBrute V</h3><div class="spec">原型 <span>Arturia MiniBrute（自家硬件）</span><br>模拟单音 · 2012</div></div>
+    <p class="desc">Arturia 第一台硬件合成器的软件版：纯模拟单音，标志性的「Brute Factor」过载让音色凶猛狂野，是贝斯、主奏与噪音声效的猛兽。</p>
+    <div class="legend"><div class="lh">◇ 它的独到之处</div><p>它是 Arturia 踏入硬件领域的第一炮，软件版完整还原了那股「凶劲」。纯模拟单音架构、丰富的波形塑形，加上标志性的「Brute Factor」反馈过载，让它能从温暖低音一路逼到失控嘶吼。它的关键词不是精致，而是攻击性——一台敢于「难听」的猛兽。</p></div>
+    <div class="block-label">代表音色 · 特点 / 适合曲风</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Brute Bass</div><div class="snd-desc">带过载的凶猛低音，粗粝、有侵略性，能量足。</div><div class="snd-genre">techno · electro</div><div class="snd-song use"><i>◆</i> <em>适合：techno/electro</em></div></li>
+      <li><div class="snd-name">Aggressive Lead</div><div class="snd-desc">狂野尖锐的主奏，刺、冲、不妥协。</div><div class="snd-genre">硬核电子 · 摇滚</div><div class="snd-song use"><i>◆</i> <em>适合：硬核电子/摇滚</em></div></li>
+      <li><div class="snd-name">Metalizer FX</div><div class="snd-desc">金属调制的怪声，扭曲、刺耳，适合做音效。</div><div class="snd-genre">声音设计 · 工业</div><div class="snd-song use"><i>◆</i> <em>适合：声音设计</em></div></li>
+      <li><div class="snd-name">Fat Mono</div><div class="snd-desc">厚实的单音齐奏，饱满、有重量，复古合成味。</div><div class="snd-genre">复古合成 · 电子</div><div class="snd-song use"><i>◆</i> <em>适合：复古合成</em></div></li>
+      <li><div class="snd-name">Sub Bass</div><div class="snd-desc">低沉饱满的次低音，深、稳，撑底盘。</div><div class="snd-genre">电子舞曲 · bass music</div><div class="snd-song use"><i>◆</i> <em>适合：电子舞曲低频</em></div></li>
+      <li><div class="snd-name">Noise Sweep</div><div class="snd-desc">噪音驱动的扫频，躁动、有冲击，适合转场。</div><div class="snd-genre">工业 · 转场</div><div class="snd-song use"><i>◆</i> <em>适合：转场/工业</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card modern">
+    <div class="card-top"><h3>Pure Lo-Fi</h3><div class="spec">原型 <span>Arturia 原创工具</span><br>Lo-Fi 声音工坊 · 2024</div></div>
+    <p class="desc">V Collection 11 的原创成员：专做「做旧」的 lo-fi 乐器/效果——磁带抖动（wow/flutter）、噪声、滤波、饱和一应俱全。它没有硬件原型，目标是 lo-fi hip-hop / 复古暖糊的美学。</p>
+    <div class="legend"><div class="lh">◇ 它的独到之处</div><p>它把「做旧」本身做成了一件乐器。磁带的抖动、黑胶的噼啪、采样器的降质、暖糊的饱和——这些通常被视作「缺陷」的东西，恰恰是 lo-fi hip-hop 美学的核心。Pure Lo-Fi 把整套怀旧劣化工具打包，让你一键获得那种慵懒、温暖、像旧卡带一样的质感。</p></div>
+    <div class="block-label">代表音色 · 特点 / 适合曲风</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Tape Keys</div><div class="snd-desc">带磁带抖动的键盘音，暖糊、慵懒，氛围感强。</div><div class="snd-genre">lo-fi hip-hop · chill</div><div class="snd-song use"><i>◆</i> <em>参考：J Dilla / Nujabes 美学</em></div></li>
+      <li><div class="snd-name">Dusty Chords</div><div class="snd-desc">满是噪点的暖糊和弦，温吞、复古，有尘土感。</div><div class="snd-genre">lo-fi hip-hop</div><div class="snd-song use"><i>◆</i> <em>适合：lo-fi hip-hop</em></div></li>
+      <li><div class="snd-name">Vinyl Pad</div><div class="snd-desc">黑胶噼啪的氛围铺底，怀旧、安静，适合做底色。</div><div class="snd-genre">study-beats · chill</div><div class="snd-song use"><i>◆</i> <em>适合：study-beats/chill</em></div></li>
+      <li><div class="snd-name">Wobbly Bell</div><div class="snd-desc">音准飘忽的复古铃声，迷离、有故障美。</div><div class="snd-genre">vaporwave · 复古</div><div class="snd-song use"><i>◆</i> <em>适合：vaporwave</em></div></li>
+      <li><div class="snd-name">Mellow Bass</div><div class="snd-desc">暗哑温暖的低音，圆润、收敛，适合慵懒律动。</div><div class="snd-genre">lo-fi · chillhop</div><div class="snd-song use"><i>◆</i> <em>适合：lo-fi 律动</em></div></li>
+      <li><div class="snd-name">Cassette Texture</div><div class="snd-desc">卡带质感的氛围层，带噪、漂浮，怀旧感强。</div><div class="snd-genre">ambient · 怀旧</div><div class="snd-song use"><i>◆</i> <em>适合：怀旧氛围</em></div></li>
+    </ol>
+  </article>
+</section>
+
+<!-- ============ 09 启动器 ============ -->
+<section class="cat" id="browser">
+  <div class="cat-head"><span class="idx">CATEGORY 09</span><h2>启动器 / 浏览器</h2><span class="count">1 INSTRUMENT</span></div>
+  <p class="cat-sub">不是一台乐器，而是统驭整套收藏的「总入口」——用统一界面浏览、试听、演奏来自全部乐器的数千个预设。</p>
+
+  <article class="card modern">
+    <div class="card-top"><h3>Analog Lab V</h3><div class="spec">Arturia 原创 <span>预设浏览 / 演奏中心</span><br>聚合全套 V Collection</div></div>
+    <p class="desc">Analog Lab 把上述所有乐器的精选预设汇于一处，按音色类型/特征/乐器筛选，还能做「多重叠加」（Multi）与舞台演出布局。它不复刻硬件，而是收藏的「使用方式」本身。</p>
+    <div class="legend"><div class="lh">◇ 它的独到之处</div><p>它是整套收藏的「遥控器」。与其在 40 多个插件间来回切换，不如在 Analog Lab 里按音色类型（贝斯、pad、主奏…）一站式搜索、试听、演奏数千个精选预设，还能把两个音色叠成 Multi、为现场布置演出布局。它不发明声音，而是让庞大的 V Collection 真正变得好用——是收藏的入口与中枢。</p></div>
+    <div class="block-label">主要预设门类 · 特点 / 音色来源</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Keys</div><div class="snd-desc">电钢/钢琴/风琴等键盘音色，温暖、实用，伴奏主力。</div><div class="snd-genre">soul · 流行 · 爵士</div><div class="snd-song use"><i>◆</i> <em>来源：Stage-73 / B-3 / CP-70 等</em></div></li>
+      <li><div class="snd-name">Pads</div><div class="snd-desc">各类铺底与氛围，宽阔、有空间感，适合垫底。</div><div class="snd-genre">氛围 · 电影 · 电子</div><div class="snd-song use"><i>◆</i> <em>来源：CS-80 / Matrix-12 等</em></div></li>
+      <li><div class="snd-name">Bass</div><div class="snd-desc">模拟与数字贝斯，从肥厚到锐利，律动基石。</div><div class="snd-genre">放克 · 电子 · 流行</div><div class="snd-song use"><i>◆</i> <em>来源：Mini / DX7 / Acid 等</em></div></li>
+      <li><div class="snd-name">Leads</div><div class="snd-desc">主奏与独奏音色，穿透、有个性，旋律担当。</div><div class="snd-genre">摇滚 · 电子 · synth</div><div class="snd-song use"><i>◆</i> <em>来源：Jup-8 / Synthx 等</em></div></li>
+      <li><div class="snd-name">Strings / Brass</div><div class="snd-desc">弦乐与铜管，从复古弦机到混合管弦，色彩丰富。</div><div class="snd-genre">配乐 · 流行 · 复古</div><div class="snd-song use"><i>◆</i> <em>来源：Solina / Augmented 系列</em></div></li>
+      <li><div class="snd-name">Sequences / FX</div><div class="snd-desc">序列、声效与质感，律动、抽象，适合编排与转场。</div><div class="snd-genre">电子 · 实验 · 配乐</div><div class="snd-song use"><i>◆</i> <em>来源：Modular / Synthi 等</em></div></li>
+    </ol>
+    <p class="card-note">// Analog Lab V 是浏览/演奏中心而非独立音源，故列出其预设门类而非「原型曲目」。</p>
+  </article>
+</section>
+
+<footer>
+  ARTURIA V COLLECTION 11 PRO · 插件图鉴 · 完整版（45 件乐器 · 9 大家族 · 270 代表音色）<br>
+  <b>每件含：</b> 「为什么传奇 / 独到之处」专栏 · 6 个代表音色（特点+感觉+曲风）· 各配一首原型曲目<br>
+  <b>方法：</b> 「♪」为「该原型硬件做出过此类声音」的公认关联，非逐音轨考据；可疑/争议归属一律不收录（宁缺毋滥）<br>
+  <b>「◆」标注：</b> 现代混合乐器/工具（Augmented 系列、MiniFreak/MiniBrute、Pure Lo-Fi、Analog Lab）无单一硬件原型，故标「适合/参考」<br>
+  <b>清单核对：</b> 乐器收录依据 arturia.com 官方 V Collection 11 页面（2026-06 核对）
+</footer>
+
+<script>
+(function(){
+  // ---- 分类折叠：点击分类标题切换收起/展开 ----
+  document.querySelectorAll('.cat-head').forEach(function(h){
+    h.addEventListener('click',function(){ h.closest('.cat').classList.toggle('collapsed'); });
+  });
+
+  // ---- 定位插件卡片 → 展开所属分类 → 平滑滚动 → 高亮 ----
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
+  function jumpTo(name){
+    var target=null;
+    for(var i=0;i<cards.length;i++){
+      var h3=cards[i].querySelector('h3');
+      if(h3 && h3.textContent.trim()===name){ target=cards[i]; break; }
+    }
+    if(!target) return;
+    var sec=target.closest('.cat');
+    if(sec) sec.classList.remove('collapsed');
+    target.scrollIntoView({behavior:'smooth',block:'center'});
+    target.classList.remove('flash'); void target.offsetWidth; target.classList.add('flash');
+    setTimeout(function(){ target.classList.remove('flash'); },1700);
+  }
+
+  // ---- 音色速查：多选曲风做交集 ----
+  // 每件乐器标注其适合的曲风及对应推荐预设（预设名与正文一致）
+  var GENRES=[['funk','Funk / Soul / R&B'],['pop80','80s 流行 / New Wave'],['fm','FM / 数字'],['synthwave','Synthwave / 复古未来'],['house','House / Techno / Acid'],['trance','Trance / EDM'],['cine','电影配乐 / 氛围'],['prog','前卫 / 迷幻摇滚'],['lofi','Lo-fi / Chillhop'],['jazz','爵士'],['space','太空电子 / Berlin School']];
+  var INST=[
+    {n:'Stage-73 V',p:{funk:'Neo-Soul Warm',jazz:'Mellow Jazz',lofi:'Neo-Soul Warm'}},
+    {n:'Wurli V',p:{funk:'Soul Ballad',jazz:'Soft Mellow'}},
+    {n:'Clavinet V',p:{funk:'Funk Wah'}},
+    {n:'CP-70 V',p:{pop80:'Chorused 80s',prog:'Classic Electric Grand'}},
+    {n:'Piano V',p:{lofi:'Intimate Upright'}},
+    {n:'B-3 V',p:{funk:'Soul Groove',jazz:'Jazz Comp',prog:'Full Drawbars Rock'}},
+    {n:'VOX Continental V',p:{prog:'Bright Combo'}},
+    {n:'Farfisa V',p:{prog:'Classic Bright Compact',pop80:'New Wave Surf'}},
+    {n:'Solina V',p:{space:'Kosmische Bed',pop80:'Synth-Pop Strings',cine:'Ambient Wash'}},
+    {n:'Mellotron V',p:{prog:'Flutes (MkII)',cine:'3 Violins'}},
+    {n:'Mini V',p:{funk:'Fat Funk Bass',prog:'Prog Lead'}},
+    {n:'Modular V',p:{space:'Kosmische Sequence'}},
+    {n:'ARP 2600 V',p:{prog:'Prog Texture',space:'Ambient Sequence'}},
+    {n:'CS-80 V',p:{cine:'Cinematic Brass Pad',space:'Choir Pad'}},
+    {n:'SEM V',p:{prog:'Brass Pad'}},
+    {n:'Buchla Easel V',p:{space:'Generative Sequence'}},
+    {n:'Korg MS-20 V',p:{house:'Squelchy Bass'}},
+    {n:'Synthi V',p:{space:'Kosmische Drone',prog:'Sequenced FX'}},
+    {n:'Jup-8 V',p:{pop80:'Lush Brass Pad',synthwave:'Synth Riff'}},
+    {n:'Jun-6 V',p:{pop80:'Chorus Pad',synthwave:'Dreamy Pad'}},
+    {n:'Prophet-5 V',p:{pop80:'Warm Poly Pad'}},
+    {n:'OB-Xa V',p:{pop80:'Brass Stab',synthwave:'Brass Stab'}},
+    {n:'Matrix-12 V',p:{synthwave:'Stab / Brass',cine:'Cinematic Pad',space:'Evolving Pad'}},
+    {n:'Synthx V',p:{synthwave:'Bright Stab',space:'PWM Pad'}},
+    {n:'DX7 V',p:{fm:'FM E.Piano',pop80:'Bright FM Bass'}},
+    {n:'CZ V',p:{fm:'Digital Bell',house:'Sync Stab'}},
+    {n:'Synclavier V',p:{fm:'FM Lead'}},
+    {n:'CMI V',p:{fm:'ORCH5 Hit'}},
+    {n:'Emulator II V',p:{lofi:'Gritty Pad',pop80:'Marcato Strings'}},
+    {n:'SQ80 V',p:{fm:'Gritty Digital Pad'}},
+    {n:'Prophet-VS V',p:{cine:'Vector Pad',space:'Lush Sweep'}},
+    {n:'Jup-8000 V',p:{trance:'SuperSaw Lead'}},
+    {n:'Augmented STRINGS',p:{cine:'Cinematic Ensemble'}},
+    {n:'Augmented BRASS',p:{cine:'Orchestral Brass'}},
+    {n:'Augmented VOICES',p:{cine:'Ethereal Choir'}},
+    {n:'Augmented WOODWINDS',p:{cine:'Solo Flute'}},
+    {n:'Augmented GRAND PIANO',p:{lofi:'Lo-fi Upright',cine:'Cinematic Felt'}},
+    {n:'Augmented MALLETS',p:{jazz:'Vibraphone',cine:'Bell Pad'}},
+    {n:'Augmented YANGTZE',p:{cine:'Bowed String'}},
+    {n:'Acid V',p:{house:'Classic Acid Line'}},
+    {n:'Vocoder V',p:{house:'Modern Pop',space:'Robot Voice'}},
+    {n:'MiniFreak V',p:{house:'Hybrid Bass'}},
+    {n:'MiniBrute V',p:{house:'Brute Bass'}},
+    {n:'Pure Lo-Fi',p:{lofi:'Tape Keys'}}
+  ];
+  var label={}; GENRES.forEach(function(g){ label[g[0]]=g[1]; });
+  var sel={};
+  var chipsBox=document.getElementById('qrChips');
+  var statusBox=document.getElementById('qrStatus');
+  var resBox=document.getElementById('qrResults');
+
+  if(chipsBox){
+    GENRES.forEach(function(g){
+      var c=document.createElement('span');
+      c.className='qr-chip'; c.setAttribute('data-g',g[0]); c.textContent=g[1];
+      chipsBox.appendChild(c);
+    });
+    chipsBox.addEventListener('click',function(e){
+      var chip=e.target.closest('.qr-chip'); if(!chip) return;
+      var g=chip.getAttribute('data-g'); sel[g]=!sel[g]; render();
+    });
+    resBox.addEventListener('click',function(e){
+      var it=e.target.closest('[data-inst]'); if(!it) return;
+      e.preventDefault(); jumpTo(it.getAttribute('data-inst'));
+    });
+    render();
+  }
+
+  function render(){
+    var keys=Object.keys(sel).filter(function(k){ return sel[k]; });
+    chipsBox.querySelectorAll('.qr-chip').forEach(function(c){
+      c.classList.toggle('on', !!sel[c.getAttribute('data-g')]);
+    });
+    var list;
+    if(keys.length===0){
+      list=INST.slice();
+      statusBox.textContent='未选择曲风 · 显示全部 '+INST.length+' 件乐器，点上方标签做交集筛选';
+    } else {
+      list=INST.filter(function(it){ return keys.every(function(g){ return it.p[g]; }); });
+      statusBox.textContent=keys.map(function(g){ return label[g]; }).join('  ∩  ')+'   →   命中 '+list.length+' 件';
+    }
+    resBox.innerHTML='';
+    if(list.length===0){
+      var em=document.createElement('div'); em.className='qr-empty';
+      em.textContent='没有同时满足全部所选曲风的插件 — 试试减少选项。';
+      resBox.appendChild(em); return;
+    }
+    list.forEach(function(it){
+      var show = keys.length ? keys.filter(function(g){ return it.p[g]; }) : Object.keys(it.p);
+      var pres = show.map(function(g){ return it.p[g]; });
+      pres = pres.filter(function(v,i){ return pres.indexOf(v)===i; });   // 去重
+      var a=document.createElement('a');
+      a.className='qr-rcell'; a.setAttribute('data-inst',it.n); a.href='#';
+      a.innerHTML='<b>'+it.n+'</b><span class="pst">'+pres.join(' / ')+'</span>';
+      resBox.appendChild(a);
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
