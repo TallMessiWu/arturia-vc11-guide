@@ -125,14 +125,32 @@
 
   footer{max-width:1180px;margin:60px auto 0;padding:40px 28px 80px;border-top:1px solid var(--line);color:var(--faint);font-family:var(--mono);font-size:12px;line-height:1.9}
   footer b{color:var(--muted)}
+
+  /* 顶部 V / FX 分段切换 */
+  .view-switch{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:rgba(0,0,0,.25);gap:2px}
+  .view-switch button{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:none;border:none;cursor:pointer;padding:6px 14px;border-radius:999px;transition:.25s;white-space:nowrap}
+  .view-switch button:hover{color:var(--ink)}
+  .view-switch button.on{background:var(--amber);color:var(--bg);font-weight:700}
+  .view-switch button.on.fx{background:var(--teal)}
+  nav.chips[hidden]{display:none}
+
+  /* Rev OCEAN「最新·赠送」徽标 */
+  .badge-new{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--bg);background:var(--teal);border-radius:999px;padding:3px 10px;font-weight:700;white-space:nowrap}
+  #view-fx .snd-genre::before{content:"适用 / "}
+  .card.bonus::before{background:linear-gradient(180deg,var(--teal),var(--amber))!important;opacity:1}
+  .card.bonus{border-color:rgba(94,200,190,.45)}
 </style>
 </head>
 <body>
 
 <header class="bar">
   <div class="bar-inner">
-    <div class="brand">ARTURIA · <b>V COLLECTION 11 PRO</b></div>
-    <nav class="chips">
+    <div class="brand" id="brand">ARTURIA · <b>V COLLECTION 11 PRO</b></div>
+    <div class="view-switch" id="viewSwitch">
+      <button type="button" data-view="v" class="on">V Collection 11</button>
+      <button type="button" data-view="fx" class="fx">FX Collection 6</button>
+    </div>
+    <nav class="chips" data-nav="v">
       <a href="#quickref">★ 速查</a>
       <a href="#keys">电钢键盘</a>
       <a href="#organs">风琴</a>
@@ -144,8 +162,22 @@
       <a href="#originals">原创工具</a>
       <a href="#browser">启动器</a>
     </nav>
+    <nav class="chips" data-nav="fx" hidden>
+      <a href="#fx-quickref">★ 速查</a>
+      <a href="#fx-reverb">混响</a>
+      <a href="#fx-delay">延迟</a>
+      <a href="#fx-mod">调制</a>
+      <a href="#fx-filter">滤波器</a>
+      <a href="#fx-preeq">前置/EQ</a>
+      <a href="#fx-comp">压缩</a>
+      <a href="#fx-sat">饱和磁带</a>
+      <a href="#fx-bus">总线母带</a>
+      <a href="#fx-creative">创意/音高</a>
+    </nav>
   </div>
 </header>
+
+<main id="view-v">
 
 <div class="hero">
   <div class="kick">合成器与键盘音色档案 · 收藏全图鉴</div>
@@ -922,6 +954,705 @@
   <b>清单核对：</b> 乐器收录依据 arturia.com 官方 V Collection 11 页面（2026-06 核对）
 </footer>
 
+</main>
+
+<main id="view-fx" hidden>
+
+<div class="hero">
+  <div class="kick">录音棚效果器档案 · FX 全图鉴</div>
+  <h1>声音的<em>炼金术</em><br><span class="out">半世纪</span>录音棚效果史</h1>
+  <p class="lede">FX Collection 6 把录音史上最具影响力的<strong>前置放大、压缩、混响、延迟与调制</strong>逐一复刻为插件。本图鉴按 9 大家族收录全部 <strong>39 件效果器</strong>（外加最新赠送的 <strong>Rev OCEAN</strong> 混响），每件含「为什么传奇」专栏与 <strong>6 个代表用法</strong>——每条注明特点、适用对象与场景，硬件复刻类各配一个能听见该原型这类处理的经典案例。</p>
+  <div class="stat-row">
+    <div class="stat"><div class="n">39</div><div class="l">复刻效果</div></div>
+    <div class="stat"><div class="n">9</div><div class="l">效果家族</div></div>
+    <div class="stat"><div class="n">240</div><div class="l">代表用法</div></div>
+    <div class="stat"><div class="n">5</div><div class="l">v6 全新</div></div>
+  </div>
+</div>
+
+<div class="notice">
+  <b>阅读说明 · </b> 每件效果器含「为什么传奇 / 独到之处」专栏；每条用法含<b style="letter-spacing:0">特点+感觉</b>、<b style="letter-spacing:0">适用对象/场景</b>，以及（硬件复刻类）一个经典案例。「♪」为该原型硬件做出过此类处理的公认关联（听感参考，非逐音轨考据，可疑归属不收录）；「◆」为无单一硬件原型的原创工具，标「适合/参考」。<b style="letter-spacing:0">Rev OCEAN</b> 为购买即赠送的最新混响，非 39 件之一，列于混响家族顶部。
+</div>
+
+<!-- ============ FX 速查（按处理对象/用途做交集） ============ -->
+<div class="quickref" id="fx-quickref">
+  <div class="qr-head"><span class="idx">QUICK REFERENCE</span><h2>效果速查 · 按处理对象找效果器</h2></div>
+  <p class="qr-sub">勾选一个或多个处理对象/用途：选中多个时做<b style="color:var(--ink)">交集</b>——只列出同时适合全部所选用途的效果器。点任意结果即可跳转到该效果器（折叠的家族会自动展开并高亮）。</p>
+  <div class="qr-chips" id="fxChips"></div>
+  <div class="qr-status" id="fxStatus"></div>
+  <div class="qr-grid" id="fxResults"></div>
+</div>
+
+<!-- ============ FX 01 混响 ============ -->
+<section class="cat" id="fx-reverb">
+  <div class="cat-head"><span class="idx">FX CATEGORY 01</span><h2>混响</h2><span class="count">4 + 赠送</span></div>
+  <p class="cat-sub">从钢板、弹簧到数字与潮汐——给声音注入空间、纵深与情绪。它们决定一段声音听起来「在哪里」。</p>
+
+  <article class="card bonus">
+    <div class="card-top"><h3>Rev OCEAN</h3><div class="spec"><span class="badge-new">最新 · 赠送</span><br>Arturia 原创 · 潮汐混响 · FDN + 多级扩散 · 2026</div></div>
+    <p class="desc">灵感来自海洋的「潮汐」混响：以纯净 FDN（反馈延迟网络）+ 多级扩散 + 深度调制，把任何声音化成流动、不断变形的空间。是购买 FX Collection 即<strong>免费赠送</strong>的最新成员（非 39 件之一）。</p>
+    <div class="legend"><div class="lh">◇ 它的独到之处</div><p>它不复刻某台硬件，而是把混响当成「会呼吸的空间」来设计——潮汐般的调制让尾音持续流动、变形，配合直觉化的宏观操控，几秒就能从干净厅堂推到失重的氛围声景。这是 Arturia 2026 给 FX Collection 注入的全新空间想象，专为快速「造氛围」而生。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 参考</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Tidal Ambient</div><div class="snd-desc">缓慢潮汐调制的超长尾音，失重、流动，是氛围声景的首选铺底。</div><div class="snd-genre">合成器 pad · 氛围 · 电影</div><div class="snd-song use"><i>◆</i> <em>适合：ambient / 后摇 / 配乐铺底</em></div></li>
+      <li><div class="snd-name">Lush Vocal Space</div><div class="snd-desc">柔润宽阔的人声混响，温暖而不糊，包裹感强。</div><div class="snd-genre">人声 · 抒情 · 流行</div><div class="snd-song use"><i>◆</i> <em>适合：流行 / 抒情人声</em></div></li>
+      <li><div class="snd-name">Shifting Shimmer</div><div class="snd-desc">带音高漂移的微光尾音，梦幻、闪烁，像水面反光。</div><div class="snd-genre">合成器 · 吉他 · 梦泡</div><div class="snd-song use"><i>◆</i> <em>适合：dream pop / 后摇</em></div></li>
+      <li><div class="snd-name">Deep Chamber</div><div class="snd-desc">写实又干净的中型房间，纵深好、不浑浊。</div><div class="snd-genre">鼓 · 原声 · 写实混音</div><div class="snd-song use"><i>◆</i> <em>适合：原声 / 写实混音</em></div></li>
+      <li><div class="snd-name">Frozen Wash</div><div class="snd-desc">近乎冻结的长滩声墙，留白、空旷，适合转场。</div><div class="snd-genre">声design · 转场 · 实验</div><div class="snd-song use"><i>◆</i> <em>适合：氛围 / 转场设计</em></div></li>
+      <li><div class="snd-name">Moving Plate</div><div class="snd-desc">带潮汐调制的板式质感，明亮中带晃动，复古又现代。</div><div class="snd-genre">军鼓 · 键盘 · 复古流行</div><div class="snd-song use"><i>◆</i> <em>适合：流行 / 复古混音</em></div></li>
+    </ol>
+    <p class="card-note">// Rev OCEAN 为 Arturia 原创、非复刻硬件，且是购买即赠送项；故全部用「◆ 适合/参考」。</p>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Rev PLATE-140</h3><div class="spec">原型 <span>EMT 140</span><br>钢板混响 · 1957</div></div>
+    <p class="desc">用一整块振动钢板模拟混响：金属板被驱动后产生密集、明亮、顺滑的余响。EMT 140 是 60–70s 录音室的混响标准，几乎听过的老唱片都有它。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>在数字混响出现前，它定义了「录音棚混响」该有的声音。钢板不模拟任何真实房间，却给出一种密度极高、丝绸般顺滑的余响——既能让人声漂浮起来，又能让军鼓「炸」得有尾。从 Abbey Road 到 Motown，无数经典就是泡在 EMT 140 里的，它的音色本身已经成了「高级感」的代名词。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 经典案例</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Classic Vocal Plate</div><div class="snd-desc">明亮顺滑的人声板混响，让主唱漂浮、贵气十足。</div><div class="snd-genre">人声 · 流行 · 复古</div><div class="snd-song"><i>♪</i> Abbey Road / Motown <em>— 录音室经典 EMT 140 人声混响</em></div></li>
+      <li><div class="snd-name">Snare Smash</div><div class="snd-desc">短而有尾的军鼓板混响，紧致、有冲击力。</div><div class="snd-genre">鼓 · 军鼓 · 摇滚</div><div class="snd-song"><i>♪</i> 70s 摇滚 <em>— 军鼓板混响标准做法</em></div></li>
+      <li><div class="snd-name">Lush Keys Plate</div><div class="snd-desc">铺在钢琴/弦机上的密集余响，温暖、绵密。</div><div class="snd-genre">键盘 · 弦乐 · 抒情</div><div class="snd-song"><i>♪</i> 60s–70s 录音室 <em>— 钢琴/弦乐板混响</em></div></li>
+      <li><div class="snd-name">Short Glue</div><div class="snd-desc">极短的板式环境声，给整轨增加一点黏合与纵深。</div><div class="snd-genre">总线 · 黏合 · 混音</div><div class="snd-song"><i>♪</i> 通用 <em>— 短板混响做整体粘合</em></div></li>
+      <li><div class="snd-name">Dark Plate</div><div class="snd-desc">压暗高频的温暖版本，复古、内敛，不抢前景。</div><div class="snd-genre">爵士 · soul · 复古</div><div class="snd-song"><i>♪</i> 复古录音 <em>— 暗化板混响</em></div></li>
+      <li><div class="snd-name">Long Decay</div><div class="snd-desc">拉长衰减的戏剧化板混响，宽阔、抒情。</div><div class="snd-genre">人声 · 抒情 · 影视</div><div class="snd-song"><i>♪</i> 大歌抒情 <em>— 长尾板混响</em></div></li>
+    </ol>
+    <p class="card-note">// EMT 140 是 60–70s 录音室通用混响、跨海量唱片；此处以其公认用法/声音性格为准，非逐音轨考据。</p>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Rev LX-24</h3><div class="spec">原型 <span>Lexicon 224</span><br>数字混响 · 1978</div></div>
+    <p class="desc">早期数字混响的标杆。Lexicon 224 那种宽阔、闪亮、略带金属颗粒的算法混响，定义了整个 80s 的空间感，是合成器与鼓机时代的招牌余响。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它把「数字混响」从实验室带进了每一间专业录音棚。224 的算法不追求写实，而是造出一种现实里不存在、却异常迷人的宽阔光泽——80s 的鼓、人声和合成器之所以听起来那么「大」「那么贵」，很大程度就是它的功劳。Peter Gabriel、U2 等无数经典的空间感都来自这台机器。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 经典案例</div>
+    <ol class="sounds">
+      <li><div class="snd-name">80s Big Snare</div><div class="snd-desc">宽阔明亮的鼓混响，是 80s「大军鼓」的核心空间。</div><div class="snd-genre">鼓 · 军鼓 · 80s 流行</div><div class="snd-song"><i>♪</i> Peter Gabriel <em>— So（80s 鼓混响美学）</em></div></li>
+      <li><div class="snd-name">Bright Vocal Hall</div><div class="snd-desc">闪亮宽阔的人声大厅，把主唱推到史诗尺度。</div><div class="snd-genre">人声 · 流行 · 摇滚</div><div class="snd-song"><i>♪</i> U2 <em>— 80s 体育馆级人声空间</em></div></li>
+      <li><div class="snd-name">Synth Shine</div><div class="snd-desc">给合成器 pad 镀上数字光泽，宽广、闪烁。</div><div class="snd-genre">合成器 · synth-pop · 电影</div><div class="snd-song"><i>♪</i> 80s 电子流行 <em>— 合成器空间</em></div></li>
+      <li><div class="snd-name">Gated Ambience</div><div class="snd-desc">配门限的短促爆发混响，干脆、有力，80s 标志。</div><div class="snd-genre">鼓 · 军鼓 · new wave</div><div class="snd-song"><i>♪</i> 80s 制作 <em>— gated reverb 鼓</em></div></li>
+      <li><div class="snd-name">Plate Emu</div><div class="snd-desc">224 的板式算法，明亮顺滑，适合人声与键盘。</div><div class="snd-genre">人声 · 键盘 · 流行</div><div class="snd-song"><i>♪</i> 80s 录音室 <em>— 数字板混响</em></div></li>
+      <li><div class="snd-name">Cinematic Wash</div><div class="snd-desc">绵长宽阔的氛围混响，电影感、纵深感强。</div><div class="snd-genre">配乐 · 氛围 · 合成器</div><div class="snd-song"><i>♪</i> 80s 电影配乐 <em>— 数字混响铺底</em></div></li>
+    </ol>
+    <p class="card-note">// Lexicon 224 横跨 80s 海量唱片；此处以其公认用法与声音美学为准，非逐音轨考据。</p>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Rev SPRING-636</h3><div class="spec">原型 <span>Grampian Type 636</span><br>弹簧混响 · 1960s</div></div>
+    <p class="desc">用金属弹簧振动产生混响：带「duang」弹跳质感、不那么写实却极有个性的余响。它是吉他放大器、冲浪摇滚与 dub 雷鬼的灵魂空间。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>弹簧混响的「不完美」正是它的魅力——那种金属晃荡、略带颤抖的回声，是吉他音箱与 dub 调音台上无法替代的味道。从冲浪摇滚清亮的颤音吉他，到 King Tubby 把整轨甩进弹簧再拉满回授的牙买加 dub，它把一段廉价的金属弹簧变成了一种音乐语言。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 经典案例</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Surf Guitar</div><div class="snd-desc">明亮弹跳的吉他弹簧混响，复古、湿润，冲浪味十足。</div><div class="snd-genre">吉他 · 冲浪摇滚 · 复古</div><div class="snd-song"><i>♪</i> Dick Dale <em>— Misirlou（冲浪吉他弹簧混响）</em></div></li>
+      <li><div class="snd-name">Dub Throw</div><div class="snd-desc">推大回授的飞溅余响，狂野、跳荡，dub 现场利器。</div><div class="snd-genre">人声/鼓 · dub · 雷鬼</div><div class="snd-song"><i>♪</i> King Tubby <em>— dub 混音里的弹簧甩响</em></div></li>
+      <li><div class="snd-name">Amp Verb</div><div class="snd-desc">吉他音箱里的那种弹簧环境声，自然、有年代感。</div><div class="snd-genre">吉他 · 摇滚 · 蓝调</div><div class="snd-song"><i>♪</i> 复古吉他 <em>— 音箱弹簧混响</em></div></li>
+      <li><div class="snd-name">Lo-fi Vocal</div><div class="snd-desc">粗糙带颤的人声弹簧，复古、廉价又迷人。</div><div class="snd-genre">人声 · lo-fi · 车库</div><div class="snd-song"><i>♪</i> 60s 车库 <em>— 弹簧人声混响</em></div></li>
+      <li><div class="snd-name">Drip Drum</div><div class="snd-desc">滴答弹跳的鼓混响，带金属质感，复古律动。</div><div class="snd-genre">鼓 · 复古 · 雷鬼</div><div class="snd-song"><i>♪</i> rocksteady / dub <em>— 弹簧鼓混响</em></div></li>
+      <li><div class="snd-name">Boing FX</div><div class="snd-desc">夸张的弹簧「duang」声效，趣味、实验。</div><div class="snd-genre">声design · 实验 · 转场</div><div class="snd-song"><i>♪</i> dub / 实验 <em>— 弹簧拍击声效</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card modern">
+    <div class="card-top"><h3>Rev INTENSITY</h3><div class="spec">Arturia 原创 <span>调制 / 创意混响</span><br>可调密度 · 调制尾音</div></div>
+    <p class="desc">一台为「创意空间」而生的现代混响：丰富的调制、密度与色彩控制，能从写实房间一路推到充满动态、不断起伏的特效空间。无单一硬件原型。</p>
+    <div class="legend"><div class="lh">◇ 它的独到之处</div><p>它把混响从「背景空间」解放成「可演奏的音色」。深度调制让尾音持续呼吸、起伏，配合密度与色彩控制，既能做克制的房间感，也能做出几乎成为主奏的运动声景。它代表了 Arturia 对「现代混响」的理解——空间不只是衬底，也可以是创意本身。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 参考</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Modulated Hall</div><div class="snd-desc">带调制起伏的宽阔大厅，活、不呆板。</div><div class="snd-genre">合成器 · 人声 · 流行</div><div class="snd-song use"><i>◆</i> <em>适合：现代流行 / 电子</em></div></li>
+      <li><div class="snd-name">Chorus Verb</div><div class="snd-desc">混响叠合唱调制，梦幻、漂浮。</div><div class="snd-genre">吉他 · 梦泡 · 后摇</div><div class="snd-song use"><i>◆</i> <em>适合：dream pop / shoegaze</em></div></li>
+      <li><div class="snd-name">Tight Room</div><div class="snd-desc">克制写实的房间，纵深好、不糊。</div><div class="snd-genre">鼓 · 原声 · 写实</div><div class="snd-song use"><i>◆</i> <em>适合：写实混音</em></div></li>
+      <li><div class="snd-name">Evolving Space</div><div class="snd-desc">不断演进的运动声景，可当氛围主角。</div><div class="snd-genre">声design · 氛围 · 配乐</div><div class="snd-song use"><i>◆</i> <em>适合：ambient / 配乐</em></div></li>
+      <li><div class="snd-name">Bright Pop Verb</div><div class="snd-desc">明亮干净的流行混响，时髦、利落。</div><div class="snd-genre">人声 · 流行 · 电子</div><div class="snd-song use"><i>◆</i> <em>适合：现代流行人声</em></div></li>
+      <li><div class="snd-name">Dark Drone</div><div class="snd-desc">压暗的长滩声墙，阴郁、电影感。</div><div class="snd-genre">配乐 · 暗黑 · 实验</div><div class="snd-song use"><i>◆</i> <em>适合：暗黑配乐 / 实验</em></div></li>
+    </ol>
+  </article>
+</section>
+
+<!-- ============ FX 02 延迟 ============ -->
+<section class="cat" id="fx-delay">
+  <div class="cat-head"><span class="idx">FX CATEGORY 02</span><h2>延迟</h2><span class="count">3 PLUGINS</span></div>
+  <p class="cat-sub">从磁带回声、模拟 BBD 到无限氛围——延迟是节奏、纵深与迷幻的制造机。</p>
+
+  <article class="card">
+    <div class="card-top"><h3>Delay TAPE-201</h3><div class="spec">原型 <span>Roland RE-201 Space Echo</span><br>磁带回声 · 1974</div></div>
+    <p class="desc">用循环磁带做出的回声：每次重复都更暖、更糊、略微走音，配合内置弹簧混响，是 dub、迷幻与吉他英雄的标志声音。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>Space Echo 把磁带的「缺陷」变成了乐器。磁带的抖动、饱和与逐次衰减让每个回声都活生生地呼吸，旋钮一推回授就自我震荡成失控的声墙。从 King Tubby、Lee Perry 的 dub，到 Pink Floyd 与 Hank Marvin 的吉他，它几乎是「迷幻空间」的同义词。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 经典案例</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Dub Echo</div><div class="snd-desc">推回授到自震荡的飞溅回声，dub 调音台的灵魂。</div><div class="snd-genre">人声/鼓 · dub · 雷鬼</div><div class="snd-song"><i>♪</i> Lee "Scratch" Perry <em>— dub 磁带回声</em></div></li>
+      <li><div class="snd-name">Guitar Slap</div><div class="snd-desc">温暖短促的吉他拍打回声，复古、有弹性。</div><div class="snd-genre">吉他 · 摇滚 · 复古</div><div class="snd-song"><i>♪</i> Hank Marvin / The Shadows <em>— Apache</em></div></li>
+      <li><div class="snd-name">Psych Repeats</div><div class="snd-desc">糊化走音的长回声，迷离、催眠。</div><div class="snd-genre">吉他/合成器 · 迷幻 · 太空</div><div class="snd-song"><i>♪</i> Pink Floyd <em>— 磁带延迟的太空感</em></div></li>
+      <li><div class="snd-name">Warm Vocal Throw</div><div class="snd-desc">温暖的人声延迟甩尾，复古、抒情。</div><div class="snd-genre">人声 · soul · 复古</div><div class="snd-song"><i>♪</i> 70s 录音 <em>— 磁带人声延迟</em></div></li>
+      <li><div class="snd-name">Rhythmic Multi-tap</div><div class="snd-desc">多磁头的节奏型回声，跳跃、有律动。</div><div class="snd-genre">合成器 · 电子 · 实验</div><div class="snd-song"><i>♪</i> krautrock <em>— 多磁头节奏延迟</em></div></li>
+      <li><div class="snd-name">Self-Oscillate FX</div><div class="snd-desc">失控自震荡的声墙，狂野、抽象，做转场与高潮。</div><div class="snd-genre">声design · dub · 实验</div><div class="snd-song"><i>♪</i> dub / 迷幻 <em>— 回授自震荡</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Delay BRIGADE</h3><div class="spec">原型 <span>BBD 模拟延迟</span><br>桶链器件 · 1970s–80s</div></div>
+    <p class="desc">基于 BBD（桶链器件）的模拟延迟：重复声温暖、逐次变暗，带轻微调制晃动。是 The Edge 式空灵吉他与温暖合成回声的来源。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>BBD 模拟延迟用一串「水桶传递」的电路存储声音，因此每次重复都更暗、更柔，还带一点随机的音高晃动——这种温暖、会褪色的回声，是数字延迟那种精准复制永远做不到的。它给了无数吉他与合成器一种亲密、有机的空间律动。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 经典案例</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Dotted Guitar</div><div class="snd-desc">附点节奏的空灵吉他延迟，律动感强、空间宽。</div><div class="snd-genre">吉他 · post-punk · 摇滚</div><div class="snd-song"><i>♪</i> U2 / The Edge <em>— 模拟延迟附点吉他</em></div></li>
+      <li><div class="snd-name">Warm Slap</div><div class="snd-desc">温暖短促的拍打回声，复古、亲密。</div><div class="snd-genre">人声/吉他 · 复古 · 流行</div><div class="snd-song"><i>♪</i> 70s–80s <em>— 模拟拍打延迟</em></div></li>
+      <li><div class="snd-name">Chorus Echo</div><div class="snd-desc">带调制晃动的回声，朦胧、漂浮，合唱味。</div><div class="snd-genre">合成器 · 梦泡 · 新浪潮</div><div class="snd-song"><i>♪</i> 80s synth <em>— 调制模拟延迟</em></div></li>
+      <li><div class="snd-name">Dark Repeats</div><div class="snd-desc">快速变暗的回声，低调、不抢前景。</div><div class="snd-genre">键盘 · 氛围 · lo-fi</div><div class="snd-song"><i>♪</i> 复古制作 <em>— 暗化模拟回声</em></div></li>
+      <li><div class="snd-name">Synth Bounce</div><div class="snd-desc">弹跳明快的合成器回声，律动、复古未来。</div><div class="snd-genre">合成器 · synthwave · 电子</div><div class="snd-song"><i>♪</i> synthwave <em>— 模拟延迟律动</em></div></li>
+      <li><div class="snd-name">Wobble Long</div><div class="snd-desc">长尾带音高晃动的回声，迷离、有机。</div><div class="snd-genre">声design · 氛围 · 实验</div><div class="snd-song"><i>♪</i> ambient <em>— 晃动长延迟</em></div></li>
+    </ol>
+    <p class="card-note">// BBD 为一类模拟延迟电路（多见于 Boss/EHX 等踏板），此处以其公认声音性格与典型用法为准。</p>
+  </article>
+
+  <article class="card modern">
+    <div class="card-top"><h3>Delay ETERNITY</h3><div class="spec">Arturia 原创 <span>创意 / 氛围延迟</span><br>音高 + 调制 + 反向</div></div>
+    <p class="desc">一台「无限」氛围延迟：内置音高位移、调制、反向与扩散，可把简单回声推成不断生长的声云。无单一硬件原型。</p>
+    <div class="legend"><div class="lh">◇ 它的独到之处</div><p>它把延迟当成「声音的园丁」——音高位移让重复爬升或下沉，反向与扩散把回声揉成绵延的声云，几下就能从一个音符长出一整片氛围。它不复刻经典踏板，而是面向后摇、电子与配乐里那种「无限空间」的需求而设计。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 参考</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Shimmer Climb</div><div class="snd-desc">八度上行的微光延迟，闪烁、升腾。</div><div class="snd-genre">吉他/合成器 · 后摇 · 氛围</div><div class="snd-song use"><i>◆</i> <em>适合：后摇 / ambient</em></div></li>
+      <li><div class="snd-name">Reverse Wash</div><div class="snd-desc">反向回声铺成的声云，梦幻、悬浮。</div><div class="snd-genre">合成器 · 梦泡 · 配乐</div><div class="snd-song use"><i>◆</i> <em>适合：dream pop / 配乐</em></div></li>
+      <li><div class="snd-name">Infinite Pad</div><div class="snd-desc">自我生长的无限延迟，化作持续 pad。</div><div class="snd-genre">声design · ambient · 电子</div><div class="snd-song use"><i>◆</i> <em>适合：ambient 铺底</em></div></li>
+      <li><div class="snd-name">Pitch Cascade</div><div class="snd-desc">音高级联下落的回声，奇幻、流动。</div><div class="snd-genre">合成器 · 实验 · 配乐</div><div class="snd-song use"><i>◆</i> <em>适合：实验 / 电影声design</em></div></li>
+      <li><div class="snd-name">Dotted Sync</div><div class="snd-desc">同步附点的现代延迟，节奏清晰、时髦。</div><div class="snd-genre">合成器 · 电子 · 流行</div><div class="snd-song use"><i>◆</i> <em>适合：现代电子 / 流行</em></div></li>
+      <li><div class="snd-name">Diffuse Tail</div><div class="snd-desc">高度扩散的尾音，介于延迟与混响之间。</div><div class="snd-genre">人声/合成器 · 氛围 · 后摇</div><div class="snd-song use"><i>◆</i> <em>适合：氛围人声 / 后摇</em></div></li>
+    </ol>
+  </article>
+</section>
+
+<!-- ============ FX 03 调制 ============ -->
+<section class="cat" id="fx-mod">
+  <div class="cat-head"><span class="idx">FX CATEGORY 03</span><h2>调制</h2><span class="count">5 PLUGINS</span></div>
+  <p class="cat-sub">旋转喇叭、合唱、镶边与移相——靠运动让声音变宽、变厚、变得有生命感。</p>
+
+  <article class="card">
+    <div class="card-top"><h3>Rotary CLS-222</h3><div class="spec">原型 <span>Leslie 122</span><br>旋转喇叭 · 1960s</div></div>
+    <p class="desc">复刻旋转喇叭：高音号角与低音转鼓真实旋转，产生忽远忽近的多普勒颤动与空间感。是 Hammond 风琴的标配，也常用于吉他与人声。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>Leslie 不是效果器，而是一只「会转的喇叭」——声音在物理空间里旋转，造出任何 LFO 都伪造不了的多普勒起伏。慢速时温暖摇曳、切到高速时天旋地转，这种加速/减速的过渡本身就充满戏剧性。从风琴到 Beatles 的人声、SRV 的吉他，它给声音注入了无可替代的「呼吸」。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 经典案例</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Organ Swirl</div><div class="snd-desc">风琴的标志旋转，慢摇曳/快旋转切换极有戏剧性。</div><div class="snd-genre">风琴 · 摇滚 · 福音</div><div class="snd-song"><i>♪</i> Deep Purple <em>— Hammond + Leslie</em></div></li>
+      <li><div class="snd-name">Psych Vocal</div><div class="snd-desc">人声送进旋转喇叭的迷离感，飘忽、催眠。</div><div class="snd-genre">人声 · 迷幻 · 60s</div><div class="snd-song"><i>♪</i> The Beatles <em>— Tomorrow Never Knows（人声过 Leslie）</em></div></li>
+      <li><div class="snd-name">Rotary Guitar</div><div class="snd-desc">吉他过旋转喇叭的浓郁颤动，立体、有空间。</div><div class="snd-genre">吉他 · 蓝调 · 摇滚</div><div class="snd-song"><i>♪</i> Stevie Ray Vaughan <em>— Cold Shot（旋转吉他）</em></div></li>
+      <li><div class="snd-name">Slow Chorale</div><div class="snd-desc">慢速旋转的温暖摇曳，庄严、绵长。</div><div class="snd-genre">风琴 · 抒情 · 福音</div><div class="snd-song"><i>♪</i> gospel <em>— 慢速 Leslie</em></div></li>
+      <li><div class="snd-name">Fast Spin</div><div class="snd-desc">高速旋转的天旋地转感，激烈、眩晕。</div><div class="snd-genre">风琴 · 硬摇滚 · 迷幻</div><div class="snd-song"><i>♪</i> 迷幻摇滚 <em>— 高速 Leslie</em></div></li>
+      <li><div class="snd-name">Wide Keys</div><div class="snd-desc">电钢/合成器过旋转，立体加宽、有动感。</div><div class="snd-genre">键盘 · soul · 流行</div><div class="snd-song"><i>♪</i> soul/funk <em>— 电钢过 Leslie</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Chorus JUN-6</h3><div class="spec">原型 <span>Roland Juno-6 / 106 合唱</span><br>BBD 合唱 · 1982</div></div>
+    <p class="desc">复刻 Juno 系列那著名的合唱电路：把单薄的合成音瞬间揉宽、变厚，带一抹标志性的嘶嘶噪声。是 80s 合成器与 dream pop 的招牌质感。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>Juno 的合唱按钮几乎是「即时高级感」的开关——一按下去，干瘪的锯齿立刻变成宽阔、流动、闪着光的声墙。正是这点让 Juno 成为传奇，也让它的合唱成了 80s synth-pop 与后来 dream pop / chillwave 反复致敬的声音签名。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 经典案例</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Classic Juno Pad</div><div class="snd-desc">把 pad 揉宽变厚的标志合唱，流动、闪亮。</div><div class="snd-genre">合成器 pad · synth-pop · 80s</div><div class="snd-song"><i>♪</i> 80s synth-pop <em>— Juno 合唱 pad</em></div></li>
+      <li><div class="snd-name">Dream Guitar</div><div class="snd-desc">吉他叠合唱的梦幻加宽，朦胧、漂浮。</div><div class="snd-genre">吉他 · dream pop · shoegaze</div><div class="snd-song"><i>♪</i> dream pop <em>— 合唱吉他声墙</em></div></li>
+      <li><div class="snd-name">Wide Bass</div><div class="snd-desc">给合成贝斯加一点宽度与厚度（注意单声兼容）。</div><div class="snd-genre">贝斯 · 电子 · synthwave</div><div class="snd-song"><i>♪</i> synthwave <em>— 加宽合成贝斯</em></div></li>
+      <li><div class="snd-name">Lush Keys</div><div class="snd-desc">电钢/键盘叠合唱的绵密质感，温暖、贵气。</div><div class="snd-genre">键盘 · city pop · 流行</div><div class="snd-song"><i>♪</i> city pop <em>— 合唱电钢</em></div></li>
+      <li><div class="snd-name">Shimmer Vox</div><div class="snd-desc">人声加合唱的微光加宽，梦幻、空灵。</div><div class="snd-genre">人声 · 梦泡 · 电子</div><div class="snd-song"><i>♪</i> chillwave <em>— 合唱人声</em></div></li>
+      <li><div class="snd-name">Vintage Wobble</div><div class="snd-desc">带噪与晃动的复古合唱，怀旧、有年代感。</div><div class="snd-genre">合成器 · lo-fi · 复古</div><div class="snd-song"><i>♪</i> 复古电子 <em>— 老合唱晃动</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Chorus DIMENSION-D</h3><div class="spec">原型 <span>Roland SDD-320 Dimension D</span><br>立体声合唱 · 1979</div></div>
+    <p class="desc">只有四个按钮的传奇立体声合唱：不晃音高，只在立体声场里制造细腻的宽度与三维感。是 80s 清音吉他与电钢「高级感」的秘密武器。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它和普通合唱完全不同——几乎听不到「晃动」，却能把单声道的干声变成一片立体、有呼吸的空间。这种克制而高级的加宽，是 The Police 清音吉他、80s 电钢与无数抛光制作里那种「说不出哪里加了效果，但就是更好听」的关键。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 经典案例</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Clean Guitar Width</div><div class="snd-desc">清音吉他的立体加宽，三维、通透，不晃音高。</div><div class="snd-genre">吉他 · new wave · 流行</div><div class="snd-song"><i>♪</i> The Police / Andy Summers <em>— Every Breath You Take</em></div></li>
+      <li><div class="snd-name">Glossy E.Piano</div><div class="snd-desc">电钢的高级加宽，抛光、贵气、立体。</div><div class="snd-genre">键盘 · AOR · city pop</div><div class="snd-song"><i>♪</i> 80s AOR <em>— Dimension 电钢</em></div></li>
+      <li><div class="snd-name">Wide Synth</div><div class="snd-desc">合成器 pad 的细腻加宽，宽阔、稳定。</div><div class="snd-genre">合成器 · synth-pop · 80s</div><div class="snd-song"><i>♪</i> 80s 制作 <em>— Dimension 合成器</em></div></li>
+      <li><div class="snd-name">Vocal Spread</div><div class="snd-desc">人声的隐形加宽，立体、不破坏中心。</div><div class="snd-genre">人声 · 流行 · R&B</div><div class="snd-song"><i>♪</i> 80s 流行 <em>— Dimension 人声</em></div></li>
+      <li><div class="snd-name">Acoustic Sheen</div><div class="snd-desc">原声吉他的立体光泽，明亮、宽阔。</div><div class="snd-genre">原声吉他 · 流行 · 抒情</div><div class="snd-song"><i>♪</i> 抒情流行 <em>— Dimension 原声吉他</em></div></li>
+      <li><div class="snd-name">Subtle Glue</div><div class="snd-desc">极轻的整体加宽，给混音一点空气与立体感。</div><div class="snd-genre">总线 · 混音 · 流行</div><div class="snd-song"><i>♪</i> 抛光制作 <em>— 总线 Dimension</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Phase BI-TRON</h3><div class="spec">原型 <span>Mu-Tron Bi-Phase</span><br>双移相器 · 1970s</div></div>
+    <p class="desc">一台双引擎移相器：两组相移可独立或交错运行，做出从微妙流动到太空漩涡的强烈相位扫动。70s 放克、迷幻与前卫摇滚的招牌。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>Bi-Phase 的「双」是它的杀手锏——两个移相器叠在一起，能产生单台机器做不出的复杂、立体、互相纠缠的相位运动。从 Pink Floyd 的太空感、到放克吉他与电钢的流动律动，它把移相从一个小点缀变成了能定义整段氛围的主效果。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 经典案例</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Funk Clav</div><div class="snd-desc">电钢/Clav 的流动相移，黏、滑、有律动。</div><div class="snd-genre">键盘 · 放克 · soul</div><div class="snd-song"><i>♪</i> 70s funk <em>— 相移 Clavinet</em></div></li>
+      <li><div class="snd-name">Space Guitar</div><div class="snd-desc">吉他的太空漩涡相移，迷离、宽阔。</div><div class="snd-genre">吉他 · 迷幻 · 前卫</div><div class="snd-song"><i>♪</i> Pink Floyd <em>— 相移吉他/键盘氛围</em></div></li>
+      <li><div class="snd-name">Sweeping Pad</div><div class="snd-desc">合成器 pad 的缓慢相位扫动，呼吸、流动。</div><div class="snd-genre">合成器 · 太空 · 电子</div><div class="snd-song"><i>♪</i> Berlin School <em>— 相移 pad</em></div></li>
+      <li><div class="snd-name">Dual Stereo</div><div class="snd-desc">双引擎交错的立体相移，立体、纠缠感强。</div><div class="snd-genre">合成器/吉他 · 实验 · 迷幻</div><div class="snd-song"><i>♪</i> 前卫摇滚 <em>— 双移相立体扫动</em></div></li>
+      <li><div class="snd-name">Drum Mover</div><div class="snd-desc">鼓总线的微妙相移，给律动加一点流动感。</div><div class="snd-genre">鼓 · 放克 · 电子</div><div class="snd-song"><i>♪</i> funk <em>— 相移鼓组</em></div></li>
+      <li><div class="snd-name">Slow Throb</div><div class="snd-desc">极慢的相位起伏，催眠、太空。</div><div class="snd-genre">声design · 氛围 · 太空</div><div class="snd-song"><i>♪</i> ambient <em>— 慢相移氛围</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Flanger BL-20</h3><div class="spec">原型 <span>经典立体声镶边器</span><br>喷气式 Flanger · 1970s–80s</div></div>
+    <p class="desc">立体声镶边器：靠极短延迟与反馈做出标志性的「喷气式」横扫，从微妙的金属光泽到俯冲的飞机声一应俱全。是硬摇滚与电子的能量利器。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>Flanger 那种「喷气式」横扫是录音史上最有辨识度的效果之一——一推反馈，吉他或整段混音就像喷气机俯冲而过。它能给静止的声音注入运动与张力，从 Heart、Van Halen 的硬摇滚吉他，到电子音乐的能量转场，都是它的舞台。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 经典案例</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Jet Guitar</div><div class="snd-desc">硬摇滚吉他的喷气横扫，强烈、有能量。</div><div class="snd-genre">吉他 · 硬摇滚 · 金属</div><div class="snd-song"><i>♪</i> Van Halen <em>— Unchained（喷气镶边）</em></div></li>
+      <li><div class="snd-name">Barracuda Sweep</div><div class="snd-desc">经典硬摇滚镶边的金属横扫，凌厉、招牌。</div><div class="snd-genre">吉他 · 摇滚 · 70s</div><div class="snd-song"><i>♪</i> Heart <em>— Barracuda</em></div></li>
+      <li><div class="snd-name">Drum Whoosh</div><div class="snd-desc">鼓组/过门的镶边横扫，做强烈转场。</div><div class="snd-genre">鼓 · 电子 · 转场</div><div class="snd-song"><i>♪</i> 电子/摇滚 <em>— 镶边过门</em></div></li>
+      <li><div class="snd-name">Subtle Sheen</div><div class="snd-desc">轻微的金属光泽镶边，给键盘/吉他加质感。</div><div class="snd-genre">键盘/吉他 · 流行 · 复古</div><div class="snd-song"><i>♪</i> 70s–80s <em>— 微量镶边</em></div></li>
+      <li><div class="snd-name">Synth Sweep</div><div class="snd-desc">合成器 pad 的缓慢镶边横扫，流动、太空。</div><div class="snd-genre">合成器 · 电子 · 太空</div><div class="snd-song"><i>♪</i> 电子 <em>— 镶边 pad</em></div></li>
+      <li><div class="snd-name">Through-Zero</div><div class="snd-desc">穿零镶边的强烈相消，金属、激进。</div><div class="snd-genre">声design · 实验 · 电子</div><div class="snd-song"><i>♪</i> 实验电子 <em>— 穿零镶边</em></div></li>
+    </ol>
+    <p class="card-note">// 喷气式 flanger 见于众多硬摇滚/电子唱片；此处以其公认声音与典型用法为准，非逐音轨考据。</p>
+  </article>
+</section>
+
+<!-- ============ FX 04 滤波器 ============ -->
+<section class="cat" id="fx-filter">
+  <div class="cat-head"><span class="idx">FX CATEGORY 04</span><h2>滤波器</h2><span class="count">4 PLUGINS</span></div>
+  <p class="cat-sub">把四台传奇合成器的滤波电路单独抽出，做成可调制的音频滤波器——咆哮、扫频、塑形，给任何声音上一层模拟性格。</p>
+
+  <article class="card modern">
+    <div class="card-top"><h3>Filter MS-20</h3><div class="spec">原型 <span>Korg MS-20 滤波</span><br>高/低通 · 强谐振</div></div>
+    <p class="desc">复刻 Korg MS-20 那条又脏又凶的滤波：谐振推大时咆哮、自震荡，是 acid、电子与工业声音的利器。可加调制扫频任何音频。</p>
+    <div class="legend"><div class="lh">◇ 它的独到之处</div><p>MS-20 的滤波以「凶」著称——谐振一推就咆哮、过载、自震荡，带着一种粗粝失控的攻击性。把它从合成器里解放出来当效果器，意味着任何鼓、贝斯或采样都能瞬间染上这种又脏又猛的模拟性格。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 参考</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Acid Squelch</div><div class="snd-desc">谐振咆哮的扫频，又脏又黏，acid 灵魂。</div><div class="snd-genre">贝斯/合成器 · acid · techno</div><div class="snd-song use"><i>◆</i> <em>适合：acid house / techno</em></div></li>
+      <li><div class="snd-name">Screaming Drums</div><div class="snd-desc">推谐振的鼓组扫频，凶猛、工业。</div><div class="snd-genre">鼓 · 工业 · electro</div><div class="snd-song use"><i>◆</i> <em>适合：工业 / electro</em></div></li>
+      <li><div class="snd-name">Filter Sweep FX</div><div class="snd-desc">强谐振扫频转场，戏剧、有张力。</div><div class="snd-genre">声design · 电子 · 转场</div><div class="snd-song use"><i>◆</i> <em>适合：build-up / 转场</em></div></li>
+      <li><div class="snd-name">Gritty Bass</div><div class="snd-desc">把贝斯滤得脏而有咬合，硬朗、有性格。</div><div class="snd-genre">贝斯 · 电子 · 工业</div><div class="snd-song use"><i>◆</i> <em>适合：电子贝斯塑形</em></div></li>
+      <li><div class="snd-name">Self-Osc Tone</div><div class="snd-desc">自震荡出的纯音，可当声效或音高。</div><div class="snd-genre">声design · 实验 · 电子</div><div class="snd-song use"><i>◆</i> <em>适合：实验声design</em></div></li>
+      <li><div class="snd-name">Lo-fi Crush</div><div class="snd-desc">压暗带谐振的脏滤波，复古、粗糙。</div><div class="snd-genre">采样/鼓 · lo-fi · hip-hop</div><div class="snd-song use"><i>◆</i> <em>适合：lo-fi / 采样</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card modern">
+    <div class="card-top"><h3>Filter MINI</h3><div class="spec">原型 <span>Minimoog 阶梯滤波</span><br>4 极低通 · 温暖肥厚</div></div>
+    <p class="desc">复刻 Moog 那条传奇的阶梯式（ladder）低通滤波：温暖、肥厚、谐振圆润有「奶油感」。用它给任何声音加一层经典 Moog 暖意。</p>
+    <div class="legend"><div class="lh">◇ 它的独到之处</div><p>Moog 阶梯滤波几乎是「温暖肥厚」的代名词——它的谐振不刺耳，反而圆润有奶油感，越推越厚。把这条滤波套在贝斯、合成器甚至整段混音上，就能得到那种无数经典唱片追求的、有重量又有甜味的模拟质感。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 参考</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Fat Bass Tone</div><div class="snd-desc">温暖肥厚的贝斯塑形，圆润、有重量。</div><div class="snd-genre">贝斯 · 放克 · 电子</div><div class="snd-song use"><i>◆</i> <em>适合：肥厚合成贝斯</em></div></li>
+      <li><div class="snd-name">Creamy Sweep</div><div class="snd-desc">奶油感的谐振扫频，顺滑、温暖。</div><div class="snd-genre">合成器 · 电子 · 流行</div><div class="snd-song use"><i>◆</i> <em>适合：合成器扫频</em></div></li>
+      <li><div class="snd-name">Warm Glue</div><div class="snd-desc">轻量低通给整轨加暖、去毛刺。</div><div class="snd-genre">总线 · 混音 · lo-fi</div><div class="snd-song use"><i>◆</i> <em>适合：总线加暖</em></div></li>
+      <li><div class="snd-name">Round Lead</div><div class="snd-desc">把主奏滤得圆润饱满，去刺、留厚。</div><div class="snd-genre">合成器 · synthwave · 摇滚</div><div class="snd-song use"><i>◆</i> <em>适合：主奏塑形</em></div></li>
+      <li><div class="snd-name">Smooth Drums</div><div class="snd-desc">温柔压暗的鼓组，复古、不刺耳。</div><div class="snd-genre">鼓 · lo-fi · hip-hop</div><div class="snd-song use"><i>◆</i> <em>适合：复古鼓组</em></div></li>
+      <li><div class="snd-name">Resonant Pluck</div><div class="snd-desc">带谐振峰的拨弦感，弹性、有焦点。</div><div class="snd-genre">合成器 · 电子 · house</div><div class="snd-song use"><i>◆</i> <em>适合：house / 电子 pluck</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card modern">
+    <div class="card-top"><h3>Filter M12</h3><div class="spec">原型 <span>Oberheim Matrix-12 滤波</span><br>多模式 · 15 种响应</div></div>
+    <p class="desc">复刻 Oberheim Matrix-12 那条极其灵活的多模式滤波：低通、高通、带通、陷波等多达十余种响应，从顺滑到锐利无所不能。</p>
+    <div class="legend"><div class="lh">◇ 它的独到之处</div><p>Matrix-12 的滤波以「全能」闻名——十多种模式让它既能像 Moog 一样温暖，又能做出锐利的带通与陷波。把它当效果器，意味着一台机器就覆盖了从写实塑形到极端声design 的几乎所有滤波需求，灵活度无出其右。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 参考</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Silky Lowpass</div><div class="snd-desc">顺滑温暖的低通塑形，高级、干净。</div><div class="snd-genre">合成器/键盘 · 流行 · 电子</div><div class="snd-song use"><i>◆</i> <em>适合：合成器塑形</em></div></li>
+      <li><div class="snd-name">Bandpass Vox</div><div class="snd-desc">带通滤出的电话/对讲感人声，复古、聚焦。</div><div class="snd-genre">人声 · lo-fi · 电子</div><div class="snd-song use"><i>◆</i> <em>适合：lo-fi 人声</em></div></li>
+      <li><div class="snd-name">Notch Mover</div><div class="snd-desc">陷波扫动的相位质感，流动、微妙。</div><div class="snd-genre">合成器/吉他 · 实验 · 电子</div><div class="snd-song use"><i>◆</i> <em>适合：质感塑形</em></div></li>
+      <li><div class="snd-name">Highpass Air</div><div class="snd-desc">高通去浊留空气，让声音轻盈上浮。</div><div class="snd-genre">人声/合成器 · 流行 · 电子</div><div class="snd-song use"><i>◆</i> <em>适合：去浊提亮</em></div></li>
+      <li><div class="snd-name">Precise Sweep</div><div class="snd-desc">干净精确的谐振扫频，现代、可控。</div><div class="snd-genre">合成器 · 电子 · house</div><div class="snd-song use"><i>◆</i> <em>适合：现代电子扫频</em></div></li>
+      <li><div class="snd-name">Multi FX Morph</div><div class="snd-desc">多模式间变形，做演进质感。</div><div class="snd-genre">声design · 实验 · 配乐</div><div class="snd-song use"><i>◆</i> <em>适合：演进声design</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card modern">
+    <div class="card-top"><h3>Filter SEM</h3><div class="spec">原型 <span>Oberheim SEM 滤波</span><br>状态可变 · 12dB</div></div>
+    <p class="desc">复刻 Oberheim SEM 那条温暖圆润的状态可变（state-variable）滤波：12dB 斜率、谐振柔和不尖，带一种独特的「丝绒感」。</p>
+    <div class="legend"><div class="lh">◇ 它的独到之处</div><p>SEM 的滤波是 Oberheim 标志性温暖声音的来源——12dB 的缓斜率配上柔和的谐振，给出一种丝绒般圆润、从不刺耳的质感。它特别适合给 pad、弦乐与人声做细腻的塑形与加宽，是「温柔派」滤波的代表。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 参考</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Velvet Pad</div><div class="snd-desc">丝绒般温柔的 pad 塑形，圆润、宽阔。</div><div class="snd-genre">合成器 pad · 电影 · 流行</div><div class="snd-song use"><i>◆</i> <em>适合：pad / 弦乐塑形</em></div></li>
+      <li><div class="snd-name">Soft Bandpass</div><div class="snd-desc">柔和带通的聚焦质感，温暖、有焦点。</div><div class="snd-genre">键盘/人声 · 复古 · soul</div><div class="snd-song use"><i>◆</i> <em>适合：复古塑形</em></div></li>
+      <li><div class="snd-name">Gentle Sweep</div><div class="snd-desc">缓斜率的温柔扫频，自然、不尖。</div><div class="snd-genre">合成器 · 流行 · 电子</div><div class="snd-song use"><i>◆</i> <em>适合：温柔扫频</em></div></li>
+      <li><div class="snd-name">Warm Vocal Shape</div><div class="snd-desc">给人声做圆润塑形，去刺留暖。</div><div class="snd-genre">人声 · soul · 抒情</div><div class="snd-song use"><i>◆</i> <em>适合：人声加暖</em></div></li>
+      <li><div class="snd-name">Smooth Highpass</div><div class="snd-desc">柔和高通去浊，轻盈不单薄。</div><div class="snd-genre">合成器/键盘 · 流行 · 电子</div><div class="snd-song use"><i>◆</i> <em>适合：去浊</em></div></li>
+      <li><div class="snd-name">Subtle Resonance</div><div class="snd-desc">轻量谐振点缀，给声音一点焦点与色彩。</div><div class="snd-genre">合成器 · 电子 · 配乐</div><div class="snd-song use"><i>◆</i> <em>适合：色彩塑形</em></div></li>
+    </ol>
+  </article>
+</section>
+
+<!-- ============ FX 05 前置放大 & EQ ============ -->
+<section class="cat" id="fx-preeq">
+  <div class="cat-head"><span class="idx">FX CATEGORY 05</span><h2>前置放大 & EQ</h2><span class="count">4 PLUGINS</span></div>
+  <p class="cat-sub">录音链的第一站：传奇话筒前置与均衡器决定了声音的「颜色」与质感——温暖、厚度、空气感都从这里来。</p>
+
+  <article class="card">
+    <div class="card-top"><h3>Pre 1973</h3><div class="spec">原型 <span>Neve 1073</span><br>话放 + EQ · 1970</div></div>
+    <p class="desc">史上最受推崇的话筒前置之一。Neve 1073 那种温暖、厚实又带空气感的染色，加上音乐性极强的三段 EQ，是无数经典人声与鼓的底色。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>「Neve 声音」几乎是高级录音的同义词。1073 不只是放大信号，更给它镀上一层温暖、厚重又有空气感的金色染色——人声更有血肉、鼓更有重量。半个世纪来它是录音棚最被神化的前置，一条信号过一遍 1073，立刻就「贵」了。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 经典案例</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Warm Vocal</div><div class="snd-desc">温暖厚实带空气感的人声染色，有血肉、贵气。</div><div class="snd-genre">人声 · 流行 · 摇滚</div><div class="snd-song"><i>♪</i> 经典录音 <em>— Neve 1073 人声</em></div></li>
+      <li><div class="snd-name">Punchy Drums</div><div class="snd-desc">给鼓加重量与冲击的前置染色，结实、有力。</div><div class="snd-genre">鼓 · 摇滚 · 放克</div><div class="snd-song"><i>♪</i> 摇滚录音 <em>— Neve 鼓前置</em></div></li>
+      <li><div class="snd-name">Air EQ Boost</div><div class="snd-desc">高频架式提升加空气感，开阔、明亮。</div><div class="snd-genre">人声/总线 · 流行 · 抒情</div><div class="snd-song"><i>♪</i> 流行制作 <em>— Neve 高频空气</em></div></li>
+      <li><div class="snd-name">Thick Bass</div><div class="snd-desc">给贝斯加厚与重量，饱满、稳。</div><div class="snd-genre">贝斯 · 摇滚 · soul</div><div class="snd-song"><i>♪</i> soul/摇滚 <em>— Neve 贝斯</em></div></li>
+      <li><div class="snd-name">Guitar Color</div><div class="snd-desc">吉他过前置的温暖染色，圆润、有芯。</div><div class="snd-genre">吉他 · 摇滚 · 民谣</div><div class="snd-song"><i>♪</i> 录音室 <em>— Neve 吉他</em></div></li>
+      <li><div class="snd-name">Mix Glue</div><div class="snd-desc">总线轻染加一点 Neve 暖意与黏合。</div><div class="snd-genre">总线 · 混音 · 流行</div><div class="snd-song"><i>♪</i> 混音 <em>— Neve 总线染色</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Pre TRIDA</h3><div class="spec">原型 <span>Trident A Range</span><br>话放 + EQ · 1970s</div></div>
+    <p class="desc">复刻伦敦 Trident 录音室那台稀有传奇调音台的通道条：染色比 Neve 更明亮、更有棱角，四段 EQ 极具音乐性。Bowie、Queen 等经典都在这里录就。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>Trident A Range 只造了十几台，却定义了 70s 伦敦的录音声音。它的染色比 Neve 更亮、更有攻击性，四段 EQ 推起来格外「带感」。Bowie、Queen、Elton John 等无数经典都流着它的血——这是一种棱角分明、华丽又有力的英伦质感。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 经典案例</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Bright Vocal</div><div class="snd-desc">明亮有棱角的人声染色，华丽、穿透。</div><div class="snd-genre">人声 · 摇滚 · 华丽摇滚</div><div class="snd-song"><i>♪</i> Trident 录音室 <em>— Bowie/Queen 通道声</em></div></li>
+      <li><div class="snd-name">Aggressive EQ</div><div class="snd-desc">四段 EQ 的带感推升，有力、音乐性强。</div><div class="snd-genre">吉他/鼓 · 摇滚 · 流行</div><div class="snd-song"><i>♪</i> 70s 伦敦 <em>— Trident EQ</em></div></li>
+      <li><div class="snd-name">Glam Drums</div><div class="snd-desc">华丽有攻击性的鼓染色，亮、冲。</div><div class="snd-genre">鼓 · glam · 摇滚</div><div class="snd-song"><i>♪</i> glam rock <em>— Trident 鼓</em></div></li>
+      <li><div class="snd-name">Piano Sparkle</div><div class="snd-desc">钢琴的明亮通道染色，闪亮、有芯。</div><div class="snd-genre">键盘 · 流行 · 摇滚</div><div class="snd-song"><i>♪</i> 70s 录音 <em>— Trident 钢琴</em></div></li>
+      <li><div class="snd-name">Edgy Guitar</div><div class="snd-desc">吉他的棱角染色，明亮、有咬合。</div><div class="snd-genre">吉他 · 摇滚 · 华丽</div><div class="snd-song"><i>♪</i> 摇滚录音 <em>— Trident 吉他</em></div></li>
+      <li><div class="snd-name">Crisp Bus</div><div class="snd-desc">总线的明亮染色，清晰、有英伦味。</div><div class="snd-genre">总线 · 混音 · 摇滚</div><div class="snd-song"><i>♪</i> 混音 <em>— Trident 总线</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Pre V76</h3><div class="spec">原型 <span>Telefunken V76</span><br>电子管话放 · 1950s</div></div>
+    <p class="desc">来自德国的电子管话筒前置：温暖、丰满又带电子管谐波，是 50–60s 录音的金色声音。EMI / Abbey Road 等欧洲录音棚的传奇前置。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>V76 是电子管前置的黄金标准——它给信号注入一种丰满、温暖、带谐波光泽的「老唱片味」，越推越有性格。50–60s 欧洲那些听起来格外有血肉、有空气的经典录音，很多都经过它。它代表了电子管时代对「温暖」最极致的诠释。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 经典案例</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Tube Vocal</div><div class="snd-desc">电子管的温暖丰满人声，有谐波光泽、复古。</div><div class="snd-genre">人声 · 爵士 · 复古</div><div class="snd-song"><i>♪</i> 50–60s 录音 <em>— V76 电子管人声</em></div></li>
+      <li><div class="snd-name">Vintage Drive</div><div class="snd-desc">推大后的电子管饱和染色，厚、有性格。</div><div class="snd-genre">吉他/鼓 · 复古 · 摇滚</div><div class="snd-song"><i>♪</i> 复古录音 <em>— V76 推大</em></div></li>
+      <li><div class="snd-name">Warm Upright Bass</div><div class="snd-desc">低音提琴/贝斯的温暖丰满，木质、有芯。</div><div class="snd-genre">贝斯 · 爵士 · 复古</div><div class="snd-song"><i>♪</i> 爵士录音 <em>— V76 贝斯</em></div></li>
+      <li><div class="snd-name">Silky Strings</div><div class="snd-desc">弦乐的丝滑温暖染色，圆润、高级。</div><div class="snd-genre">弦乐 · 配乐 · 古典</div><div class="snd-song"><i>♪</i> 录音室 <em>— V76 弦乐</em></div></li>
+      <li><div class="snd-name">Old Film Tone</div><div class="snd-desc">带年代感的复古染色，温暖、怀旧。</div><div class="snd-genre">人声/总线 · lo-fi · 复古</div><div class="snd-song"><i>♪</i> 复古制作 <em>— V76 老味</em></div></li>
+      <li><div class="snd-name">Tube Glue</div><div class="snd-desc">总线轻染电子管暖意，黏合、有空气。</div><div class="snd-genre">总线 · 混音 · 复古</div><div class="snd-song"><i>♪</i> 混音 <em>— V76 总线染色</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>EQ SITRAL-295</h3><div class="spec">原型 <span>Siemens Sitral W295</span><br>德国广播 EQ · 1960s–70s</div></div>
+    <p class="desc">复刻西门子那台稀有的德国广播均衡器：三段调音格外顺滑、有音乐性，染色温暖而精确，是欧洲录音棚的隐藏瑰宝。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>德国广播设备以「严谨而好听」著称，Sitral W295 正是其中的瑰宝——它的三段 EQ 推起来从不刺耳，却能精准地把声音雕琢得更顺滑、更有空气。相比张扬的英美 EQ，它代表了一种更克制、更高级的欧陆调音哲学。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 经典案例</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Smooth Vocal EQ</div><div class="snd-desc">顺滑不刺的人声均衡，精确、高级。</div><div class="snd-genre">人声 · 流行 · 爵士</div><div class="snd-song"><i>♪</i> 欧洲录音室 <em>— Siemens 人声 EQ</em></div></li>
+      <li><div class="snd-name">Musical Boost</div><div class="snd-desc">音乐性的宽频提升，自然、好听。</div><div class="snd-genre">总线/键盘 · 流行 · 配乐</div><div class="snd-song"><i>♪</i> 录音室 <em>— Sitral 提升</em></div></li>
+      <li><div class="snd-name">Warm Low Shelf</div><div class="snd-desc">温暖的低频架式，加厚不浑。</div><div class="snd-genre">贝斯/鼓 · 流行 · soul</div><div class="snd-song"><i>♪</i> 录音 <em>— Siemens 低频</em></div></li>
+      <li><div class="snd-name">Air Lift</div><div class="snd-desc">顺滑的高频空气提升，开阔、不尖。</div><div class="snd-genre">人声/总线 · 抒情 · 流行</div><div class="snd-song"><i>♪</i> 制作 <em>— Sitral 空气感</em></div></li>
+      <li><div class="snd-name">Mid Sculpt</div><div class="snd-desc">中频塑形让乐器各就各位，干净。</div><div class="snd-genre">吉他/键盘 · 流行 · 摇滚</div><div class="snd-song"><i>♪</i> 混音 <em>— Sitral 中频</em></div></li>
+      <li><div class="snd-name">Mastering Polish</div><div class="snd-desc">母带级的温和总线均衡，精致、克制。</div><div class="snd-genre">母带/总线 · 混音 · 流行</div><div class="snd-song"><i>♪</i> 母带 <em>— Siemens 总线 EQ</em></div></li>
+    </ol>
+  </article>
+</section>
+
+<!-- ============ FX 06 压缩 / 动态 ============ -->
+<section class="cat" id="fx-comp">
+  <div class="cat-head"><span class="idx">FX CATEGORY 06</span><h2>压缩 / 动态</h2><span class="count">4 PLUGINS</span></div>
+  <p class="cat-sub">二极管桥、VCA、电子管、FET——四种压缩拓扑、四种性格，从透明粘合到狂暴泵动，是律动与冲击力的塑造者。</p>
+
+  <article class="card">
+    <div class="card-top"><h3>Comp FET-76</h3><div class="spec">原型 <span>Urei 1176</span><br>FET 压缩 · 1967</div></div>
+    <p class="desc">史上最著名的 FET 压缩。1176 反应极快、音色有「咬」，能给人声与鼓加上攻击性与生命力，"all-buttons-in"（全按下）更是狂暴泵动的传奇。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>1176 几乎是「压缩」的代名词。它的 FET 电路反应快到能抓住每个瞬态，压起来不是变安静，而是变得更冲、更有血性。人声一过就向前贴、鼓一压就更狠，把四个比例钮全按下去（all buttons in）还能榨出狂暴的泵动——这是无数经典人声与鼓的秘密。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 经典案例</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Vocal Snap</div><div class="snd-desc">快速贴脸的人声压缩，向前、有咬合。</div><div class="snd-genre">人声 · 流行 · 摇滚</div><div class="snd-song"><i>♪</i> 经典录音 <em>— 1176 主唱压缩</em></div></li>
+      <li><div class="snd-name">All-Buttons Drums</div><div class="snd-desc">全按下的狂暴鼓压缩，泵动、爆裂。</div><div class="snd-genre">鼓 · 摇滚 · 放克</div><div class="snd-song"><i>♪</i> Led Zeppelin <em>— 房间鼓 + 1176 全按下</em></div></li>
+      <li><div class="snd-name">Punch Bass</div><div class="snd-desc">给贝斯加攻击与稳定，结实、向前。</div><div class="snd-genre">贝斯 · 放克 · 摇滚</div><div class="snd-song"><i>♪</i> funk/rock <em>— 1176 贝斯</em></div></li>
+      <li><div class="snd-name">Guitar Bite</div><div class="snd-desc">吉他的快速压缩，加咬合与持续。</div><div class="snd-genre">吉他 · 摇滚 · 放克</div><div class="snd-song"><i>♪</i> 录音室 <em>— 1176 吉他</em></div></li>
+      <li><div class="snd-name">Aggressive Parallel</div><div class="snd-desc">并联压缩加冲击，保留瞬态又更狠。</div><div class="snd-genre">鼓/总线 · 摇滚 · 电子</div><div class="snd-song"><i>♪</i> 现代混音 <em>— 1176 并联</em></div></li>
+      <li><div class="snd-name">Room Smash</div><div class="snd-desc">压扁房间话筒的爆裂质感，狂、大。</div><div class="snd-genre">鼓 · 摇滚 · 另类</div><div class="snd-song"><i>♪</i> 摇滚 <em>— 房间话筒 1176</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Comp VCA-65</h3><div class="spec">原型 <span>dbx 165</span><br>VCA 压缩 · 1970s</div></div>
+    <p class="desc">复刻 dbx 的 VCA 压缩：快速、有力、带标志性的「punch」，特别擅长把鼓和贝斯压得又紧又冲。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>dbx 的 VCA 压缩是「punch」的代名词——它能死死抓住瞬态，把鼓和贝斯压得结实、向前、充满冲击力。相比电子管的温柔，它直接、有力、毫不含糊，是无数 70–80s 律动型唱片底鼓与军鼓力量感的来源。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 经典案例</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Punch Kick</div><div class="snd-desc">把底鼓压得又紧又冲，结实、有力。</div><div class="snd-genre">鼓 · 底鼓 · 放克</div><div class="snd-song"><i>♪</i> 70s–80s <em>— dbx 底鼓 punch</em></div></li>
+      <li><div class="snd-name">Tight Bass</div><div class="snd-desc">贝斯的快速紧压，稳、向前、有律动。</div><div class="snd-genre">贝斯 · 放克 · disco</div><div class="snd-song"><i>♪</i> funk/disco <em>— dbx 贝斯</em></div></li>
+      <li><div class="snd-name">Snare Crack</div><div class="snd-desc">军鼓的脆裂压缩，干、爆、有冲击。</div><div class="snd-genre">鼓 · 军鼓 · 摇滚</div><div class="snd-song"><i>♪</i> 摇滚 <em>— dbx 军鼓</em></div></li>
+      <li><div class="snd-name">Drum Bus Glue</div><div class="snd-desc">鼓总线的有力粘合，整体更紧更冲。</div><div class="snd-genre">鼓总线 · 电子 · 摇滚</div><div class="snd-song"><i>♪</i> 混音 <em>— dbx 鼓总线</em></div></li>
+      <li><div class="snd-name">Slap Control</div><div class="snd-desc">控住 slap 贝斯的动态，干净、有弹性。</div><div class="snd-genre">贝斯 · 放克 · 爵士</div><div class="snd-song"><i>♪</i> funk <em>— dbx slap 贝斯</em></div></li>
+      <li><div class="snd-name">Aggro Parallel</div><div class="snd-desc">并联加 punch，律动更狠又保留动态。</div><div class="snd-genre">鼓/总线 · 电子 · 摇滚</div><div class="snd-song"><i>♪</i> 现代 <em>— dbx 并联</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Comp TUBE-STA</h3><div class="spec">原型 <span>Gates STA-Level</span><br>电子管 leveler · 1950s</div></div>
+    <p class="desc">复刻一台稀有的电子管广播压缩：动作缓慢、音色温暖丰满，能把人声和总线「抚平」成丝滑顺耳的一体感，带迷人的电子管染色。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>STA-Level 这类电子管 leveler 压起来「看不见手」——它缓慢、温柔地抚平动态，同时镀上一层丰满的电子管暖意。它不制造冲击，而是制造「顺」：人声变得贴耳一体、总线变得圆融有黏性。这是复古、丝滑声音的秘密配方。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 经典案例</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Silky Vocal</div><div class="snd-desc">温暖丝滑的人声 leveling，贴耳、一体。</div><div class="snd-genre">人声 · 爵士 · 抒情</div><div class="snd-song"><i>♪</i> 复古录音 <em>— 电子管 leveler 人声</em></div></li>
+      <li><div class="snd-name">Warm Glue Bus</div><div class="snd-desc">总线的温暖黏合，圆融、有电子管味。</div><div class="snd-genre">总线 · 复古 · soul</div><div class="snd-song"><i>♪</i> 混音 <em>— 电子管总线压缩</em></div></li>
+      <li><div class="snd-name">Smooth Bass</div><div class="snd-desc">把贝斯抚平得温暖一致，圆、稳。</div><div class="snd-genre">贝斯 · 爵士 · soul</div><div class="snd-song"><i>♪</i> soul <em>— 电子管贝斯</em></div></li>
+      <li><div class="snd-name">Vintage Glue</div><div class="snd-desc">复古染色的整体黏合，老唱片味。</div><div class="snd-genre">总线 · lo-fi · 复古</div><div class="snd-song"><i>♪</i> 复古 <em>— 电子管黏合</em></div></li>
+      <li><div class="snd-name">Tube Color</div><div class="snd-desc">轻压只为电子管染色，温暖、丰满。</div><div class="snd-genre">键盘/人声 · 复古 · 爵士</div><div class="snd-song"><i>♪</i> 录音室 <em>— 电子管染色</em></div></li>
+      <li><div class="snd-name">Soft Levelling</div><div class="snd-desc">缓慢的动态抚平，自然、不留痕迹。</div><div class="snd-genre">人声/原声 · 抒情 · 民谣</div><div class="snd-song"><i>♪</i> 民谣录音 <em>— 缓慢 leveling</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Comp DIODE-609</h3><div class="spec">原型 <span>Neve 33609</span><br>二极管桥总线压缩 · 1970s</div></div>
+    <p class="desc">复刻 Neve 那台传奇的二极管桥总线压缩：温暖有重量、染色迷人，是混音总线「粘合」与母带的经典选择，能让整首歌听起来像一个整体。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>33609 是「总线粘合」的黄金标准之一。二极管桥的压缩带着 Neve 标志性的温暖与重量，轻轻一压就能把零散的轨道揉成一个有凝聚力的整体——既加重量又加染色。从混音总线到母带，它让无数作品有了那种「成品感」。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 经典案例</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Mix Bus Glue</div><div class="snd-desc">总线的温暖粘合，把全曲揉成一个整体。</div><div class="snd-genre">总线 · 混音 · 摇滚</div><div class="snd-song"><i>♪</i> 混音 <em>— Neve 总线粘合</em></div></li>
+      <li><div class="snd-name">Master Weight</div><div class="snd-desc">母带级的重量与染色，厚、稳、有成品感。</div><div class="snd-genre">母带 · 流行 · 摇滚</div><div class="snd-song"><i>♪</i> 母带 <em>— 33609 母带压缩</em></div></li>
+      <li><div class="snd-name">Drum Bus Punch</div><div class="snd-desc">鼓总线的温暖 punch，更紧又有重量。</div><div class="snd-genre">鼓总线 · 摇滚 · 放克</div><div class="snd-song"><i>♪</i> 摇滚 <em>— Neve 鼓总线</em></div></li>
+      <li><div class="snd-name">Warm Glue Vocal</div><div class="snd-desc">人声组的温暖粘合，一致、有质感。</div><div class="snd-genre">人声 · 流行 · soul</div><div class="snd-song"><i>♪</i> 制作 <em>— Neve 人声组</em></div></li>
+      <li><div class="snd-name">Rock Smash Bus</div><div class="snd-desc">推大压缩的摇滚总线，狠、有能量。</div><div class="snd-genre">总线 · 硬摇滚 · 另类</div><div class="snd-song"><i>♪</i> 硬摇滚 <em>— 总线重压</em></div></li>
+      <li><div class="snd-name">Gentle Master</div><div class="snd-desc">温和的母带粘合，几乎透明只加凝聚。</div><div class="snd-genre">母带 · 抒情 · 流行</div><div class="snd-song"><i>♪</i> 母带 <em>— 温和总线压缩</em></div></li>
+    </ol>
+  </article>
+</section>
+
+<!-- ============ FX 07 饱和 & 磁带 ============ -->
+<section class="cat" id="fx-sat">
+  <div class="cat-head"><span class="idx">FX CATEGORY 07</span><h2>饱和 & 磁带</h2><span class="count">5 PLUGINS</span></div>
+  <p class="cat-sub">从电子管、运放失真到磁带饱和——给数字声音注入谐波、温度与「不完美」的人味。</p>
+
+  <article class="card modern">
+    <div class="card-top"><h3>Dist COLDFIRE</h3><div class="spec">Arturia 原创 <span>双引擎失真 / 多算法</span><br>可串/并联 · 调制</div></div>
+    <p class="desc">一台双引擎的现代失真站：从温暖电子管、运放、磁带到激进的波形整形、降采样，两个引擎可串/并联并加调制，覆盖从轻染到毁灭的全谱。无单一硬件原型。</p>
+    <div class="legend"><div class="lh">◇ 它的独到之处</div><p>它把「失真」做成了一座实验室——两个独立引擎、十多种算法，再加上滤波与调制路由，意味着你能从一丝电子管暖意，一路调到面目全非的工业噪声。它不复刻某台踏板，而是给现代制作人一个「失真瑞士军刀」，想要多少破坏由你定。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 参考</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Warm Tube Drive</div><div class="snd-desc">温暖的电子管轻染，加厚加芯。</div><div class="snd-genre">人声/键盘 · 流行 · soul</div><div class="snd-song use"><i>◆</i> <em>适合：温暖染色</em></div></li>
+      <li><div class="snd-name">Crushed Drums</div><div class="snd-desc">降采样/波形整形的破碎鼓，工业、狠。</div><div class="snd-genre">鼓 · 工业 · 电子</div><div class="snd-song use"><i>◆</i> <em>适合：工业 / electronic 鼓</em></div></li>
+      <li><div class="snd-name">Gritty Bass</div><div class="snd-desc">给贝斯加脏与谐波，硬朗、有性格。</div><div class="snd-genre">贝斯 · 电子 · 摇滚</div><div class="snd-song use"><i>◆</i> <em>适合：电子贝斯</em></div></li>
+      <li><div class="snd-name">Dual Mangle</div><div class="snd-desc">双引擎串联的复杂破坏，面目全非。</div><div class="snd-genre">声design · 实验 · 工业</div><div class="snd-song use"><i>◆</i> <em>适合：极端声design</em></div></li>
+      <li><div class="snd-name">Lo-fi Color</div><div class="snd-desc">带降采样的复古脏感，粗糙、有味。</div><div class="snd-genre">采样/键盘 · lo-fi · hip-hop</div><div class="snd-song use"><i>◆</i> <em>适合：lo-fi 染色</em></div></li>
+      <li><div class="snd-name">Synth Aggression</div><div class="snd-desc">把合成器主奏推狠，激进、有攻击。</div><div class="snd-genre">合成器 · EDM · 金属</div><div class="snd-song use"><i>◆</i> <em>适合：激进主奏</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Dist TUBE-CULTURE</h3><div class="spec">原型 <span>电子管饱和（Culture Vulture 类）</span><br>真空管失真 · 1990s</div></div>
+    <p class="desc">复刻那种从温暖饱和一路推到狂野破裂的电子管失真：偶/奇次谐波可调，既能轻染加厚，也能把声音烧成嘶吼的电子管咆哮。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>这类电子管饱和器以「能从奶油推到野兽」著称——轻用是丰满温暖的谐波染色，重用则烧成撕裂、嘶吼的失真。可调的谐波类型让它既能精修人声与鼓的质感，也能制造极具攻击性的特殊音色，是很多制作人桌上的「秘密调味料」。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 经典案例</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Harmonic Warmth</div><div class="snd-desc">丰满的电子管谐波染色，加厚、加温。</div><div class="snd-genre">人声/键盘 · 流行 · soul</div><div class="snd-song"><i>♪</i> 现代制作 <em>— 电子管谐波染色</em></div></li>
+      <li><div class="snd-name">Drum Crunch</div><div class="snd-desc">把鼓推出酥脆饱和，有咬、有力。</div><div class="snd-genre">鼓 · 摇滚 · 电子</div><div class="snd-song"><i>♪</i> 现代混音 <em>— 电子管鼓饱和</em></div></li>
+      <li><div class="snd-name">Screaming Tube</div><div class="snd-desc">推到极限的嘶吼失真，狂野、撕裂。</div><div class="snd-genre">合成器/吉他 · 工业 · 金属</div><div class="snd-song"><i>♪</i> 工业/另类 <em>— 电子管咆哮</em></div></li>
+      <li><div class="snd-name">Bass Grit</div><div class="snd-desc">给贝斯加电子管脏感，厚、有性格。</div><div class="snd-genre">贝斯 · 摇滚 · 电子</div><div class="snd-song"><i>♪</i> 制作 <em>— 电子管贝斯</em></div></li>
+      <li><div class="snd-name">Vocal Edge</div><div class="snd-desc">人声加一点饱和边缘，向前、有态度。</div><div class="snd-genre">人声 · 另类 · 电子</div><div class="snd-song"><i>♪</i> 另类 <em>— 饱和人声</em></div></li>
+      <li><div class="snd-name">Master Sheen</div><div class="snd-desc">总线轻染谐波增色，更有光泽与厚度。</div><div class="snd-genre">总线/母带 · 流行 · 电子</div><div class="snd-song"><i>♪</i> 母带 <em>— 谐波增色</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card modern">
+    <div class="card-top"><h3>Dist OPAMP-21</h3><div class="spec">Arturia 原创 <span>运放 / 晶体管失真</span><br>多档削波</div></div>
+    <p class="desc">基于运放/晶体管电路的失真：从清脆的过载到硬削波，颗粒清晰、攻击性强，特别适合给电子声音加「电路感」的脏。无单一硬件原型。</p>
+    <div class="legend"><div class="lh">◇ 它的独到之处</div><p>运放与晶体管削波给出的失真比电子管更「电」、更脆、更有颗粒——那种来自电路本身的硬边缘，是很多电子与工业音色的骨架。它专注于把这种清晰、有攻击性的电路脏感做到位，是给合成器、鼓机加狠劲的高效工具。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 参考</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Crisp Overdrive</div><div class="snd-desc">清脆的过载，颗粒分明、有咬合。</div><div class="snd-genre">合成器/吉他 · 电子 · 摇滚</div><div class="snd-song use"><i>◆</i> <em>适合：合成器过载</em></div></li>
+      <li><div class="snd-name">Hard Clip Drums</div><div class="snd-desc">硬削波的鼓，狠、电、有冲击。</div><div class="snd-genre">鼓 · electro · 工业</div><div class="snd-song use"><i>◆</i> <em>适合：electro / 工业鼓</em></div></li>
+      <li><div class="snd-name">Electro Bass</div><div class="snd-desc">把贝斯削得脆而硬，电路感强。</div><div class="snd-genre">贝斯 · electro · techno</div><div class="snd-song use"><i>◆</i> <em>适合：electro 贝斯</em></div></li>
+      <li><div class="snd-name">Aggro Lead</div><div class="snd-desc">主奏的尖锐削波，攻击、刺激。</div><div class="snd-genre">合成器 · EDM · 金属</div><div class="snd-song use"><i>◆</i> <em>适合：激进主奏</em></div></li>
+      <li><div class="snd-name">Circuit Grit</div><div class="snd-desc">轻量电路脏感，给数字声加「电味」。</div><div class="snd-genre">合成器/采样 · 电子 · 实验</div><div class="snd-song use"><i>◆</i> <em>适合：数字加脏</em></div></li>
+      <li><div class="snd-name">Fuzz Wall</div><div class="snd-desc">推满的颗粒失真墙，密、糙、有能量。</div><div class="snd-genre">声design · 工业 · 实验</div><div class="snd-song use"><i>◆</i> <em>适合：噪声墙</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Tape MELLO-FI</h3><div class="spec">原型 <span>Mellotron 磁带 / lo-fi</span><br>抖晃 + 噪声 · 复古</div></div>
+    <p class="desc">一台「劣化」磁带处理器：抖动（wow/flutter）、噪声、饱和与机械声一应俱全，能把干净的数字声染成 Mellotron 般摇晃、怀旧、有灰尘的 lo-fi 质感。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>它专门制造「美丽的破损」。借鉴 Mellotron 磁带那种走音、抖动、带噪的不稳定感，它能把任何过于干净的数字声音变得有年代、有情绪、有灰尘——这正是 lo-fi、chillhop 和复古制作里那种慵懒怀旧氛围的核心。不完美，才动人。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 经典案例</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Lo-fi Keys</div><div class="snd-desc">抖动带噪的键盘，慵懒、怀旧、有灰尘。</div><div class="snd-genre">键盘 · lo-fi · chillhop</div><div class="snd-song"><i>♪</i> lo-fi hip-hop <em>— 抖晃磁带键盘</em></div></li>
+      <li><div class="snd-name">Wobbly Vocal</div><div class="snd-desc">轻微走音的人声，复古、梦呓感。</div><div class="snd-genre">人声 · 梦泡 · 复古</div><div class="snd-song"><i>♪</i> bedroom pop <em>— 磁带人声</em></div></li>
+      <li><div class="snd-name">Dusty Drums</div><div class="snd-desc">压暗带噪的复古鼓，松、有年代感。</div><div class="snd-genre">鼓 · lo-fi · hip-hop</div><div class="snd-song"><i>♪</i> lo-fi <em>— 灰尘鼓组</em></div></li>
+      <li><div class="snd-name">Tape Wow Synth</div><div class="snd-desc">合成器加抖动晃音，飘忽、复古。</div><div class="snd-genre">合成器 · chillwave · 复古</div><div class="snd-song"><i>♪</i> chillwave <em>— 磁带抖晃</em></div></li>
+      <li><div class="snd-name">Vintage Glue</div><div class="snd-desc">给整轨加磁带噪与温度，老唱片味。</div><div class="snd-genre">总线 · lo-fi · 复古</div><div class="snd-song"><i>♪</i> 复古制作 <em>— 磁带总线</em></div></li>
+      <li><div class="snd-name">Broken Tape FX</div><div class="snd-desc">夸张走音卡带的声效，故障、实验。</div><div class="snd-genre">声design · 实验 · 转场</div><div class="snd-song"><i>♪</i> 实验 <em>— 卡带故障声</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Tape J-37</h3><div class="spec"><span class="badge-new">v6 新</span> 原型 <span>Studer J37</span><br>四轨磁带机 · 1960s</div></div>
+    <p class="desc">复刻 Abbey Road 那台传奇四轨磁带机：温暖的磁带饱和、压缩与谐波，正是《Sgt. Pepper's》时代 Beatles 录音的声音。给数字混音注入真正的录音棚磁带味。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>Studer J37 是 Beatles 在 Abbey Road 录制《Sgt. Pepper's》《Magical Mystery Tour》等专辑用的磁带机——它温暖的饱和、自然的压缩与谐波，是 60s 末那批革命性录音「质感」的物理来源。把它做成插件，等于把一整间传奇录音棚的磁带味装进你的混音。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 经典案例</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Abbey Road Glue</div><div class="snd-desc">温暖磁带粘合，把全曲染成 60s 录音棚味。</div><div class="snd-genre">总线 · 复古 · 流行</div><div class="snd-song"><i>♪</i> The Beatles <em>— Sgt. Pepper's（J37 录音）</em></div></li>
+      <li><div class="snd-name">Warm Drum Tape</div><div class="snd-desc">鼓过磁带的温暖饱和，圆、有重量。</div><div class="snd-genre">鼓 · 复古 · 摇滚</div><div class="snd-song"><i>♪</i> 60s 录音 <em>— J37 磁带鼓</em></div></li>
+      <li><div class="snd-name">Vintage Vocal</div><div class="snd-desc">人声的磁带温度与谐波，复古、有血肉。</div><div class="snd-genre">人声 · 复古 · 流行</div><div class="snd-song"><i>♪</i> 60s <em>— 磁带人声</em></div></li>
+      <li><div class="snd-name">Tape Saturation</div><div class="snd-desc">推大输入的磁带饱和，加厚加谐波。</div><div class="snd-genre">总线/键盘 · 复古 · 摇滚</div><div class="snd-song"><i>♪</i> 录音室 <em>— 磁带推大饱和</em></div></li>
+      <li><div class="snd-name">Smooth High Tame</div><div class="snd-desc">磁带自然柔化高频，去刺、顺耳。</div><div class="snd-genre">人声/总线 · 抒情 · 流行</div><div class="snd-song"><i>♪</i> 混音 <em>— 磁带高频柔化</em></div></li>
+      <li><div class="snd-name">Bass Round</div><div class="snd-desc">贝斯过磁带更圆更稳，温暖、有芯。</div><div class="snd-genre">贝斯 · 复古 · soul</div><div class="snd-song"><i>♪</i> 复古录音 <em>— 磁带贝斯</em></div></li>
+    </ol>
+  </article>
+</section>
+
+<!-- ============ FX 08 总线 / 母带 & 混音 ============ -->
+<section class="cat" id="fx-bus">
+  <div class="cat-head"><span class="idx">FX CATEGORY 08</span><h2>总线 / 母带 & 混音</h2><span class="count">5 PLUGINS</span></div>
+  <p class="cat-sub">混音与母带的「成品」工具：瞬态、激励、限制、多段处理与一键鼓组方案——让作品有凝聚力、有响度、有光泽。</p>
+
+  <article class="card modern">
+    <div class="card-top"><h3>Bus TRANSIENT</h3><div class="spec"><span class="badge-new">v6 新</span> Arturia 原创 <span>瞬态整形</span><br>多段 · attack/sustain</div></div>
+    <p class="desc">多段瞬态整形器：独立控制各频段的起音与延音，能让鼓更冲或更收、让混音更有冲击或更顺滑，不依赖音量自动化。无单一硬件原型。</p>
+    <div class="legend"><div class="lh">◇ 它的独到之处</div><p>瞬态整形直接雕刻声音的「攻击」与「尾巴」，而不管它有多响——把军鼓的 attack 拉出来就更冲，把房间的 sustain 收回去就更干。多段版本更进一步，让你只对特定频段动手。它是现代混音里塑造冲击力与空间的精准手术刀。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 参考</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Punchy Snare</div><div class="snd-desc">拉出军鼓 attack，更冲、更有冲击。</div><div class="snd-genre">鼓 · 军鼓 · 摇滚</div><div class="snd-song use"><i>◆</i> <em>适合：鼓加冲击</em></div></li>
+      <li><div class="snd-name">Tighten Room</div><div class="snd-desc">收掉房间尾巴，让鼓组更干更紧。</div><div class="snd-genre">鼓 · 电子 · 流行</div><div class="snd-song use"><i>◆</i> <em>适合：控制混响/房间</em></div></li>
+      <li><div class="snd-name">Bass Attack</div><div class="snd-desc">突出贝斯起音，律动更清晰。</div><div class="snd-genre">贝斯 · 放克 · 电子</div><div class="snd-song use"><i>◆</i> <em>适合：贝斯律动</em></div></li>
+      <li><div class="snd-name">Multiband Shape</div><div class="snd-desc">只对特定频段整形，精准、干净。</div><div class="snd-genre">总线 · 混音 · 电子</div><div class="snd-song use"><i>◆</i> <em>适合：分频瞬态</em></div></li>
+      <li><div class="snd-name">Soft Acoustic</div><div class="snd-desc">柔化原声拨弦的硬攻击，自然顺耳。</div><div class="snd-genre">原声吉他 · 民谣 · 抒情</div><div class="snd-song use"><i>◆</i> <em>适合：柔化攻击</em></div></li>
+      <li><div class="snd-name">Mix Impact</div><div class="snd-desc">给总线加整体冲击感，更有力。</div><div class="snd-genre">总线 · 电子 · 摇滚</div><div class="snd-song use"><i>◆</i> <em>适合：总线冲击</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card modern">
+    <div class="card-top"><h3>Bus PEAK</h3><div class="spec">Arturia 原创 <span>母带限制 / 最大化</span><br>透明增响</div></div>
+    <p class="desc">母带级峰值限制/最大化器：在透明控制峰值的同时把整体响度推上去，是混音/母带链路最后一关的「上响度」工具。无单一硬件原型。</p>
+    <div class="legend"><div class="lh">◇ 它的独到之处</div><p>限制器是母带链的「守门员」——它在不让峰值过载的前提下，把整首歌的响度安全、透明地推到竞争水平。Bus PEAK 专注于这件事：干净地抓住峰值、最大化响度，同时尽量不破坏动态与音色，是作品「出街」前的最后一道工序。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 参考</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Transparent Master</div><div class="snd-desc">透明上响度，几乎不染色，安全可靠。</div><div class="snd-genre">母带 · 流行 · 抒情</div><div class="snd-song use"><i>◆</i> <em>适合：透明母带</em></div></li>
+      <li><div class="snd-name">Loud & Proud</div><div class="snd-desc">推满竞争响度，密实、有冲击。</div><div class="snd-genre">母带 · 电子 · 流行</div><div class="snd-song use"><i>◆</i> <em>适合：高响度母带</em></div></li>
+      <li><div class="snd-name">Peak Control</div><div class="snd-desc">只抓峰值不上响度，保护动态。</div><div class="snd-genre">总线 · 古典 · 爵士</div><div class="snd-song use"><i>◆</i> <em>适合：峰值保护</em></div></li>
+      <li><div class="snd-name">Drum Bus Limit</div><div class="snd-desc">限制鼓总线峰值，更密更稳。</div><div class="snd-genre">鼓总线 · 电子 · 摇滚</div><div class="snd-song use"><i>◆</i> <em>适合：鼓总线限制</em></div></li>
+      <li><div class="snd-name">Clip Catch</div><div class="snd-desc">抓住意外过冲，保险用。</div><div class="snd-genre">总线 · 混音 · 通用</div><div class="snd-song use"><i>◆</i> <em>适合：安全限制</em></div></li>
+      <li><div class="snd-name">Glue Maximize</div><div class="snd-desc">轻最大化加凝聚，整体更一体。</div><div class="snd-genre">母带/总线 · 流行 · 电子</div><div class="snd-song use"><i>◆</i> <em>适合：母带凝聚</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Bus EXCITER-104</h3><div class="spec">原型 <span>Aphex Aural Exciter</span><br>谐波激励 · 1970s</div></div>
+    <p class="desc">复刻传奇的「听觉激励器」：靠生成高频谐波让声音更亮、更有空气、更靠前——不是单纯 EQ，而是「无中生有」的清晰度与存在感。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>Aural Exciter 当年神秘到只租不卖、按使用时长收费。它不靠提升已有频率，而是合成出新的高频谐波，让人声、原声乐器和整段混音听起来更亮、更清晰、更靠前——一种 EQ 给不了的「空气感」。从 70s 到今天，它都是让声音「跳出音箱」的秘密武器。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 经典案例</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Vocal Presence</div><div class="snd-desc">给人声加空气与清晰度，更亮、更靠前。</div><div class="snd-genre">人声 · 流行 · R&B</div><div class="snd-song"><i>♪</i> 70s–80s 制作 <em>— Aural Exciter 人声</em></div></li>
+      <li><div class="snd-name">Acoustic Sparkle</div><div class="snd-desc">原声吉他的闪亮高频，通透、有空气。</div><div class="snd-genre">原声吉他 · 民谣 · 流行</div><div class="snd-song"><i>♪</i> 录音 <em>— 激励原声吉他</em></div></li>
+      <li><div class="snd-name">Mix Air</div><div class="snd-desc">给整段混音加空气与清晰度，开阔。</div><div class="snd-genre">总线 · 流行 · 电子</div><div class="snd-song"><i>♪</i> 混音 <em>— 总线激励</em></div></li>
+      <li><div class="snd-name">Bright Drums</div><div class="snd-desc">让镲片与军鼓更亮更脆，有存在感。</div><div class="snd-genre">鼓 · 流行 · 摇滚</div><div class="snd-song"><i>♪</i> 制作 <em>— 激励鼓组</em></div></li>
+      <li><div class="snd-name">Bass Definition</div><div class="snd-desc">给贝斯加高次谐波，小音箱也听得清。</div><div class="snd-genre">贝斯 · 流行 · 电子</div><div class="snd-song"><i>♪</i> 混音 <em>— 激励贝斯清晰度</em></div></li>
+      <li><div class="snd-name">Master Sheen</div><div class="snd-desc">母带级的高频光泽，精致、不刺。</div><div class="snd-genre">母带 · 流行 · 抒情</div><div class="snd-song"><i>♪</i> 母带 <em>— 激励高频光泽</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card modern">
+    <div class="card-top"><h3>Bus FORCE</h3><div class="spec">Arturia 原创 <span>多段总线处理</span><br>压缩+饱和+整形</div></div>
+    <p class="desc">一站式多段总线处理器：把压缩、饱和、瞬态与音色塑形整合在多频段架构里，一个插件就能给总线或母带做出有凝聚、有冲击、有光泽的成品声。无单一硬件原型。</p>
+    <div class="legend"><div class="lh">◇ 它的独到之处</div><p>它把混音工程师在总线上常用的一整套手法——多段压缩、饱和、瞬态、塑形——打包成一个直觉化的处理器。不用串接五六个插件，在 Bus FORCE 里分频段地加冲击、加凝聚、加光泽，就能高效地把一段混音推向「成品感」。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 参考</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Master Polish</div><div class="snd-desc">多段一体的母带润色，凝聚、有光泽。</div><div class="snd-genre">母带 · 流行 · 电子</div><div class="snd-song use"><i>◆</i> <em>适合：母带润色</em></div></li>
+      <li><div class="snd-name">Mix Bus Power</div><div class="snd-desc">给总线加冲击与厚度，有力、成品感。</div><div class="snd-genre">总线 · 摇滚 · 电子</div><div class="snd-song use"><i>◆</i> <em>适合：总线增厚</em></div></li>
+      <li><div class="snd-name">Drum Bus Beast</div><div class="snd-desc">把鼓总线做狠：分频加 punch 与饱和。</div><div class="snd-genre">鼓总线 · 电子 · 摇滚</div><div class="snd-song use"><i>◆</i> <em>适合：鼓总线塑形</em></div></li>
+      <li><div class="snd-name">Multiband Glue</div><div class="snd-desc">分频段粘合，控制低频又不失冲击。</div><div class="snd-genre">总线 · 流行 · hip-hop</div><div class="snd-song use"><i>◆</i> <em>适合：分频粘合</em></div></li>
+      <li><div class="snd-name">Loud Streaming</div><div class="snd-desc">面向流媒体的响度与平衡，密、稳。</div><div class="snd-genre">母带 · 流行 · 电子</div><div class="snd-song use"><i>◆</i> <em>适合：流媒体母带</em></div></li>
+      <li><div class="snd-name">Saturated Bus</div><div class="snd-desc">带饱和的总线染色，温暖又有能量。</div><div class="snd-genre">总线 · 摇滚 · 电子</div><div class="snd-song use"><i>◆</i> <em>适合：总线饱和</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card modern">
+    <div class="card-top"><h3>Mix DRUMS</h3><div class="spec"><span class="badge-new">v6 新</span> Arturia 原创 <span>鼓组混音方案</span><br>压缩+EQ+饱和+空间</div></div>
+    <p class="desc">为鼓组量身打造的一体化混音处理器：在一个界面里完成压缩、EQ、饱和、瞬态与空间，几步就把一套干鼓做成有冲击、有胶水、有空间的成品鼓。无单一硬件原型。</p>
+    <div class="legend"><div class="lh">◇ 它的独到之处</div><p>混鼓往往要串一长串插件，Mix DRUMS 把这套流程浓缩成一个直觉化界面——压缩加 punch、EQ 修频、饱和加厚、空间加纵深，再加并联与粘合，一站到位。它让「专业鼓声」从繁琐的链路变成几个推子的事，对编曲人和快速制作尤其友好。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 参考</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Punchy Kit</div><div class="snd-desc">一键把干鼓做冲，攻击、有力。</div><div class="snd-genre">鼓组 · 摇滚 · 流行</div><div class="snd-song use"><i>◆</i> <em>适合：鼓组上冲击</em></div></li>
+      <li><div class="snd-name">Glue & Width</div><div class="snd-desc">粘合并加宽鼓组，整体、有空间。</div><div class="snd-genre">鼓组 · 流行 · 电子</div><div class="snd-song use"><i>◆</i> <em>适合：鼓组粘合</em></div></li>
+      <li><div class="snd-name">Saturated Punch</div><div class="snd-desc">饱和加 punch 的厚实鼓，狠、暖。</div><div class="snd-genre">鼓组 · 嘻哈 · 电子</div><div class="snd-song use"><i>◆</i> <em>适合：厚鼓</em></div></li>
+      <li><div class="snd-name">Room & Space</div><div class="snd-desc">给鼓加房间与纵深，更立体。</div><div class="snd-genre">鼓组 · 摇滚 · 另类</div><div class="snd-song use"><i>◆</i> <em>适合：鼓加空间</em></div></li>
+      <li><div class="snd-name">Lo-fi Kit</div><div class="snd-desc">压暗带味的复古鼓，松、有氛围。</div><div class="snd-genre">鼓组 · lo-fi · hip-hop</div><div class="snd-song use"><i>◆</i> <em>适合：lo-fi 鼓</em></div></li>
+      <li><div class="snd-name">Loud Modern Kit</div><div class="snd-desc">现代响亮鼓声，密实、有冲击。</div><div class="snd-genre">鼓组 · EDM · 流行</div><div class="snd-song use"><i>◆</i> <em>适合：现代鼓组</em></div></li>
+    </ol>
+  </article>
+</section>
+
+<!-- ============ FX 09 创意 & 音高 ============ -->
+<section class="cat" id="fx-creative">
+  <div class="cat-head"><span class="idx">FX CATEGORY 09</span><h2>创意 & 音高</h2><span class="count">5 PLUGINS</span></div>
+  <p class="cat-sub">运动、颗粒、氛围与音高位移——这些工具把效果器变成声音设计的乐器，制造意想不到的质感与空间。</p>
+
+  <article class="card modern">
+    <div class="card-top"><h3>Efx MOTIONS</h3><div class="spec">Arturia 原创 <span>多效果运动序列</span><br>节奏化调制</div></div>
+    <p class="desc">把多种效果（滤波、音量、声像、失真等）交给节奏化的运动序列驱动：自动生成不断变化的律动、起伏与质感，让静止的声音「动起来」。无单一硬件原型。</p>
+    <div class="legend"><div class="lh">◇ 它的独到之处</div><p>它的核心是「运动」——用步进序列和 LFO 同时调制多个效果参数，把一个持续的和弦或 pad 变成不断演化的律动织体。它特别适合制造电子音乐里那种自带 groove 的质感层，是把「静」变「动」的创意引擎。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 参考</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Rhythmic Gate</div><div class="snd-desc">节奏化的音量门，把长音切成律动。</div><div class="snd-genre">合成器 pad · 电子 · house</div><div class="snd-song use"><i>◆</i> <em>适合：节奏门 / trance gate</em></div></li>
+      <li><div class="snd-name">Moving Filter Seq</div><div class="snd-desc">步进滤波序列，演进的律动质感。</div><div class="snd-genre">合成器 · techno · 电子</div><div class="snd-song use"><i>◆</i> <em>适合：滤波律动</em></div></li>
+      <li><div class="snd-name">Pan Dance</div><div class="snd-desc">节奏化声像运动，立体、跳跃。</div><div class="snd-genre">合成器/打击 · 电子 · 实验</div><div class="snd-song use"><i>◆</i> <em>适合：声像律动</em></div></li>
+      <li><div class="snd-name">Evolving Texture</div><div class="snd-desc">多效果同步演进的织体，丰富、有机。</div><div class="snd-genre">声design · 配乐 · 电子</div><div class="snd-song use"><i>◆</i> <em>适合：质感层</em></div></li>
+      <li><div class="snd-name">Glitch Motion</div><div class="snd-desc">带故障感的运动序列，抽象、现代。</div><div class="snd-genre">声design · IDM · 实验</div><div class="snd-song use"><i>◆</i> <em>适合：glitch / IDM</em></div></li>
+      <li><div class="snd-name">Pulsing Bass</div><div class="snd-desc">脉冲律动的贝斯，节奏感强。</div><div class="snd-genre">贝斯 · 电子 · house</div><div class="snd-song use"><i>◆</i> <em>适合：律动贝斯</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card modern">
+    <div class="card-top"><h3>Efx FRAGMENTS</h3><div class="spec">Arturia 原创 <span>颗粒处理 / granular</span><br>碎裂 + 重组</div></div>
+    <p class="desc">颗粒（granular）效果器：把声音打碎成微小颗粒再重组、拉伸、弥散，能造出从细腻云雾到剧烈碎裂的全新质感。无单一硬件原型。</p>
+    <div class="legend"><div class="lh">◇ 它的独到之处</div><p>颗粒合成把声音切成成百上千的微小碎片，再以新的密度、音高和位置重新播放——于是一段简单人声能变成飘渺的声云，一个鼓点能炸成漫天碎屑。FRAGMENTS 把这种强大的声音设计能力做成易用的效果器，是制造「现实中不存在的质感」的利器。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 参考</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Vocal Cloud</div><div class="snd-desc">把人声化成飘渺声云，空灵、梦幻。</div><div class="snd-genre">人声 · 氛围 · 电子</div><div class="snd-song use"><i>◆</i> <em>适合：氛围人声</em></div></li>
+      <li><div class="snd-name">Granular Pad</div><div class="snd-desc">颗粒弥散的演进 pad，绵密、有机。</div><div class="snd-genre">合成器 pad · ambient · 配乐</div><div class="snd-song use"><i>◆</i> <em>适合：ambient pad</em></div></li>
+      <li><div class="snd-name">Shattered Drums</div><div class="snd-desc">把鼓炸成碎屑，故障、抽象。</div><div class="snd-genre">鼓 · IDM · 实验</div><div class="snd-song use"><i>◆</i> <em>适合：glitch 鼓</em></div></li>
+      <li><div class="snd-name">Frozen Texture</div><div class="snd-desc">冻结颗粒成静止质感，悬浮、留白。</div><div class="snd-genre">声design · ambient · 配乐</div><div class="snd-song use"><i>◆</i> <em>适合：冻结质感</em></div></li>
+      <li><div class="snd-name">Pitch Smear</div><div class="snd-desc">颗粒音高弥散，奇幻、模糊。</div><div class="snd-genre">合成器 · 实验 · 配乐</div><div class="snd-song use"><i>◆</i> <em>适合：音高弥散</em></div></li>
+      <li><div class="snd-name">Stretch Drone</div><div class="snd-desc">极度拉伸成长滩 drone，宏大、电影感。</div><div class="snd-genre">声design · 配乐 · 暗黑</div><div class="snd-song use"><i>◆</i> <em>适合：drone / 配乐</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card modern">
+    <div class="card-top"><h3>Efx AMBIENT</h3><div class="spec"><span class="badge-new">v6 新</span> Arturia 原创 <span>氛围声音处理</span><br>六算法 + X/Y 变形</div></div>
+    <p class="desc">专为「造氛围」而生的处理器：内含 Reflect、Woven、Siren、Organist、Codec、Sunken 六种算法，结合频谱处理与反馈延迟网络，加上 X/Y 变形板，把任何声音变成富于情绪的全新质感。无单一硬件原型。</p>
+    <div class="legend"><div class="lh">◇ 它的独到之处</div><p>它把混响、延迟、频谱与调制揉成六种性格迥异的「氛围引擎」，再用一个 X/Y 板让你直觉地在它们之间变形——几下拖动，一段干声就长成飘渺、迷离、富于情绪的声景。它不是单一效果，而是一台专门生产「情绪与质感」的氛围机器，是 v6 给声音设计者的新玩具。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 参考</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Reflect Space</div><div class="snd-desc">明亮反射的空间算法，开阔、梦幻。</div><div class="snd-genre">合成器/人声 · ambient · 配乐</div><div class="snd-song use"><i>◆</i> <em>适合：氛围空间</em></div></li>
+      <li><div class="snd-name">Woven Texture</div><div class="snd-desc">编织感的演进织体，绵密、流动。</div><div class="snd-genre">声design · ambient · 电子</div><div class="snd-song use"><i>◆</i> <em>适合：质感织体</em></div></li>
+      <li><div class="snd-name">Siren Morph</div><div class="snd-desc">带音高漂移的迷离声景，悬浮、奇幻。</div><div class="snd-genre">合成器 · 配乐 · 实验</div><div class="snd-song use"><i>◆</i> <em>适合：电影声景</em></div></li>
+      <li><div class="snd-name">Sunken Drone</div><div class="snd-desc">下沉幽暗的长滩 drone，深邃、压抑。</div><div class="snd-genre">声design · 暗黑 · 配乐</div><div class="snd-song use"><i>◆</i> <em>适合：暗黑氛围</em></div></li>
+      <li><div class="snd-name">Organist Pad</div><div class="snd-desc">风琴般的绵长泛音氛围，圣洁、宽阔。</div><div class="snd-genre">合成器 pad · 氛围 · 配乐</div><div class="snd-song use"><i>◆</i> <em>适合：氛围 pad</em></div></li>
+      <li><div class="snd-name">Codec Glitch</div><div class="snd-desc">数字编解码的破碎质感，故障、现代。</div><div class="snd-genre">声design · IDM · 实验</div><div class="snd-song use"><i>◆</i> <em>适合：数字故障质感</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card modern">
+    <div class="card-top"><h3>Efx REFRACT</h3><div class="spec">Arturia 原创 <span>频谱 / 折射处理</span><br>谐波重塑</div></div>
+    <p class="desc">基于频谱的「折射」处理器：在频域里弯折、分裂、重塑声音的谐波，制造金属共鸣、镜像泛音与异世界音色。无单一硬件原型。</p>
+    <div class="legend"><div class="lh">◇ 它的独到之处</div><p>它在频域里工作——像光线穿过棱镜般把声音的谐波折射、分裂、重新排列，于是寻常的声音长出金属共鸣、镜像泛音与现实中不存在的色彩。它是给声音「换骨」的工具，专为追求独特音色与实验质感的设计者准备。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 参考</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Metallic Resonance</div><div class="snd-desc">折射出金属共鸣，冷峻、奇异。</div><div class="snd-genre">声design · 工业 · 配乐</div><div class="snd-song use"><i>◆</i> <em>适合：金属质感</em></div></li>
+      <li><div class="snd-name">Spectral Pad</div><div class="snd-desc">频谱重塑的演进 pad，异色、流动。</div><div class="snd-genre">合成器 pad · ambient · 实验</div><div class="snd-song use"><i>◆</i> <em>适合：实验 pad</em></div></li>
+      <li><div class="snd-name">Mirror Harmonics</div><div class="snd-desc">镜像泛音的诡谲音色，超现实。</div><div class="snd-genre">声design · 配乐 · 实验</div><div class="snd-song use"><i>◆</i> <em>适合：超现实音色</em></div></li>
+      <li><div class="snd-name">Glass Vocal</div><div class="snd-desc">把人声折射成玻璃质感，空灵、易碎。</div><div class="snd-genre">人声 · 氛围 · 电子</div><div class="snd-song use"><i>◆</i> <em>适合：玻璃人声</em></div></li>
+      <li><div class="snd-name">Alien Texture</div><div class="snd-desc">异世界的质感层，陌生、迷离。</div><div class="snd-genre">声design · 科幻 · 配乐</div><div class="snd-song use"><i>◆</i> <em>适合：科幻声design</em></div></li>
+      <li><div class="snd-name">Shifting Drone</div><div class="snd-desc">缓慢变形的频谱 drone，深邃、电影感。</div><div class="snd-genre">配乐 · 暗黑 · 实验</div><div class="snd-song use"><i>◆</i> <em>适合：drone / 配乐</em></div></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <div class="card-top"><h3>Pitch SHIFTER-910</h3><div class="spec"><span class="badge-new">v6 新</span> 原型 <span>Eventide H910 Harmonizer</span><br>数字变调 · 1974</div></div>
+    <p class="desc">复刻世界上第一台商用数字效果器：H910 Harmonizer。可做音高位移、加厚、变调延迟与共振峰偏移，那种略带「机械感」的变调正是无数经典人声与鼓声的秘密。</p>
+    <div class="legend"><div class="lh">◇ 为什么传奇</div><p>H910 是数字音频效果的开山鼻祖。它能实时变调、把单声加厚成双，那种独特的、略带粗糙的数字变调质感无可替代——Tony Visconti 用它造出了 Bowie《Low》里那记著名的「下坠」军鼓，AC/DC、Van Halen 等也用它加厚人声与吉他。它把「变调」从修音工具变成了创意武器。</p></div>
+    <div class="block-label">代表用法 · 特点 / 适用对象 / 经典案例</div>
+    <ol class="sounds">
+      <li><div class="snd-name">Visconti Snare</div><div class="snd-desc">下行变调的军鼓「下坠」感，标志性、有重量。</div><div class="snd-genre">鼓 · 军鼓 · art rock</div><div class="snd-song"><i>♪</i> David Bowie <em>— Low（H910 下坠军鼓）</em></div></li>
+      <li><div class="snd-name">Vocal Thicken</div><div class="snd-desc">微变调加厚人声成双，饱满、有力。</div><div class="snd-genre">人声 · 摇滚 · 硬摇滚</div><div class="snd-song"><i>♪</i> AC/DC <em>— H910 加厚人声</em></div></li>
+      <li><div class="snd-name">Guitar Double</div><div class="snd-desc">把吉他加厚成双轨感，宽、满。</div><div class="snd-genre">吉他 · 硬摇滚 · 金属</div><div class="snd-song"><i>♪</i> Van Halen <em>— Harmonizer 加厚吉他</em></div></li>
+      <li><div class="snd-name">Detune Wide</div><div class="snd-desc">轻微失谐加宽，立体、有厚度。</div><div class="snd-genre">合成器/吉他 · 流行 · 摇滚</div><div class="snd-song"><i>♪</i> 制作 <em>— 微失谐加宽</em></div></li>
+      <li><div class="snd-name">Pitched Delay</div><div class="snd-desc">变调延迟的奇幻回声，上行/下行。</div><div class="snd-genre">合成器/人声 · 实验 · 电子</div><div class="snd-song"><i>♪</i> 实验制作 <em>— 变调延迟</em></div></li>
+      <li><div class="snd-name">Formant Shift</div><div class="snd-desc">共振峰偏移变性人声，怪诞、有趣。</div><div class="snd-genre">人声 · 实验 · 电子</div><div class="snd-song"><i>♪</i> 实验 <em>— 共振峰偏移</em></div></li>
+    </ol>
+  </article>
+</section>
+
+<footer>
+  ARTURIA FX COLLECTION 6 PRO · 效果器图鉴 · 完整版（39 件效果器 + 赠送 Rev OCEAN · 9 大家族 · 240 代表用法）<br>
+  <b>每件含：</b> 「为什么传奇 / 独到之处」专栏 · 6 个代表用法（特点+感觉+适用对象）· 硬件复刻类各配一个经典案例<br>
+  <b>方法：</b> 「♪」为「该原型硬件做出过此类处理」的公认关联（听感参考），非逐音轨考据；可疑/争议归属一律不收录（宁缺毋滥）<br>
+  <b>「◆」标注：</b> 无单一硬件原型的原创工具（Rev OCEAN、Rev INTENSITY、Delay ETERNITY、四款 Filter、Coldfire/Opamp-21、Bus 系列、Mix DRUMS、Efx 系列）标「适合/参考」<br>
+  <b>v6 全新 5 款：</b> Efx AMBIENT · Pitch SHIFTER-910 · Tape J-37 · Bus TRANSIENT · Mix DRUMS<br>
+  <b>清单核对：</b> 效果器收录依据 arturia.com 官方 FX Collection 6 页面（2026-06 核对）；Rev OCEAN 为购买即赠送的最新混响，非 39 件之一
+</footer>
+
+</main>
+
 <script>
 (function(){
   // ---- 分类折叠：点击分类标题切换收起/展开 ----
@@ -929,10 +1660,9 @@
     h.addEventListener('click',function(){ h.closest('.cat').classList.toggle('collapsed'); });
   });
 
-  // ---- 定位插件卡片 → 展开所属分类 → 平滑滚动 → 高亮 ----
-  var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
-  function jumpTo(name){
-    var target=null;
+  // ---- 定位卡片 → 展开所属分类 → 平滑滚动 → 高亮（按视图作用域查找） ----
+  function jumpTo(root,name){
+    var cards=root.querySelectorAll('.card'), target=null;
     for(var i=0;i<cards.length;i++){
       var h3=cards[i].querySelector('h3');
       if(h3 && h3.textContent.trim()===name){ target=cards[i]; break; }
@@ -945,8 +1675,61 @@
     setTimeout(function(){ target.classList.remove('flash'); },1700);
   }
 
-  // ---- 音色速查：多选曲风做交集 ----
-  // 每件乐器标注其适合的曲风及对应推荐预设（预设名与正文一致）
+  // ---- 速查（多选交集）：通用初始化。V 用曲风、FX 用处理对象 ----
+  function initQuickref(opts){
+    var root=opts.root, FACETS=opts.facets, DATA=opts.data, UNIT=opts.unit;
+    var chipsBox=document.getElementById(opts.chipsId);
+    var statusBox=document.getElementById(opts.statusId);
+    var resBox=document.getElementById(opts.resultsId);
+    if(!chipsBox||!root) return;
+    var label={}; FACETS.forEach(function(g){ label[g[0]]=g[1]; });
+    var sel={};
+    FACETS.forEach(function(g){
+      var c=document.createElement('span');
+      c.className='qr-chip'; c.setAttribute('data-g',g[0]); c.textContent=g[1];
+      chipsBox.appendChild(c);
+    });
+    chipsBox.addEventListener('click',function(e){
+      var chip=e.target.closest('.qr-chip'); if(!chip) return;
+      var g=chip.getAttribute('data-g'); sel[g]=!sel[g]; render();
+    });
+    resBox.addEventListener('click',function(e){
+      var it=e.target.closest('[data-inst]'); if(!it) return;
+      e.preventDefault(); jumpTo(root,it.getAttribute('data-inst'));
+    });
+    function render(){
+      var keys=Object.keys(sel).filter(function(k){ return sel[k]; });
+      chipsBox.querySelectorAll('.qr-chip').forEach(function(c){
+        c.classList.toggle('on', !!sel[c.getAttribute('data-g')]);
+      });
+      var list;
+      if(keys.length===0){
+        list=DATA.slice();
+        statusBox.textContent='未选择 · 显示全部 '+DATA.length+' '+UNIT+'，点上方标签做交集筛选';
+      } else {
+        list=DATA.filter(function(it){ return keys.every(function(g){ return it.p[g]; }); });
+        statusBox.textContent=keys.map(function(g){ return label[g]; }).join('  ∩  ')+'   →   命中 '+list.length+' '+UNIT;
+      }
+      resBox.innerHTML='';
+      if(list.length===0){
+        var em=document.createElement('div'); em.className='qr-empty';
+        em.textContent='没有同时满足全部所选项的结果 — 试试减少选项。';
+        resBox.appendChild(em); return;
+      }
+      list.forEach(function(it){
+        var show = keys.length ? keys.filter(function(g){ return it.p[g]; }) : Object.keys(it.p);
+        var pres = show.map(function(g){ return it.p[g]; });
+        pres = pres.filter(function(v,i){ return pres.indexOf(v)===i; });   // 去重
+        var a=document.createElement('a');
+        a.className='qr-rcell'; a.setAttribute('data-inst',it.n); a.href='#';
+        a.innerHTML='<b>'+it.n+'</b><span class="pst">'+pres.join(' / ')+'</span>';
+        resBox.appendChild(a);
+      });
+    }
+    render();
+  }
+
+  // ---- V Collection 速查数据：曲风 → 推荐预设（预设名与正文一致） ----
   var GENRES=[['funk','Funk / Soul / R&B'],['pop80','80s 流行 / New Wave'],['fm','FM / 数字'],['synthwave','Synthwave / 复古未来'],['house','House / Techno / Acid'],['trance','Trance / EDM'],['cine','电影配乐 / 氛围'],['prog','前卫 / 迷幻摇滚'],['lofi','Lo-fi / Chillhop'],['jazz','爵士'],['space','太空电子 / Berlin School']];
   var INST=[
     {n:'Stage-73 V',p:{funk:'Neo-Soul Warm',jazz:'Mellow Jazz',lofi:'Neo-Soul Warm'}},
@@ -994,58 +1777,75 @@
     {n:'MiniBrute V',p:{house:'Brute Bass'}},
     {n:'Pure Lo-Fi',p:{lofi:'Tape Keys'}}
   ];
-  var label={}; GENRES.forEach(function(g){ label[g[0]]=g[1]; });
-  var sel={};
-  var chipsBox=document.getElementById('qrChips');
-  var statusBox=document.getElementById('qrStatus');
-  var resBox=document.getElementById('qrResults');
+  initQuickref({root:document.getElementById('view-v'),facets:GENRES,data:INST,unit:'件乐器',
+    chipsId:'qrChips',statusId:'qrStatus',resultsId:'qrResults'});
 
-  if(chipsBox){
-    GENRES.forEach(function(g){
-      var c=document.createElement('span');
-      c.className='qr-chip'; c.setAttribute('data-g',g[0]); c.textContent=g[1];
-      chipsBox.appendChild(c);
-    });
-    chipsBox.addEventListener('click',function(e){
-      var chip=e.target.closest('.qr-chip'); if(!chip) return;
-      var g=chip.getAttribute('data-g'); sel[g]=!sel[g]; render();
-    });
-    resBox.addEventListener('click',function(e){
-      var it=e.target.closest('[data-inst]'); if(!it) return;
-      e.preventDefault(); jumpTo(it.getAttribute('data-inst'));
-    });
-    render();
-  }
+  // ---- FX Collection 速查数据：处理对象/用途 → 推荐用法（用法名与正文一致） ----
+  var FACETS=[['vocal','人声'],['drum','鼓·打击'],['bass','贝斯'],['guitar','吉他'],['synth','合成器·键盘'],['master','母带·总线'],['space','空间混响'],['design','创意声design']];
+  var FX=[
+    {n:'Rev OCEAN',p:{space:'Tidal Ambient',vocal:'Lush Vocal Space',design:'Frozen Wash'}},
+    {n:'Rev PLATE-140',p:{vocal:'Classic Vocal Plate',drum:'Snare Smash',master:'Short Glue'}},
+    {n:'Rev LX-24',p:{drum:'80s Big Snare',vocal:'Bright Vocal Hall',synth:'Synth Shine',space:'Cinematic Wash'}},
+    {n:'Rev SPRING-636',p:{guitar:'Surf Guitar',vocal:'Lo-fi Vocal',drum:'Drip Drum',design:'Boing FX'}},
+    {n:'Rev INTENSITY',p:{synth:'Modulated Hall',guitar:'Chorus Verb',drum:'Tight Room',space:'Evolving Space',design:'Evolving Space'}},
+    {n:'Delay TAPE-201',p:{vocal:'Warm Vocal Throw',guitar:'Guitar Slap',synth:'Psych Repeats',design:'Self-Oscillate FX'}},
+    {n:'Delay BRIGADE',p:{guitar:'Dotted Guitar',synth:'Synth Bounce',vocal:'Warm Slap'}},
+    {n:'Delay ETERNITY',p:{guitar:'Shimmer Climb',synth:'Infinite Pad',space:'Infinite Pad',design:'Pitch Cascade'}},
+    {n:'Rotary CLS-222',p:{synth:'Wide Keys',vocal:'Psych Vocal',guitar:'Rotary Guitar'}},
+    {n:'Chorus JUN-6',p:{synth:'Classic Juno Pad',guitar:'Dream Guitar',bass:'Wide Bass',vocal:'Shimmer Vox'}},
+    {n:'Chorus DIMENSION-D',p:{guitar:'Clean Guitar Width',synth:'Wide Synth',vocal:'Vocal Spread',master:'Subtle Glue'}},
+    {n:'Phase BI-TRON',p:{synth:'Sweeping Pad',guitar:'Space Guitar',drum:'Drum Mover',design:'Slow Throb'}},
+    {n:'Flanger BL-20',p:{guitar:'Jet Guitar',drum:'Drum Whoosh',synth:'Synth Sweep',design:'Through-Zero'}},
+    {n:'Filter MS-20',p:{bass:'Gritty Bass',drum:'Screaming Drums',synth:'Acid Squelch',design:'Self-Osc Tone'}},
+    {n:'Filter MINI',p:{bass:'Fat Bass Tone',synth:'Creamy Sweep',master:'Warm Glue',drum:'Smooth Drums'}},
+    {n:'Filter M12',p:{synth:'Silky Lowpass',vocal:'Bandpass Vox',design:'Multi FX Morph'}},
+    {n:'Filter SEM',p:{synth:'Velvet Pad',vocal:'Warm Vocal Shape',design:'Subtle Resonance'}},
+    {n:'Pre 1973',p:{vocal:'Warm Vocal',drum:'Punchy Drums',bass:'Thick Bass',guitar:'Guitar Color',master:'Mix Glue'}},
+    {n:'Pre TRIDA',p:{vocal:'Bright Vocal',drum:'Glam Drums',guitar:'Edgy Guitar',master:'Crisp Bus'}},
+    {n:'Pre V76',p:{vocal:'Tube Vocal',bass:'Warm Upright Bass',master:'Tube Glue'}},
+    {n:'EQ SITRAL-295',p:{vocal:'Smooth Vocal EQ',bass:'Warm Low Shelf',master:'Mastering Polish'}},
+    {n:'Comp FET-76',p:{vocal:'Vocal Snap',drum:'All-Buttons Drums',bass:'Punch Bass',guitar:'Guitar Bite'}},
+    {n:'Comp VCA-65',p:{drum:'Punch Kick',bass:'Tight Bass'}},
+    {n:'Comp TUBE-STA',p:{vocal:'Silky Vocal',bass:'Smooth Bass',master:'Warm Glue Bus'}},
+    {n:'Comp DIODE-609',p:{master:'Master Weight',drum:'Drum Bus Punch',vocal:'Warm Glue Vocal'}},
+    {n:'Dist COLDFIRE',p:{drum:'Crushed Drums',bass:'Gritty Bass',synth:'Synth Aggression',design:'Dual Mangle'}},
+    {n:'Dist TUBE-CULTURE',p:{vocal:'Vocal Edge',drum:'Drum Crunch',bass:'Bass Grit',master:'Master Sheen'}},
+    {n:'Dist OPAMP-21',p:{synth:'Crisp Overdrive',drum:'Hard Clip Drums',bass:'Electro Bass',design:'Fuzz Wall'}},
+    {n:'Tape MELLO-FI',p:{synth:'Tape Wow Synth',vocal:'Wobbly Vocal',drum:'Dusty Drums',design:'Broken Tape FX'}},
+    {n:'Tape J-37',p:{master:'Abbey Road Glue',drum:'Warm Drum Tape',vocal:'Vintage Vocal',bass:'Bass Round'}},
+    {n:'Bus TRANSIENT',p:{drum:'Punchy Snare',bass:'Bass Attack',guitar:'Soft Acoustic',master:'Mix Impact'}},
+    {n:'Bus PEAK',p:{master:'Transparent Master',drum:'Drum Bus Limit'}},
+    {n:'Bus EXCITER-104',p:{vocal:'Vocal Presence',guitar:'Acoustic Sparkle',drum:'Bright Drums',bass:'Bass Definition',master:'Master Sheen'}},
+    {n:'Bus FORCE',p:{master:'Master Polish',drum:'Drum Bus Beast'}},
+    {n:'Mix DRUMS',p:{drum:'Punchy Kit'}},
+    {n:'Efx MOTIONS',p:{synth:'Rhythmic Gate',bass:'Pulsing Bass',design:'Glitch Motion'}},
+    {n:'Efx FRAGMENTS',p:{vocal:'Vocal Cloud',synth:'Granular Pad',drum:'Shattered Drums',space:'Granular Pad',design:'Frozen Texture'}},
+    {n:'Efx AMBIENT',p:{synth:'Organist Pad',vocal:'Reflect Space',space:'Reflect Space',design:'Woven Texture'}},
+    {n:'Efx REFRACT',p:{vocal:'Glass Vocal',synth:'Spectral Pad',design:'Alien Texture'}},
+    {n:'Pitch SHIFTER-910',p:{drum:'Visconti Snare',vocal:'Vocal Thicken',guitar:'Guitar Double',synth:'Detune Wide'}}
+  ];
+  initQuickref({root:document.getElementById('view-fx'),facets:FACETS,data:FX,unit:'件效果器',
+    chipsId:'fxChips',statusId:'fxStatus',resultsId:'fxResults'});
 
-  function render(){
-    var keys=Object.keys(sel).filter(function(k){ return sel[k]; });
-    chipsBox.querySelectorAll('.qr-chip').forEach(function(c){
-      c.classList.toggle('on', !!sel[c.getAttribute('data-g')]);
-    });
-    var list;
-    if(keys.length===0){
-      list=INST.slice();
-      statusBox.textContent='未选择曲风 · 显示全部 '+INST.length+' 件乐器，点上方标签做交集筛选';
-    } else {
-      list=INST.filter(function(it){ return keys.every(function(g){ return it.p[g]; }); });
-      statusBox.textContent=keys.map(function(g){ return label[g]; }).join('  ∩  ')+'   →   命中 '+list.length+' 件';
-    }
-    resBox.innerHTML='';
-    if(list.length===0){
-      var em=document.createElement('div'); em.className='qr-empty';
-      em.textContent='没有同时满足全部所选曲风的插件 — 试试减少选项。';
-      resBox.appendChild(em); return;
-    }
-    list.forEach(function(it){
-      var show = keys.length ? keys.filter(function(g){ return it.p[g]; }) : Object.keys(it.p);
-      var pres = show.map(function(g){ return it.p[g]; });
-      pres = pres.filter(function(v,i){ return pres.indexOf(v)===i; });   // 去重
-      var a=document.createElement('a');
-      a.className='qr-rcell'; a.setAttribute('data-inst',it.n); a.href='#';
-      a.innerHTML='<b>'+it.n+'</b><span class="pst">'+pres.join(' / ')+'</span>';
-      resBox.appendChild(a);
-    });
+  // ---- 顶部 V / FX 视图切换 ----
+  var brand=document.getElementById('brand');
+  var viewV=document.getElementById('view-v'), viewFX=document.getElementById('view-fx');
+  var navV=document.querySelector('nav.chips[data-nav="v"]'), navFX=document.querySelector('nav.chips[data-nav="fx"]');
+  var btns=Array.prototype.slice.call(document.querySelectorAll('#viewSwitch button'));
+  function setView(v,scroll){
+    var isFX=(v==='fx');
+    viewV.hidden=isFX; viewFX.hidden=!isFX;
+    navV.hidden=isFX; navFX.hidden=!isFX;
+    brand.innerHTML=isFX?'ARTURIA · <b>FX COLLECTION 6 PRO</b>':'ARTURIA · <b>V COLLECTION 11 PRO</b>';
+    btns.forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-view')===v); });
+    document.title=isFX?'Arturia FX Collection 6 Pro · 效果器图鉴':'Arturia V Collection 11 Pro · 插件图鉴';
+    if(history.replaceState) history.replaceState(null,'',isFX?'#fx':'#v');
+    if(scroll) window.scrollTo({top:0,behavior:'smooth'});
   }
+  btns.forEach(function(b){
+    b.addEventListener('click',function(){ setView(b.getAttribute('data-view'),true); });
+  });
+  setView(location.hash.toLowerCase().indexOf('fx')>-1?'fx':'v',false);
 })();
 </script>
 
